@@ -155,6 +155,14 @@ app.factory('registroInternacaoFactory', function ($http) {
             kanHeaders
         });
     };
+
+    registro.getRegistrosInternacoes = function(){
+        return $http({
+            ulr: URL_REQ + "pacientesInternados",
+            method: 'GET',
+            kanHeaders
+        })
+    }
     return registro;
 });
 
