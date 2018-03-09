@@ -1,93 +1,76 @@
-app.controller('dashboardController', ['$rootScope', '$scope', '$state', '$stateParams',"$interval","kanbanFactory", "Notify",
-    function($rootScope, $scope, $state,$stateParams, $interval, kanbanFactory, Notify){
+app.controller('dashboardController', ['$rootScope', '$scope', '$state', '$stateParams', "$interval", "registroInternacaoFactory", "Notify",
+    function ($rootScope, $scope, $state, $stateParams, $interval, registroInternacaoFactory, Notify) {
 
         $scope.kanban = {
-            Verde: {
+            verde: {
                 qtdPacientes: 0,
                 pacientes: []
             },
-            Vermelho: {
+            vermelho: {
                 qtdPacientes: 0,
                 pacientes: []
             },
-            Amarelo: {
+            amarelo: {
                 qtdPacientes: 0,
                 pacientes: []
             }
         }
 
-        $scope.canOpenModal = false
+        $scope.canShowPacientes = false;
 
-        const openModalPaciente = (pacientes) =>{
-            $state.go('classificacaoPacientes', {pacientes: pacientes});
-            //Notify.openModal("templates/relatorios/modal-kanban.html", {pacientes: pacientes}, "95%")
-        }
+        $scope.openDadosPaciente = function (pacientes){
+            $state.go('classificacaoPacientes', { pacientes: pacientes });
+        };
 
-        const atualizaRegistrosInternacao = () =>{
-            debugger;
-            return kanbanFactory.atualizaRegistrosInternacao()
-            .then(()=>{
-                return getAllInternacoes()
-            }).catch((err)=>{
-                console.log(err)
-            })
-        }
-        
-        const getAllInternacoes = ()=> {
-            $scope.canOpenModal = false
-            return getRegistrosPorClassificação("Vermelho")
-            .then(()=>{
-                return getRegistrosPorClassificação("Amarelo")
-            }).then(()=>{
-                return getRegistrosPorClassificação("Verde")
-            }).then(()=>{
-                $scope.canOpenModal = true
-            }).catch((err)=>{
-                console.log(err)
-            })
-        }
-        
-        const getRegistrosPorClassificação = (classificacao) => {
-            return kanbanFactory.getRegistrosPorClassificação(classificacao)
-            .then((res)=>{
-                $scope.kanban[classificacao].qtdPacientes = res.data.data.length;
-                $scope.kanban[classificacao].pacientes = res.data.data;
-            }).catch((err)=>{
-                console.log(err)
-            })
-        }
+        $scope.atualizaPacientesInternados = function (pacientes) {
+            $scope.canShowPacientes = false;
+            var dataAtual = new Date();
+            for (var i = 0; i < pacientes.length; i++) {
+                var diasInternado = calcularDiasDiferenca(dataAtual, new Date(pacientes[i].dataInternacao)).dias;
+                if (diasInternado < 6) {
+                    pacientes[i].classificacao = "verde";
+                    pacientes[i].diasInternado = diasInternado;
+                    $scope.kanban.verde.qtdPacientes += 1;
+                    $scope.kanban.verde.pacientes.push(pacientes[i]);
+                } else if (diasInternado < 11) {
+                    pacientes[i].classificacao = "amarelo";
+                    pacientes[i].diasInternado = diasInternado;
+                    $scope.kanban.amarelo.qtdPacientes += 1;
+                    $scope.kanban.amarelo.pacientes.push(pacientes[i]);
+                } else {
+                    pacientes[i].classificacao = "vermelho";
+                    pacientes[i].diasInternado = diasInternado;
+                    $scope.kanban.vermelho.qtdPacientes += 1;
+                    $scope.kanban.vermelho.pacientes.push(pacientes[i]);
+                }
+            }
 
-        const getLocalDate = (data) =>{
-            const res = new Date(data).toLocaleDateString();
-            return res;
-        }
+            $scope.canShowPacientes = true;
 
-        const init = () => {
-            getAllInternacoes().then(()=>{
-                $scope.canOpenModal = true
-            })
-            
-            /*$interval(()=>{
-                return getAllInternacoes()
-            },20000)*/
-        }
+        };
 
-        const setAllPendencies = (pendencia) =>{
+        $scope.init = function () {
+            registroInternacaoFactory.getRegistrosInternacoes()
+                .then(function (res) {
+                    $scope.atualizaPacientesInternados(res.data.data);
+                })
+                .catch(function (res) {
+                    console.log(res.data);
+                });
+        };
+
+        const setAllPendencies = (pendencia) => {
             var res = "Nenhuma Pendencia"
-            if(pendencia.length){
+            if (pendencia.length) {
                 res = ""
-                for(var i = 0 ; i < pendencia.length; i++){
-                    res += "<div style='width: 100px;'>" + pendencia[i] +" </div>"
+                for (var i = 0; i < pendencia.length; i++) {
+                    res += "<div style='width: 100px;'>" + pendencia[i] + " </div>"
                 }
             }
 
             return res;
-        }
+        };
 
-        $scope.init= init
-        $scope.setAllPendencies= setAllPendencies
-        $scope.getLocalDate= getLocalDate
-        $scope.getAllInternacoes = getAllInternacoes
-        $scope.openModalPaciente = openModalPaciente    
+        $scope.setAllPendencies= setAllPendencies;
     }
 ])

@@ -7,6 +7,7 @@ var replace = require('gulp-replace');
 //Arquivos JS que serão concatenados e salvo em dist
 var jsAppConcat = [
     "src/app.js",
+    "src/resources/app.util.js",
     "src/resources/routes/*.js",
     "src/resources/factorys/*.js",
     "src/resources/services/*.js",
