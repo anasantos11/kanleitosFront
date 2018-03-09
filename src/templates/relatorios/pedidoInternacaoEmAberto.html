@@ -1,0 +1,72 @@
+<div ng-controller="ModalPesquisaPedidoInternacaoController" ng-init="carregarPedidos()">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <span>Relatórios</span>
+        </li>
+        <li class="breadcrumb-item active">
+            <span> Pedidos em Aberto</span>
+        </li>
+    </ol>
+
+    <div class="kan-row">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <h5 class="kan-title">Pedidos de Internação em aberto
+                    <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Aqui você visualizará todos os pedidos de internação em aberto, 
+                    os que estão destacados de vermelho já ultrapassou 24 horas desde o horário da admissão registrada. 
+                    No campo abaixo você consegue filtrar alguma informação na lista.">
+                    </i>
+                </h5>
+                <p class="d-inline-block mr-4">
+                    <i class="fa fa-circle fa-1-x text-success"></i>
+                    <span>Aberto há
+                        <strong>menos de 12 horas</strong>
+                    </span>
+                </p>
+
+                <p class="d-inline-block mr-4">
+                    <i class="fa fa-circle fa-1-x text-warning"></i>
+                    <span>Aberto há
+                        <strong>mais de 12 horas</strong>
+                    </span>
+                </p>
+                <p class="d-inline-block mr-4">
+                    <i class="fa fa-circle fa-1-x text-danger"></i>
+                    <span>Aberto há
+                        <strong>mais de 24 horas</strong>
+                    </span>
+                </p>
+                <input id="search" class="col-md-6 form-control form-control-sm" type="text" ng-model="search" placeholder="Digite para pesquisar">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Ala</th>
+                            <th class="text-center">Diagnóstico</th>
+                            <th class="text-center">Prontuário</th>
+                            <th class="text-center">Paciente</th>
+                            <th class="text-center">Idade</th>
+                            <th class="text-center">Data Admissão</th>
+                            <th class="text-center">Tempo Esp.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pedido in listaPedidos  | filter : search | orderBy: 'dataAdmissao'" 
+                            ng-class="{ 'table-success' : pedido.tempo.dias < 1 && pedido.tempo.horas < 12, 
+                                        'table-warning' : pedido.tempo.dias < 1 && pedido.tempo.horas >= 12,
+                                        'table-danger'  : pedido.tempo.dias >= 1 }">
+                            <td title="{{pedido.ala.nomeAla}}">{{pedido.ala.nomeAla}}</td>
+                            <td title="{{pedido.diagnostico.descricaoDiagnostico}}">{{pedido.diagnostico.descricaoDiagnostico}} </td>
+                            <td class="text-center" title="{{pedido.paciente.numProntuario}}">{{pedido.paciente.numProntuario | limitTo: 10}}</td>
+                            <td class="text-center" title="{{pedido.paciente.nomePaciente}}">{{pedido.paciente.nomePaciente}}</td>
+                            <td class="text-center" title="{{pedido.paciente.idade}}">{{pedido.paciente.idade}}</td>
+                            <td class="text-center" title="{{pedido.dataAdmissao | date: 'dd/MM/yy HH:mm'}}">{{pedido.dataAdmissao | date: "dd/MM/yy H:m"}}</td>
+                            <td class="text-center" title="{{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}">
+                                {{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>

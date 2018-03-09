@@ -1,0 +1,26 @@
+{
+  "name": "kanleitos",
+  "version": "1.0.0",
+  "description": "Software para gestão de leitos e clínicas de hospitais",
+  "main": "app.js",
+  "author": "KanLeitos",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "v4.0.0-beta",
+    "components-font-awesome": "^4.7.0",
+    "sweetalert": "^2.1.0",
+    "angular": "^1.6.6",
+    "angular-ui-router": "^1.0.12",
+    "angularfire": "^2.3.0",
+    "ng-dialog": "^1.4.0",
+    "angular-tooltips": "^1.2.2",
+    "angular-loading-bar": "^0.9.0",
+    "angular-animate": "^1.6.9"
+  }
+}

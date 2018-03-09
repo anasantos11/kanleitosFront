@@ -1,0 +1,39 @@
+<div ng-controller="ModalPesquisaPedidoInternacaoController" ng-init="carregarPedidos()">
+    <div class="kan-row-modal">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <h5 class="kan-title">Lista de Pedidos de Internações Abertos
+                <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Escolha um pedido para registrar a internação do paciente."></i>
+            </h5>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nº Prontuário</th>
+                            <th class="text-center">Nome do Paciente</th>
+                            <th class="text-center">Nome da mãe</th>
+                            <th class="text-center">Idade</th>
+                            <th class="text-center">Data Admissão</th>
+                            <th class="text-center">Horas aguardando</th>
+                            <th class="text-center">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pedido in listaPedidos">
+                            <td class="text-center">{{pedido.paciente.numProntuario}}</td>
+                            <td class="text-center">{{pedido.paciente.nomePaciente}}</td>
+                            <td class="text-center">{{pedido.paciente.nomeMae}}</td>
+                            <td class="text-center">{{pedido.paciente.idade}}</td>
+                            <td class="text-center">{{pedido.dataAdmissao | date: "dd/MM/yy HH:mm"}}</td>
+                            <td class="text-center">{{pedido.horasAguardando}}</td>
+                            <td class="text-center">
+                                <button class="btn kan-btn-success kan-btn-sm" ng-click="closeThisDialog(pedido)">
+                                    Escolher
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+</div>

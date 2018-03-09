@@ -1,0 +1,20 @@
+{
+  "name": "kanleitos",
+  "version": "1.0.0",
+  "description": "Software para gestão de leitos e clínicas de hospitais",
+  "main": "app.js",
+  "keywords": [
+    "kanleitos",
+    "gestao leitos",
+    "gestao clinicas"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.8.2",
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-main-bower-files": "^1.6.2",
+    "gulp-replace": "^0.6.1"
+  }
+}

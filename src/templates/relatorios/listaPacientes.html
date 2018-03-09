@@ -1,0 +1,35 @@
+<div ng-controller="ModalPesquisaController" ng-init="carregarPacientes()">
+    <div class="kan-row-modal">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <h5 class="kan-title">Lista de Pacientes
+                <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Escolha um paciente para pedir a internação"></i>
+            </h5>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nº Prontuário</th>
+                            <th class="text-center">Nome do Paciente</th>
+                            <th class="text-center">Nome da mãe</th>
+                            <th class="text-center">Data de nascimento</th>
+                            <th class="text-center">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="paciente in ListaPacientes">
+                            <td class="text-center">{{paciente.numProntuario}}</td>
+                            <td class="text-center">{{paciente.nomePaciente}}</td>
+                            <td class="text-center">{{paciente.nomeMae}}</td>
+                            <td class="text-center">{{paciente.dataNascimento | date: "dd/MM/yyyy"}}</td>
+                            <td class="text-center">
+                                <button class="btn kan-btn-success kan-btn-sm" ng-click="closeThisDialog(paciente)">
+                                    Escolher
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+</div>

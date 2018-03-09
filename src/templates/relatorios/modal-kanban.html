@@ -1,0 +1,58 @@
+<div>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a ui-sref="kanleitos"> Relatório internações </a>
+        </li>
+        <li class="breadcrumb-item active">
+            <span> Classificação {{pacientes[0].classificacao}} </span>
+        </li>
+    </ol>
+    <div class="kan-row">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <h5 class="kan-title">Pacientes da Classificação -
+                    <b ng-class="{'text-success' : pacientes[0].classificacao === 'VERDE', 'text-danger' : pacientes[0].classificacao === 'VERMELHO', 'text-warning' : pacientes[0].classificacao === 'AMARELO'}">
+                        {{pacientes[0].classificacao}}
+                    </b>
+                </h5>
+                <input id="search" class="form-control form-control-sm" type="text" ng-model="search" placeholder="Digite para pesquisar">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nome do Paciente</th>
+                            <th class="text-center">Idade</th>
+                            <th class="text-center">Diagnostico</th>
+                            <th class="text-center">Data da Internação</th>
+                            <th class="text-center">Dias Internados</th>
+                            <th class="text-center">Previsao de Alta</th>
+                            <th class="text-center">Ala</th>
+                            <th class="text-center">Enfermaria</th>
+                            <th class="text-center">Leito</th>
+                            <th class="text-center">Pendencia Atual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="paciente in pacientes" ng-class="{'table-success' : paciente.classificacao === 'VERDE', 'table-danger' : paciente.classificacao === 'VERMELHO', 'table-warning' : paciente.classificacao === 'AMARELO'}">
+                            <td title="{{paciente.pedidoInternacao.paciente.nomePaciente}}">{{paciente.pedidoInternacao.paciente.nomePaciente}}</td>
+                            <td class="text-center" title="{{paciente.pedidoInternacao.paciente.idade}}">{{paciente.pedidoInternacao.paciente.idade}}</td>
+                            <td title="{{paciente.pedidoInternacao.diagnostico.descricaoDiagnostico}}">{{paciente.pedidoInternacao.diagnostico.descricaoDiagnostico}}</td>
+                            <td class="text-center">{{paciente.pedidoInternacao.dataAdmissao | date}}</td>
+                            <td class="text-center">{{paciente.diasInternacao}}</td>
+                            <td class="text-center">{{paciente.previsaoAlta | date}}</td>
+                            <td class="text-center" title="{{paciente.pedidoInternacao.ala.nomeAla}}">{{paciente.pedidoInternacao.ala.nomeAla}}</td>
+                            <td class="text-center">{{paciente.enfermaria.nomeEnfermaria}}</td>
+                            <td class="text-center">{{paciente.leito.nomeLeito}}</td>
+                            <td class="text-center">
+                                <button class="btn kan-btn-circle kan-btn-success kan-btn-sm" data-toggle="tooltip" title="{{setAllPendencies(paciente.pendencias)}}">
+                                    <i class="fa fa-file"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+</div>

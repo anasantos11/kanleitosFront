@@ -1,0 +1,32 @@
+    <div ng-cloak class="login-container" ng-controller="loginController">
+        <div class="login-box animated fadeInDown">
+            <div class="login-logo"></div>
+            <div class="login-body">
+                <form  class="form-horizontal">
+                    <div class="login-form-group">
+                        <input type="text" class="form-control" placeholder="Usuário " ng-model="login.login">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="login-form-group">
+                        <input type="password" class="form-control" placeholder="Senha" ng-model="login.senha">
+                        <i class="fa fa-lock"></i>
+                    </div>
+                    <div class="login-form-group">
+                            <button class="btn btn-info btn-block" ng-click="realizarLogin()">Login</button>
+                            <a href="" class="btn btn-link btn-block" >Esqueceu sua senha?</a>
+                    </div>
+                </form>
+            </div>
+            <div class="login-footer">
+                <div class="pull-right">
+                    &copy; 2017 KanLeitos
+                </div>
+                <!--<div class="pull-right">
+                    <a href="#">About</a> |
+                    <a href="#">Privacy</a> |
+                    <a href="#">Contact Us</a>
+                </div>-->
+            </div>
+        </div>
+
+    </div>

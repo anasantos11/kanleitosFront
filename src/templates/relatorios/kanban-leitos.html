@@ -1,0 +1,100 @@
+<div ng-controller="dashboardController" ng-init="init()">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <span>Página Inicial</span>
+        </li>
+        <li class="breadcrumb-item active">
+            <span>Relatório internações</span>
+        </li>
+        <li class="text-right">
+            <button class="btn kan-btn-success kan-btn-sm" ng-click="atualizaRegistrosInternacao()">
+                <i class="fa fa-refresh" tooltips tooltip-side="left" tooltip-template="Pressione para atualizar os registros de internações do bloco"
+                    ng-class="{'rotate' : !canOpenModal}"></i>
+            </button>
+        </li>
+    </ol>
+
+    <div class="kan-row">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <h5 class=" kan-title">Classificação dos pacientes internados
+                <i class="fa fa-info fa-1-x kan-icon-info" data-toggle="tooltip" data-placement="bottom" title="As internações dos pacientes foram classificadas 
+                    em Verde, Amarelo e Vermelho levando em consideração o tempo que está internado e o prazo para previsão de alta. Os blocos representam as 
+                    classificações e mostram a quantidade de pacientes internados nela. Clicando no ícone de olho você poderá visualizar os dados dos pacientes 
+                    internados na classificação selecionada.">
+                </i>
+            </h5>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 kan-group">
+                <div class="card text-white bg-success kan-height-card">
+                    <div class="card-body">
+                        <div class="icon-card">
+                            <i class="fa fa-thumbs-up"></i>
+                        </div>
+                        <div class="mr-5">{{kanban.Verde.qtdPacientes}} Paciente(s)</div>
+                    </div>
+                    <div class="card-footer text-white clearfix small">
+                        <span class="float-left">Ver pacientes</span>
+                        <div class="float-right">
+                            <button data-toggle="tooltip" data-placement="right" title="Pressione para visualizar os pacientes internados nessa classificação!"
+                                ng-if="canOpenModal" class="kan-btn-circle btn-dark" ui-sref="classificacaoPacientes({pacientes:kanban.Verde.pacientes})">
+                                <i class="fa fa-eye kan-icon"></i>
+                            </button>
+
+                            <button tooltips tooltip-side="right" tooltip-template="Atualização em andamento" ng-disabled="true" ng-if="!canOpenModal"
+                                class="kan-btn-circle btn-dark">
+                                <i class="fa fa-refresh rotate"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 kan-group">
+                <div class="card text-white bg-warning  kan-height-card">
+                    <div class="card-body">
+                        <div class="icon-card">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="mr-5">{{kanban.Amarelo.qtdPacientes}} Paciente(s)</div>
+                    </div>
+                    <div class="card-footer text-white clearfix small" href="#">
+                        <span class="float-left">Ver pacientes</span>
+                        <div class="float-right">
+                            <button tooltips tooltip-side="right" tooltip-template="Pressione para visualizar os pacientes internados nessa classificação!"
+                                ng-if="canOpenModal" class="float-right kan-btn-circle btn-dark" ng-click="openModalPaciente(kanban.Amarelo.pacientes)">
+                                <i class="fa fa-eye kan-icon"></i>
+                            </button>
+
+                            <button tooltips tooltip-side="right" tooltip-template="Atualização em andamento" ng-disabled="true" ng-if="!canOpenModal"
+                                class="float-right kan-btn-circle btn-dark">
+                                <i class="fa fa-refresh rotate"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 kan-group">
+                <div class="card text-white bg-danger  kan-height-card">
+                    <div class="card-body">
+                        <div class="icon-card">
+                            <i class="fa fa-exclamation-circle"></i>
+                        </div>
+                        <div class="mr-5">{{kanban.Vermelho.qtdPacientes}} Paciente(s)</div>
+                    </div>
+                    <div class="card-footer text-white clearfix small" href="#">
+                        <span class="float-left">Ver pacientes</span>
+                        <div class="float-right">
+                            <button tooltips tooltip-side="right" tooltip-template="Pressione para visualizar os pacientes internados nessa classificação!"
+                                ng-if="canOpenModal" class="float-right kan-btn-circle btn-dark" ng-click="openModalPaciente(kanban.Vermelho.pacientes)">
+                                <i class="fa fa-eye kan-icon"></i>
+                            </button>
+
+                            <button tooltips tooltip-side="right" tooltip-template="Atualização em andamento" ng-disabled="true" ng-if="!canOpenModal"
+                                class="float-right kan-btn-circle btn-dark">
+                                <i class="fa fa-refresh rotate"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

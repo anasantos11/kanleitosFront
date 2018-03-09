@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="kanleitos" ng-controller="MainController">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Software para gestão de leitos e clínicas de hospitais">
+    <meta name="author" content="Kanleitos">
+
+    <title>KanLeitos</title>
+    <link href="../dist/libs/css/public-libs.css" rel="stylesheet">
+    <link href="../dist/libs/css/kan.css" rel="stylesheet">
+
+</head>
+
+<body class="sidenav-toggled">
+    <div ui-view="app"></div>
+    <div ui-view="login"></div>
+    <!--<div id="mydiv" if-loading>
+        <img class="ajax-loader" src="img/loading.gif" alt="Loading" title="Loading" />
+    </div>-->
+    <!-- MODAL SAIR APP -->
+    <div class="modal fade" id="sairAppModal" tabindex="-1" role="dialog" aria-labelledby="sairAppModalLabel" aria-hidden="true">
+        <div class="modal-dialog smallSize" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sairAppModalLabel">Confirmação de saída</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Clique em "Sair" para finalizar a sessão atual.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn kan-btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button class="btn kan-btn-success" ui-sref="login" ng-click="sairAplicacao()">Sair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../dist/libs/js/public-libs.js"></script>
+<script src="../dist/app.js"></script>
+
+
+</html>

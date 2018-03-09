@@ -1,0 +1,67 @@
+<div class="fixed-nav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-kan fixed-top" id="mainNav">
+        <div class="bg-white text-center navbar-brand-wrapper">
+            <a class="kan-brand sidebarLogo" ui-sref="kanleitos">
+                <img id="kan-logo" src="img/logo-black.png">
+            </a>
+            <a class="kan-brand sidebarLogoMini" ui-sref="kanleitos">
+                <img id="kan-logo" src="img/logo-black-mini.png">
+            </a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center">
+            <button class="navbar-toggler d-lg-block border-0 p-0" id="sidenavToggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <button class="navbar-toggler ml-auto border-0" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav ml-auto" id="navbarLinkSair">
+                <li class="nav-item">
+                    <a class="nav-link text-light" data-toggle="modal" data-target="#sairAppModal">
+                        <i class="fa fa-fw fa-sign-out"></i>
+                        Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!-- MENU NAV-->
+<nav class="sidebar navbar-expand-lg navbar-white bg-white" id="mainNav">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="sideNavResponsive">
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pedido de Internação">
+                <a class="nav-link" ui-sref="pedidoInternacao">
+                    <img src="img/pedido.png" alt="">
+                    <span class="nav-link-text">
+                        Pedir Internação</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Registro de Internação">
+                <a class="nav-link" ui-sref="registroInternacao">
+                        <img src="img/registro.png" alt="">
+                    <span class="nav-link-text">
+                        Registrar Internação</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reltório de Leitos">
+                <a class="nav-link" ui-sref="leitos">
+                        <img src="img/leito.png" alt="">
+                    <span class="nav-link-text">
+                        Status dos Leitos</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Relatório Pedidos de Internação em Aberto">
+                <a class="nav-link" ui-sref="relatorioPedidosEmAberto">
+                        <img src="img/listaAdd.png" alt="">
+                    <span class="nav-link-text">
+                        Pedidos em Aberto</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
