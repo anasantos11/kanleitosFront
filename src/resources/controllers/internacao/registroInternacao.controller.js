@@ -40,12 +40,12 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         $scope.carregarLeitosEnfermaria = function (enfermaria) {
             leitoFactory.getLeitoEnfermaria(enfermaria)
                 .then(function (response) {
-                    $scope.Leitos = response.data;
+                    $scope.Leitos = response.data.data;
                 }, function (response) {
                     if (response.data != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {
@@ -102,12 +102,12 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         $scope.CarregarDiagnosticos = function () {
             diagnosticosFactory.getDiagnosticos()
                 .then(function (response) {
-                    $scope.Diagnosticos = response.data;
+                    $scope.Diagnosticos = response.data.data;
                 }, function (response) {
                     if (response.data != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {
@@ -122,12 +122,12 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         $scope.CarregarAlas = function () {
             alasFactory.getAlas()
                 .then(function (response) {
-                    $scope.Alas = response.data;
+                    $scope.Alas = response.data.data;
                 }, function (response) {
                     if (response.data != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {
@@ -142,12 +142,12 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         $scope.CarregarEnfermarias = function (idAla) {
             enfermariaFactory.getEnfermariasByAlas(idAla)
                 .then(function (response) {
-                    $scope.Enfermarias = response.data;
+                    $scope.Enfermarias = response.data.data;
                 }, function (response) {
                     if (response.data != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {
@@ -162,12 +162,12 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         $scope.CarregarLeitos = function () {
             leitoFactory.getLeitos()
                 .then(function (response) {
-                    $scope.Leitos = response.data;
+                    $scope.Leitos = response.data.data;
                 }, function (response) {
                     if (response.data != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {
@@ -185,19 +185,20 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
             setTimeout(function () {
                 pedidoInternacaoFactory.getPedido($scope.registroInternacao.numProntuario)
                     .then(function (response) {
-                        $scope.registroInternacao.idPedidoInternacao = response.data.idPedidoInternacao
-                        $scope.registroInternacao.numProntuario = response.data.paciente.numProntuario
-                        $scope.registroInternacao.AIH = parseInt(response.data.AIH)
-                        $scope.registroInternacao.nomePaciente = response.data.paciente.nomePaciente
-                        $scope.registroInternacao.nomeMae = response.data.paciente.nomeMae
-                        $scope.registroInternacao.dataNascimento = new Date(getData(response.data.paciente.dataNascimento))
-                        $scope.registroInternacao.idade = response.data.paciente.idade
-                        $scope.registroInternacao.genero = response.data.paciente.genero
-                        $scope.registroInternacao.dataAdmissao = new Date(getData(response.data.paciente.dataNascimento))
-                        $scope.registroInternacao.medicoResponsavel = response.data.medicoResponsavel
-                        $scope.registroInternacao.residenteResponsavel = response.data.residenteResponsavel
-                        $scope.registroInternacao.nomeDiagnostico = response.data.diagnostico.descricaoDiagnostico
-                        $scope.registroInternacao.nomeAla = response.data.ala.nomeAla
+                        var res = responde.data.data;
+                        $scope.registroInternacao.idPedidoInternacao = res.idPedidoInternacao
+                        $scope.registroInternacao.numProntuario = res.paciente.numProntuario
+                        $scope.registroInternacao.AIH = parseInt(res.AIH)
+                        $scope.registroInternacao.nomePaciente = res.paciente.nomePaciente
+                        $scope.registroInternacao.nomeMae = res.paciente.nomeMae
+                        $scope.registroInternacao.dataNascimento = new Date(getData(res.paciente.dataNascimento))
+                        $scope.registroInternacao.idade = res.paciente.idade
+                        $scope.registroInternacao.genero = res.paciente.genero
+                        $scope.registroInternacao.dataAdmissao = new Date(getData(res.paciente.dataNascimento))
+                        $scope.registroInternacao.medicoResponsavel = res.medicoResponsavel
+                        $scope.registroInternacao.residenteResponsavel = res.residenteResponsavel
+                        $scope.registroInternacao.nomeDiagnostico = res.diagnostico.descricaoDiagnostico
+                        $scope.registroInternacao.nomeAla = res.ala.nomeAla
                     }, function (response) {
                         swal(
                             'Erro!',
@@ -215,10 +216,10 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
 
                 registroInternacaoFactory.saveRegistroInternacao($scope.registroInternacao)
                     .then(function (response) {
-                        if (!response.data.erro) {
+                        if (response.data.data > 0) {
 
                             swal('Concluído!',
-                                'Internação realizada com sucesso - nº: ' + response.data.idRegistroInternacao,
+                                'Internação realizada com sucesso',
                                 'success'
                             )
 
@@ -241,7 +242,7 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                         if (response.data != undefined) {
                             swal(
                                 'Erro!',
-                                response.data.error + " " + response.data.message,
+                                response.data.messages,
                                 'error'
                             )
                         } else {

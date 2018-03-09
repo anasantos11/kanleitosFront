@@ -35,17 +35,18 @@ app.controller('leitosController', ["$scope", "$http", "$filter", "alasFactory",
     $scope.CarregarLeitos = function () {
         return leitoFactory.getLeitos()
             .then(function (response) {
+                var res = response.data.data;
                 var page = 1;
-                if(response.data.length < 14){
+                if(res.length < 14){
                     Object.defineProperty($scope.dataPages, page.toString(), {
                         enumerable: false, 
                         configurable: false,
                         writable: false,    
-                        value: response.data
+                        value: res
                       }); 
                 }else{
-                    for(var i = 0; i < response.data.length; i++){
-                        $scope.dataActualPage.push(response.data[i])
+                    for(var i = 0; i < res.length; i++){
+                        $scope.dataActualPage.push(res[i])
                         
                         if(i % 14 === 0 && i !== 0){
                             Object.defineProperty($scope.dataPages, page.toString(), {
@@ -59,12 +60,12 @@ app.controller('leitosController', ["$scope", "$http", "$filter", "alasFactory",
                         }
                     }
                 }
-                $scope.Leitos = $scope.dataPages[1]
+                $scope.leitos = $scope.dataPages[1]
                 $scope.totalPages = page
             }, function (response) {
                 swal(
                     'Erro!',
-                    response.data.message,
+                    response.data.messages,
                     'error'
                 )
             });

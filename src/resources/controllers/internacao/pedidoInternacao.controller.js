@@ -63,12 +63,12 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
         $scope.CarregarDiagnosticos = function () {
             diagnosticosFactory.getDiagnosticos()
                 .then(function (response) {
-                    $scope.Diagnosticos = response.data;
+                    $scope.Diagnosticos = response.data.data;
                 }, function (response) {
                     if (response.data != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {
@@ -83,12 +83,12 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
         $scope.CarregarAlas = function () {
             alasFactory.getAlas()
                 .then(function (response) {
-                    $scope.Alas = response.data;
+                    $scope.Alas = response.data.data;
                 }, function (response) {
                     if (response.data != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {
@@ -105,12 +105,13 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
             setTimeout(function () {
                 pacienteFactory.getPaciente($scope.pedidoInternacao.numProntuario, $scope.pedidoInternacao.nomeMae)
                     .then(function (response) {
-                        if (response.data.length > 0) {
-                            $scope.pedidoInternacao.nomePaciente = response.data[0].nomePaciente;
-                            $scope.pedidoInternacao.nomeMae = response.data[0].nomeMae;
-                            $scope.pedidoInternacao.idade = response.data[0].idade;
-                            $scope.pedidoInternacao.dataNascimento = new Date(getData(response.data[0].dataNascimento));
-                            $scope.pedidoInternacao.genero = response.data[0].genero;
+                        var res = response.data.data;
+                        if (res.length > 0) {
+                            $scope.pedidoInternacao.nomePaciente = res[0].nomePaciente;
+                            $scope.pedidoInternacao.nomeMae = res[0].nomeMae;
+                            $scope.pedidoInternacao.idade = res[0].idade;
+                            $scope.pedidoInternacao.dataNascimento = new Date(getData(res[0].dataNascimento));
+                            $scope.pedidoInternacao.genero = res[0].genero;
                         }
                     });
             }, 1000);
@@ -130,10 +131,10 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
 
                 pedidoInternacaoFactory.savePedidoInternacao($scope.pedidoInternacao)
                     .then(function (response) {
-                        if (!response.data.erro) {
+                        if (response.data.data > 0) {
 
                             swal('Concluído!',
-                                'Pedido realizado com sucesso - nº: ' + response.data.idPedidoInternacao,
+                                'Pedido realizado com sucesso',
                                 'success'
                             )
 
@@ -157,7 +158,7 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                         if (response.data != undefined) {
                             swal(
                                 'Erro!',
-                                response.data.error + " " + response.data.message,
+                                response.data.messages,
                                 'error'
                             )
                         } else {

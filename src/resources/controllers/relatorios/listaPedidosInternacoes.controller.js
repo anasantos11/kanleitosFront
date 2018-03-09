@@ -39,13 +39,13 @@ app.controller('ModalPesquisaPedidoInternacaoController', ["$scope", "pedidoInte
         $scope.carregarPedidos = function () {
             pedidoInternacaoFactory.getPedidosEmAberto()
                 .then(function (response) {
-                    $scope.listaPedidos = response.data;
+                    $scope.listaPedidos = response.data.data;
                     $scope.atualizarHorasAguardando();
                 }, function (response) {
-                    if (response.data != undefined) {
+                    if (response != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {

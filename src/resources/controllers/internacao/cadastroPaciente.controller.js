@@ -16,12 +16,12 @@ function ($scope, $http, $filter, pacienteFactory, Notify) {
 
             pacienteFactory.savePaciente($scope.paciente)
                 .then(function (response) {
-                    if(!response.data.erro){                    
+                    if(response.data.data > 0){                    
                         swal( 'Concluído!',
-                        'Cadastro realizado com sucesso - Paciente: ' + response.data.nomePaciente,
+                        'Cadastro realizado com sucesso',
                         'success'
                         )
-                        return $scope.closeThisDialog(response.data);
+                        return $scope.closeThisDialog($scope.paciente);
                     }else{
                         swal( 'Erro!',
                             'Paciente já cadastrado!',
@@ -35,7 +35,7 @@ function ($scope, $http, $filter, pacienteFactory, Notify) {
                         if (response.data != undefined) {
                             swal(
                                 'Erro!',
-                                response.data.error + " " + response.data.message,
+                                response.data.messages,
                                 'error'
                             )
                         } else {

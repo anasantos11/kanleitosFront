@@ -50,8 +50,8 @@ app.controller('dashboardController', ['$rootScope', '$scope', '$state', '$state
         const getRegistrosPorClassificação = (classificacao) => {
             return kanbanFactory.getRegistrosPorClassificação(classificacao)
             .then((res)=>{
-                $scope.kanban[classificacao].qtdPacientes = res.data.length;
-                $scope.kanban[classificacao].pacientes = res.data;
+                $scope.kanban[classificacao].qtdPacientes = res.data.data.length;
+                $scope.kanban[classificacao].pacientes = res.data.data;
             }).catch((err)=>{
                 console.log(err)
             })
