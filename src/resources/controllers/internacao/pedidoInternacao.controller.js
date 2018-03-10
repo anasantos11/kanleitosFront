@@ -11,7 +11,7 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                     idade: "",
                     genero: null,
                 },
-                AIH: "",
+                aih: "",
                 dataPedido: new Date(),
                 status: "Pendente",
                 medicoResponsavel: "",
@@ -190,10 +190,10 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                 )
                 return;
             }
-            if ($scope.pedidoInternacao.AIH == "") {
+            if ($scope.pedidoInternacao.aih == "") {
                 swal(
                     'Erro!',
-                    'Digite o número do AIH!',
+                    'Digite o número do aih!',
                     'error'
                 )
                 return;
