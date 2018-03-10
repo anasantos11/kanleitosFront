@@ -12,8 +12,6 @@ function ($scope, $http, $filter, pacienteFactory, Notify) {
 
     $scope.cadastrarPaciente = function (paciente) {
         if ($scope.validarDadosPaciente()) {
-            $scope.paciente.dataNascimento = $filter('date')($scope.paciente.dataNascimento, 'yyyy-MM-dd');
-
             pacienteFactory.savePaciente($scope.paciente)
                 .then(function (response) {
                     if(response.data.data > 0){                    

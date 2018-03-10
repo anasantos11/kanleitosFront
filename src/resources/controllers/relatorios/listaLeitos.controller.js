@@ -60,7 +60,7 @@ app.controller('leitosController', ["$scope", "$http", "$filter", "alasFactory",
                         }
                     }
                 }
-                $scope.leitos = $scope.dataPages[1]
+                $scope.Leitos = $scope.dataPages[1]
                 $scope.totalPages = page
             }, function (response) {
                 swal(
