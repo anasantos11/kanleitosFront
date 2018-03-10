@@ -163,19 +163,22 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                         $scope.pedidoInternacao.paciente.dataNascimento = new Date($scope.pedidoInternacao.paciente.dataNascimento);
                         $scope.pedidoInternacao.dataPedido = new Date($scope.pedidoInternacao.dataPedido);
                         $scope.pedidoInternacao.dataAdmissao = new Date($scope.pedidoInternacao.dataAdmissao);
-                        if (response.data != undefined) {
+
+                        if(response.status == 400){
                             swal(
-                                'Erro!',
-                                response.data.messages,
-                                'error'
+                                "Erro!",
+                                response.data.messages[0],
+                                "error"
                             )
-                        } else {
+                        }else{
+                            console.log(response.data.message);
                             swal(
-                                'Erro!',
-                                response.message,
-                                'error'
+                                "Erro!",
+                                "Desculpe, não conseguimos processar sua solicitação. Verifique os dados e tente novamente.",
+                                "error"
                             )
                         }
+
                     }
 
                     );
