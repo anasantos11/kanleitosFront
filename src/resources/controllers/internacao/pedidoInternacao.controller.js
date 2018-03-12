@@ -7,7 +7,7 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                     numProntuario: "",
                     nomePaciente: "",
                     nomeMae: "",
-                    dataNascimento: "",
+                    dataNascimento: null,
                     idade: "",
                     genero: null,
                 },
@@ -32,7 +32,7 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                         $scope.pedidoInternacao.paciente.numProntuario = pacienteCadastrado.value.numProntuario
                         $scope.pedidoInternacao.paciente.nomePaciente = pacienteCadastrado.value.nomePaciente
                         $scope.pedidoInternacao.paciente.nomeMae = pacienteCadastrado.value.nomeMae
-                        $scope.pedidoInternacao.paciente.dataNascimento = new Date(getData(pacienteCadastrado.value.dataNascimento))
+                        $scope.pedidoInternacao.paciente.dataNascimento = new Date(pacienteCadastrado.value.dataNascimento)
                         $scope.pedidoInternacao.paciente.idade = pacienteCadastrado.value.idade
                         $scope.pedidoInternacao.paciente.genero = pacienteCadastrado.value.genero
                     }
@@ -49,7 +49,7 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                         $scope.pedidoInternacao.paciente.numProntuario = pacienteEscolhido.value.numProntuario
                         $scope.pedidoInternacao.paciente.nomePaciente = pacienteEscolhido.value.nomePaciente
                         $scope.pedidoInternacao.paciente.nomeMae = pacienteEscolhido.value.nomeMae
-                        $scope.pedidoInternacao.paciente.dataNascimento = new Date(getData(pacienteEscolhido.value.dataNascimento))
+                        $scope.pedidoInternacao.paciente.dataNascimento = new Date(pacienteEscolhido.value.dataNascimento)
                         $scope.pedidoInternacao.paciente.idade = pacienteEscolhido.value.idade
                         $scope.pedidoInternacao.paciente.genero = pacienteEscolhido.value.genero
                     }
@@ -112,24 +112,20 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                             $scope.pedidoInternacao.paciente.nomePaciente = res[0].nomePaciente;
                             $scope.pedidoInternacao.paciente.nomeMae = res[0].nomeMae;
                             $scope.pedidoInternacao.paciente.idade = res[0].idade;
-                            $scope.pedidoInternacao.paciente.dataNascimento = new Date(getData(res[0].dataNascimento));
+                            $scope.pedidoInternacao.paciente.dataNascimento = new Date(res[0].dataNascimento);
                             $scope.pedidoInternacao.paciente.genero = res[0].genero;
                         }
                     });
             }, 1000);
         }
 
-        const getData = (dataDesformatada) => {
-            const splitedDate = dataDesformatada.split("-")
-            return "" + splitedDate[1] + "/" + splitedDate[2] + "/" + splitedDate[0];
-        }
-
         $scope.Inicializar();
 
         $scope.salvarPedidoInternacao = function () {
             if ($scope.validarDadosPedidoInternacao()) {
-                $scope.pedidoInternacao.dataAdmissao = $filter('date')($scope.pedidoInternacao.dataAdmissao, 'yyyy-MM-dd HH:mm:ss');
-                $scope.pedidoInternacao.dataPedido = $filter('date')($scope.pedidoInternacao.dataPedido, 'yyyy-MM-dd HH:mm:ss');
+                $scope.pedidoInternacao.paciente.dataNascimento = moment($scope.pedidoInternacao.paciente.dataNascimento).format();
+                $scope.pedidoInternacao.dataAdmissao = moment($scope.pedidoInternacao.dataAdmissao).format();
+                $scope.pedidoInternacao.dataPedido = moment($scope.pedidoInternacao.dataPedido).format();
 
                 $scope.pedidoInternacao.ala =  $scope.Alas.filter(function(obj) {
                     return (obj.idAla == $scope.pedidoInternacao.idAla)})[0];
@@ -144,25 +140,16 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                             swal('Concluído!',
                                 'Pedido realizado com sucesso',
                                 'success'
-                            )
+                            );
 
                             $scope.novoPedidoInternacao();
-                        } else {
-                            $scope.pedidoInternacao.paciente.dataNascimento = new Date($scope.pedidoInternacao.paciente.dataNascimento);
-                            $scope.pedidoInternacao.dataPedido = new Date($scope.pedidoInternacao.dataPedido);
-                            $scope.pedidoInternacao.dataAdmissao = new Date($scope.pedidoInternacao.dataAdmissao);
-                            swal('Erro!',
-                                'Paciente possui pedido em aberto!',
-                                'error'
-                            )
-                            return;
-                        }
+                        };
 
                     })
                     .catch((response) => {
-                        $scope.pedidoInternacao.paciente.dataNascimento = new Date($scope.pedidoInternacao.paciente.dataNascimento);
+                        /*$scope.pedidoInternacao.paciente.dataNascimento = new Date($scope.pedidoInternacao.paciente.dataNascimento);
                         $scope.pedidoInternacao.dataPedido = new Date($scope.pedidoInternacao.dataPedido);
-                        $scope.pedidoInternacao.dataAdmissao = new Date($scope.pedidoInternacao.dataAdmissao);
+                        $scope.pedidoInternacao.dataAdmissao = new Date($scope.pedidoInternacao.dataAdmissao);*/
 
                         if(response.status == 400){
                             swal(

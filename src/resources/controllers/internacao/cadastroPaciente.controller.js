@@ -12,6 +12,7 @@ function ($scope, $http, $filter, pacienteFactory, Notify) {
 
     $scope.cadastrarPaciente = function (paciente) {
         if ($scope.validarDadosPaciente()) {
+            $scope.paciente.dataNascimento = moment($scope.paciente.dataNascimento).format();
             pacienteFactory.savePaciente($scope.paciente)
                 .then(function (response) {
                     if(response.data.data > 0){                    
