@@ -1,10 +1,13 @@
 var local = window.location.hostname;
-var DEV = "https://dev-kanleitos-service.azurewebsites.net/";
+var DEV = "https://dev-kanleitos-service.azurewebsites.net/kanleitos/";
 var HJK = "https://kanleitoshjk-service.azurewebsites.net/";
 
 
-//var URL_REQ = DEV;
+
 var URL_REQ = "http://localhost:9000/kanleitos/";
+
+if (local == "dev-kanleitos.azurewebsites.net") 
+    URL_REQ = DEV;
 
 if (local == "kanleitoshjk.azurewebsites.net") 
     URL_REQ = HJK;
