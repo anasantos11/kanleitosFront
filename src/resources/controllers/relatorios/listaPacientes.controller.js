@@ -3,12 +3,12 @@ app.controller('ModalPesquisaController', ["$scope", "$http", "$filter", "pacien
         $scope.carregarPacientes = function () {
             pacienteFactory.getPacientes()
                 .then(function (response) {
-                    $scope.ListaPacientes = response.data;
+                    $scope.ListaPacientes = response.data.data;
                 }, function (response) {
                     if (response.data != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {

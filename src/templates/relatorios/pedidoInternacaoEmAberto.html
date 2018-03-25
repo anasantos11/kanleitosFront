@@ -43,12 +43,19 @@
                     <thead>
                         <tr>
                             <th class="text-center">Ala</th>
-                            <th class="text-center">Diagnóstico</th>
+                            <th class="text-center">Médico</th>
+                            <th class="text-center">Residente</th>
+                            <th class="text-center">Previsão Alta</th>
+                            <th class="text-center">Leito</th>
                             <th class="text-center">Prontuário</th>
-                            <th class="text-center">Paciente</th>
+                            <th class="text-center">Nome</th>
+                            <th class="text-center">Data Nascimento</th>
                             <th class="text-center">Idade</th>
+                            <th class="text-center">Sexo</th>
                             <th class="text-center">Data Admissão</th>
-                            <th class="text-center">Tempo Esp.</th>
+                            <th class="text-center">Dias Internados</th>
+                            <th class="text-center">Diagnóstico</th>
+                            <th class="text-center">Pendências</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,13 +64,20 @@
                                         'table-warning' : pedido.tempo.dias < 1 && pedido.tempo.horas >= 12,
                                         'table-danger'  : pedido.tempo.dias >= 1 }">
                             <td title="{{pedido.ala.nomeAla}}">{{pedido.ala.nomeAla}}</td>
-                            <td title="{{pedido.diagnostico.descricaoDiagnostico}}">{{pedido.diagnostico.descricaoDiagnostico}} </td>
+                            <td class="text-center" title="{{pedido.medico}}">{{pedido.medico}}</td>
+                            <td class="text-center" title="{{pedido.residente}}">{{pedido.residente}}</td>
+                            <td class="text-center" title="{{pedido.previsaoAlta | date: 'dd/MM/yy'}}">{{pedido.previsaoAlta | date: "dd/MM/yy"}}</td>
+                            <td class="text-center" title="{{pedido.leito}}">{{pedido.leito}}</td>
                             <td class="text-center" title="{{pedido.paciente.numProntuario}}">{{pedido.paciente.numProntuario | limitTo: 10}}</td>
                             <td class="text-center" title="{{pedido.paciente.nomePaciente}}">{{pedido.paciente.nomePaciente}}</td>
+                            <td class="text-center" title="{{pedido.paciente.dataNascimento | date: 'dd/MM/yy'}}">{{pedido.paciente.dataNascimento | date: "dd/MM/yy"}}</td>
                             <td class="text-center" title="{{pedido.paciente.idade}}">{{pedido.paciente.idade}}</td>
-                            <td class="text-center" title="{{pedido.dataAdmissao | date: 'dd/MM/yy HH:mm'}}">{{pedido.dataAdmissao | date: "dd/MM/yy H:m"}}</td>
+                            <td class="text-center" title="{{pedido.paciente.sexo}}">{{pedido.paciente.sexo}}</td>
+                            <td class="text-center" title="{{pedido.dataAdmissao | date: 'dd/MM/yy HH:mm'}}">{{pedido.dataAdmissao | date: "dd/MM/yy HH:mm"}}</td>
                             <td class="text-center" title="{{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}">
                                 {{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}</td>
+                            <td title="{{pedido.diagnostico.descricaoDiagnostico}}">{{pedido.diagnostico.descricaoDiagnostico}}</td>
+                            <td title="{{pedido.pendencias}}">{{pedido.pendencias}}</td>
                         </tr>
                     </tbody>
                 </table>

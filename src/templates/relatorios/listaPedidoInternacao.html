@@ -24,7 +24,8 @@
                             <td class="text-center">{{pedido.paciente.nomeMae}}</td>
                             <td class="text-center">{{pedido.paciente.idade}}</td>
                             <td class="text-center">{{pedido.dataAdmissao | date: "dd/MM/yy HH:mm"}}</td>
-                            <td class="text-center">{{pedido.horasAguardando}}</td>
+                            <td class="text-center" title="{{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}">
+                                {{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}</td>
                             <td class="text-center">
                                 <button class="btn kan-btn-success kan-btn-sm" ng-click="closeThisDialog(pedido)">
                                     Escolher

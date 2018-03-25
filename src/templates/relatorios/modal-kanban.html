@@ -11,7 +11,7 @@
         <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
                 <h5 class="kan-title">Pacientes da Classificação -
-                    <b ng-class="{'text-success' : pacientes[0].classificacao === 'VERDE', 'text-danger' : pacientes[0].classificacao === 'VERMELHO', 'text-warning' : pacientes[0].classificacao === 'AMARELO'}">
+                    <b ng-class="{'text-success' : pacientes[0].classificacao === 'verde', 'text-danger' : pacientes[0].classificacao === 'vermelho', 'text-warning' : pacientes[0].classificacao === 'amarelo'}">
                         {{pacientes[0].classificacao}}
                     </b>
                 </h5>
@@ -34,12 +34,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="paciente in pacientes" ng-class="{'table-success' : paciente.classificacao === 'VERDE', 'table-danger' : paciente.classificacao === 'VERMELHO', 'table-warning' : paciente.classificacao === 'AMARELO'}">
+                        <tr ng-repeat="paciente in pacientes" ng-class="{'table-success' : paciente.classificacao === 'verde', 'table-danger' : paciente.classificacao === 'vermelho', 'table-warning' : paciente.classificacao === 'amarelo'}">
                             <td title="{{paciente.pedidoInternacao.paciente.nomePaciente}}">{{paciente.pedidoInternacao.paciente.nomePaciente}}</td>
                             <td class="text-center" title="{{paciente.pedidoInternacao.paciente.idade}}">{{paciente.pedidoInternacao.paciente.idade}}</td>
                             <td title="{{paciente.pedidoInternacao.diagnostico.descricaoDiagnostico}}">{{paciente.pedidoInternacao.diagnostico.descricaoDiagnostico}}</td>
                             <td class="text-center">{{paciente.pedidoInternacao.dataAdmissao | date}}</td>
-                            <td class="text-center">{{paciente.diasInternacao}}</td>
+                            <td class="text-center">{{paciente.diasInternado}}</td>
                             <td class="text-center">{{paciente.previsaoAlta | date}}</td>
                             <td class="text-center" title="{{paciente.pedidoInternacao.ala.nomeAla}}">{{paciente.pedidoInternacao.ala.nomeAla}}</td>
                             <td class="text-center">{{paciente.enfermaria.nomeEnfermaria}}</td>

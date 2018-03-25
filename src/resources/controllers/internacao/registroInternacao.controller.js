@@ -3,25 +3,16 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
 
         $scope.novoRegistroInternacao = function () {
             $scope.registroInternacao = {
-                numProntuario: null,
-                AIH: "",
-                nomePaciente: "",
-                nomeMae: "",
-                dataNascimento: "",
-                idade: null,
-                genero: "",
-                dataAdmissao: "",
-                medicoResponsavel: "",
-                residenteResponsavel: "",
+                pedidoInternacao: {},
+                idEnfermaria: null,
+                idLeito: null,
                 dataInternacao: new Date(),
+                tempoPermanencia: 0,
+                previsaoAlta: new Date(),
                 idDiagnostico: -1,
                 nomeDiagnostico: null,
-                tempoPermanencia: 0,
                 idAla: -1,
                 nomeAla: null,
-                previsaoAlta: "",
-                idPedidoInternacao: null,
-                dataPedido: ""
             }
         };
 
@@ -29,23 +20,18 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         $scope.calcularPrevisaoAlta = function () {
             $scope.registroInternacao.previsaoAlta = new Date($scope.registroInternacao.dataInternacao);
             $scope.registroInternacao.previsaoAlta.setDate($scope.registroInternacao.previsaoAlta.getDate()
-                + $scope.registroInternacao.tempoPermanencia);
+                + $scope.registroInternacao.pedidoInternacao.diagnostico.tempoPermanencia);
         };
-        $scope.Inicializar = function () {
-            $scope.CarregarDiagnosticos();
-            $scope.CarregarAlas();
-
-        }
 
         $scope.carregarLeitosEnfermaria = function (enfermaria) {
             leitoFactory.getLeitoEnfermaria(enfermaria)
                 .then(function (response) {
-                    $scope.Leitos = response.data;
+                    $scope.Leitos = response.data.data;
                 }, function (response) {
                     if (response.data != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {
@@ -57,16 +43,6 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                     }
                 });
         };
-
-        const getData = (dataDesformatada) => {
-            const splitedDate = dataDesformatada.split("-")
-            return "" + splitedDate[1] + "/" + splitedDate[2] + "/" + splitedDate[0];
-        }
-
-        const getDataAdmimissao = (dataAdmissao) => {
-            const splitedDate = getData(dataAdmissao.split(" ")[0])
-            return splitedDate;
-        }
 
         $scope.openModalPesquisaPedidoInternacao = () => {
             return Notify.openModal("templates/relatorios/listaPedidoInternacao.html", null, "95%")
@@ -74,80 +50,27 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                     if (!pedidoInternacao.value || pedidoInternacao.value === '$document' || pedidoInternacao.value === '$closeButton') {
                         return
                     } else {
-                        $scope.registroInternacao.idPedidoInternacao = pedidoInternacao.value.idPedidoInternacao;
-                        $scope.registroInternacao.numProntuario = pedidoInternacao.value.paciente.numProntuario;
-                        $scope.registroInternacao.dataPedido = new Date(pedidoInternacao.value.dataPedido);
-                        $scope.registroInternacao.AIH = parseInt(pedidoInternacao.value.AIH);
-                        $scope.registroInternacao.nomePaciente = pedidoInternacao.value.paciente.nomePaciente;
-                        $scope.registroInternacao.nomeMae = pedidoInternacao.value.paciente.nomeMae;
-                        $scope.registroInternacao.dataNascimento = new Date(getData(pedidoInternacao.value.paciente.dataNascimento));
-                        $scope.registroInternacao.idade = pedidoInternacao.value.paciente.idade;
-                        $scope.registroInternacao.genero = pedidoInternacao.value.paciente.genero;
-                        $scope.registroInternacao.dataAdmissao = new Date(getDataAdmimissao(pedidoInternacao.value.dataAdmissao));
-                        $scope.registroInternacao.idDiagnostico = pedidoInternacao.value.diagnostico.idDiagnostico;
-                        $scope.registroInternacao.nomeDiagnostico = pedidoInternacao.value.diagnostico.descricaoDiagnostico;
-                        $scope.registroInternacao.tempoPermanencia = pedidoInternacao.value.diagnostico.tempoPermanencia;
-                        $scope.registroInternacao.idAla = pedidoInternacao.value.ala.idAla;
-                        $scope.registroInternacao.nomeAla = pedidoInternacao.value.ala.nomeAla;
-                        $scope.registroInternacao.medicoResponsavel = pedidoInternacao.value.medicoResponsavel;
-                        $scope.registroInternacao.residenteResponsavel = pedidoInternacao.value.residenteResponsavel;
-
-
-                        $scope.CarregarEnfermarias($scope.registroInternacao.idAla);
+                        debugger;
+                        $scope.registroInternacao.pedidoInternacao = pedidoInternacao.value;
+                        $scope.registroInternacao.pedidoInternacao.aih = parseInt($scope.registroInternacao.pedidoInternacao.aih);
+                        $scope.registroInternacao.pedidoInternacao.paciente.dataNascimento = new Date ($scope.registroInternacao.pedidoInternacao.paciente.dataNascimento);
+                        $scope.registroInternacao.pedidoInternacao.dataAdmissao = new Date($scope.registroInternacao.pedidoInternacao.dataAdmissao);
+                        $scope.registroInternacao.pedidoInternacao.dataPedido = new Date ($scope.registroInternacao.pedidoInternacao.dataPedido);
+                        $scope.CarregarEnfermarias($scope.registroInternacao.pedidoInternacao.ala.idAla);
                         $scope.calcularPrevisaoAlta();
                     }
                 })
         }
 
-        $scope.CarregarDiagnosticos = function () {
-            diagnosticosFactory.getDiagnosticos()
-                .then(function (response) {
-                    $scope.Diagnosticos = response.data;
-                }, function (response) {
-                    if (response.data != undefined) {
-                        swal(
-                            'Erro!',
-                            response.data.message,
-                            'error'
-                        )
-                    } else {
-                        swal(
-                            'Erro!',
-                            'Ocorreu algum erro no servidor',
-                            'error'
-                        )
-                    }
-                });
-        };
-        $scope.CarregarAlas = function () {
-            alasFactory.getAlas()
-                .then(function (response) {
-                    $scope.Alas = response.data;
-                }, function (response) {
-                    if (response.data != undefined) {
-                        swal(
-                            'Erro!',
-                            response.data.message,
-                            'error'
-                        )
-                    } else {
-                        swal(
-                            'Erro!',
-                            'Ocorreu algum erro no servidor',
-                            'error'
-                        )
-                    }
-                });
-        };
         $scope.CarregarEnfermarias = function (idAla) {
             enfermariaFactory.getEnfermariasByAlas(idAla)
                 .then(function (response) {
-                    $scope.Enfermarias = response.data;
+                    $scope.Enfermarias = response.data.data;
                 }, function (response) {
                     if (response.data != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {
@@ -162,12 +85,12 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         $scope.CarregarLeitos = function () {
             leitoFactory.getLeitos()
                 .then(function (response) {
-                    $scope.Leitos = response.data;
+                    $scope.Leitos = response.data.data;
                 }, function (response) {
                     if (response.data != undefined) {
                         swal(
                             'Erro!',
-                            response.data.message,
+                            response.data.messages,
                             'error'
                         )
                     } else {
@@ -179,25 +102,25 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                     }
                 });
         };
-        $scope.Inicializar();
 
         $scope.GetPedido = function () {
             setTimeout(function () {
                 pedidoInternacaoFactory.getPedido($scope.registroInternacao.numProntuario)
                     .then(function (response) {
-                        $scope.registroInternacao.idPedidoInternacao = response.data.idPedidoInternacao
-                        $scope.registroInternacao.numProntuario = response.data.paciente.numProntuario
-                        $scope.registroInternacao.AIH = parseInt(response.data.AIH)
-                        $scope.registroInternacao.nomePaciente = response.data.paciente.nomePaciente
-                        $scope.registroInternacao.nomeMae = response.data.paciente.nomeMae
-                        $scope.registroInternacao.dataNascimento = new Date(getData(response.data.paciente.dataNascimento))
-                        $scope.registroInternacao.idade = response.data.paciente.idade
-                        $scope.registroInternacao.genero = response.data.paciente.genero
-                        $scope.registroInternacao.dataAdmissao = new Date(getData(response.data.paciente.dataNascimento))
-                        $scope.registroInternacao.medicoResponsavel = response.data.medicoResponsavel
-                        $scope.registroInternacao.residenteResponsavel = response.data.residenteResponsavel
-                        $scope.registroInternacao.nomeDiagnostico = response.data.diagnostico.descricaoDiagnostico
-                        $scope.registroInternacao.nomeAla = response.data.ala.nomeAla
+                        var res = responde.data.data;
+                        $scope.registroInternacao.idPedidoInternacao = res.idPedidoInternacao
+                        $scope.registroInternacao.numProntuario = res.paciente.numProntuario
+                        $scope.registroInternacao.AIH = parseInt(res.AIH)
+                        $scope.registroInternacao.nomePaciente = res.paciente.nomePaciente
+                        $scope.registroInternacao.nomeMae = res.paciente.nomeMae
+                        $scope.registroInternacao.dataNascimento = new Date(getData(res.paciente.dataNascimento))
+                        $scope.registroInternacao.idade = res.paciente.idade
+                        $scope.registroInternacao.genero = res.paciente.genero
+                        $scope.registroInternacao.dataAdmissao = new Date(getData(res.paciente.dataNascimento))
+                        $scope.registroInternacao.medicoResponsavel = res.medicoResponsavel
+                        $scope.registroInternacao.residenteResponsavel = res.residenteResponsavel
+                        $scope.registroInternacao.nomeDiagnostico = res.diagnostico.descricaoDiagnostico
+                        $scope.registroInternacao.nomeAla = res.ala.nomeAla
                     }, function (response) {
                         swal(
                             'Erro!',
@@ -209,16 +132,21 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         }
         $scope.salvarRegistroInternacao = function () {
             if ($scope.validarRegistroInternacao()) {
-                $scope.registroInternacao.idPedido = $scope.registroInternacao.idPedidoInternacao;
-                $scope.registroInternacao.dataInternacao = $filter('date')($scope.registroInternacao.dataInternacao, 'yyyy-MM-dd HH:mm:ss');
-                $scope.registroInternacao.previsaoAlta = $filter('date')($scope.registroInternacao.previsaoAlta, 'yyyy-MM-dd HH:mm:ss');
+                $scope.registroInternacao.dataInternacao = moment($scope.registroInternacao.dataInternacao).format();
+                $scope.registroInternacao.previsaoAlta = moment($scope.registroInternacao.previsaoAlta).format();
+
+                $scope.registroInternacao.enfermaria = $scope.Enfermarias.filter(function(obj){
+                  return (obj.idEnfermaria == $scope.registroInternacao.idEnfermaria)})[0];
+
+                $scope.registroInternacao.leito = $scope.Leitos.filter(function(obj){
+                    return (obj.idLeito == $scope.registroInternacao.idLeito)})[0];
 
                 registroInternacaoFactory.saveRegistroInternacao($scope.registroInternacao)
                     .then(function (response) {
-                        if (!response.data.erro) {
+                        if (response.data.data > 0) {
 
                             swal('Concluído!',
-                                'Internação realizada com sucesso - nº: ' + response.data.idRegistroInternacao,
+                                'Internação realizada com sucesso',
                                 'success'
                             )
 
@@ -241,7 +169,7 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                         if (response.data != undefined) {
                             swal(
                                 'Erro!',
-                                response.data.error + " " + response.data.message,
+                                response.data.messages,
                                 'error'
                             )
                         } else {

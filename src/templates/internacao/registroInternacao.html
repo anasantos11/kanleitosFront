@@ -24,65 +24,61 @@
                 <label for="numProntuario">Prontuário
                     <b class="text-danger">*</b>
                 </label>
-                <input class="form-control form-control-sm" type="number" placeholder="Informe o prontuário" ng-model="registroInternacao.numProntuario"
+                <input class="form-control form-control-sm" type="number" placeholder="Informe o prontuário" ng-model="registroInternacao.pedidoInternacao.paciente.numProntuario"
                     ng-change="GetPedido()" />
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
                 <label for="aih">AIH
                     <b class="text-danger">*</b>
                 </label>
-                <input disabled class="form-control form-control-sm" type="number" ng-model="registroInternacao.AIH">
+                <input disabled class="form-control form-control-sm" type="number" ng-model="registroInternacao.pedidoInternacao.aih">
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
                 <label>Ala
                     <b class="text-danger">*</b>
                 </label>
-                <input disabled class="form-control form-control-sm" type="text" ng-model="registroInternacao.nomeAla">
+                <input disabled class="form-control form-control-sm" type="text" ng-model="registroInternacao.pedidoInternacao.ala.nomeAla">
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
-                <label>Diagnóstico
-                    <b class="text-danger">*</b>
-                </label>
-                <input disabled class="form-control form-control-sm" type="text" ng-model="registroInternacao.nomeDiagnostico">
-            </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
                 <label>Data de admissão
                     <b class="text-danger">*</b>
                 </label>
-                <input disabled class="form-control form-control-sm" type="date" ng-model="registroInternacao.dataAdmissao">
+                <input disabled class="form-control form-control-sm" type="date" ng-model="registroInternacao.pedidoInternacao.dataAdmissao">
             </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
-                <label>Data do pedido
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <label>Diagnóstico
                     <b class="text-danger">*</b>
                 </label>
-                <input class="form-control form-control-sm" type="date" ng-model="registroInternacao.dataPedido" disabled>
+                <input disabled class="form-control form-control-sm" type="text" ng-model="registroInternacao.pedidoInternacao.diagnostico.descricaoDiagnostico">
             </div>
+
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
                 <label for="nomePaciente">Nome do Paciente
                     <b class="text-danger">*</b>
                 </label>
-                <input disabled class="form-control form-control-sm" type="text" ng-model="registroInternacao.nomePaciente">
+                <input disabled class="form-control form-control-sm" type="text" ng-model="registroInternacao.pedidoInternacao.paciente.nomePaciente">
             </div>
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
                 <label for="nomeMae">Nome da Mãe
                     <b class="text-danger">*</b>
                 </label>
-                <input disabled class="form-control form-control-sm" type="text" ng-model="registroInternacao.nomeMae">
+                <input disabled class="form-control form-control-sm" type="text" ng-model="registroInternacao.pedidoInternacao.paciente.nomeMae">
             </div>
 
             <div ng-hide="true" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
                 <label>Data de nascimento:
                     <b class="text-danger">*</b>
                 </label>
-                <input disabled class="form-control form-control-sm" type="date" ng-model="registroInternacao.dataNascimento" ng-change="paciente.idade = calcularIdade(paciente.nascimento)">
+                <input disabled class="form-control form-control-sm" type="date" ng-model="registroInternacao.pedidoInternacao.paciente.dataNascimento" ng-change="paciente.idade = calcularIdade(paciente.nascimento)">
             </div>
 
             <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-6 kan-group">
                 <label for="idade">Idade
                     <b class="text-danger">*</b>
                 </label>
-                <input disabled type="text" ng-model="registroInternacao.idade" class="form-control form-control-sm">
+                <input disabled type="text" ng-model="registroInternacao.pedidoInternacao.paciente.idade" class="form-control form-control-sm">
             </div>
             <div class="col-12 col-sm-12 col-md-7 col-lg-6 col-xl-6 kan-group">
                 <label>Sexo</label>
@@ -90,14 +86,14 @@
                 <span class="clearfix"></span>
                 <label class="custom-control custom-radio">
                     <input disabled id="feminino" name="genero" type="radio" class="custom-control-input ml-4 ng-pristine ng-untouched ng-valid ng-empty"
-                        ng-model="registroInternacao.genero" ng-value="'Masculino'" value="Masculino">
+                        ng-model="registroInternacao.pedidoInternacao.paciente.genero" ng-value="'Masculino'" value="Masculino">
                     <span class="custom-control-indicator p-3"></span>
                     <span for="feminino" class="custom-control-description ml-4 mt-2">Masculino</span>
                 </label>
 
                 <label class="custom-control custom-radio">
                     <input disabled id="masculino" name="genero" type="radio" class="custom-control-input ml-4 ng-pristine ng-untouched ng-valid ng-empty"
-                        ng-model="registroInternacao.genero" ng-value="'Feminino'" value="Feminino">
+                        ng-model="registroInternacao.pedidoInternacao.paciente.genero" ng-value="'Feminino'" value="Feminino">
                     <span class="custom-control-indicator p-3"></span>
                     <span for="masculino" class="custom-control-description ml-4 mt-2">Feminino</span>
                 </label>
@@ -116,7 +112,7 @@
                 <label for="Status">Enfermaria
                     <b class="text-danger">*</b>
                 </label>
-                <select ng-disabled="registroInternacao.idAla < 0" ng-model="registroInternacao.idEnfermaria" class="form-control form-control-sm"
+                <select ng-disabled="registroInternacao.pedidoInternacao.ala.idAla < 0" ng-model="registroInternacao.idEnfermaria" class="form-control form-control-sm"
                     ng-change="carregarLeitosEnfermaria(registroInternacao.idEnfermaria)">
                     <option value="">Selecione a enfermaria</option>
                     <option ng-repeat="enfermaria in Enfermarias" value="{{enfermaria.idEnfermaria}}">{{enfermaria.nomeEnfermaria}}</option>
