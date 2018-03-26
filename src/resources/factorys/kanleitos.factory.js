@@ -131,12 +131,7 @@ app.factory('pedidoInternacaoFactory', function ($http) {
         });
     };
     pedido.getPedido = function (prontuario) {
-        return $http({
-            url: URL_REQ + "pedidoInternacao",
-            method: 'GET',
-            params: { numProntuario: prontuario },
-            kanHeaders
-        });
+        return $http.get(URL_REQ + 'pedidoInternacao/' + prontuario);
     };
     pedido.getPedidosEmAberto = function () {
         return $http({
