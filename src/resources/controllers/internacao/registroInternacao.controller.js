@@ -13,11 +13,6 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         };
 
         $scope.novoRegistroInternacao();
-        $scope.calcularPrevisaoAlta = function () {
-            $scope.registroInternacao.previsaoAlta = new Date($scope.registroInternacao.dataInternacao);
-            $scope.registroInternacao.previsaoAlta.setDate($scope.registroInternacao.previsaoAlta.getDate()
-                + $scope.registroInternacao.pedidoInternacao.diagnostico.tempoPermanencia);
-        };
 
         $scope.carregarLeitosEnfermaria = function (enfermaria) {
             leitoFactory.getLeitoEnfermaria(enfermaria)
@@ -51,7 +46,6 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                         $scope.registroInternacao.pedidoInternacao.paciente.dataNascimento = new Date ($scope.registroInternacao.pedidoInternacao.paciente.dataNascimento);
                         $scope.registroInternacao.pedidoInternacao.dataAdmissao = new Date($scope.registroInternacao.pedidoInternacao.dataAdmissao);
                         $scope.CarregarEnfermarias($scope.registroInternacao.pedidoInternacao.ala.idAla);
-                        $scope.calcularPrevisaoAlta();
                     }
                 })
         }
@@ -106,7 +100,6 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                         $scope.registroInternacao.pedidoInternacao.paciente.dataNascimento = new Date($scope.registroInternacao.pedidoInternacao.paciente.dataNascimento);
                         $scope.registroInternacao.pedidoInternacao.dataAdmissao = new Date($scope.registroInternacao.pedidoInternacao.dataAdmissao);
                         $scope.CarregarEnfermarias($scope.registroInternacao.pedidoInternacao.ala.idAla);
-                        $scope.calcularPrevisaoAlta();
                     }, function (response) {
                         swal(
                             'Erro!',
