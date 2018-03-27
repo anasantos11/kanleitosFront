@@ -351,6 +351,7 @@ div.fixed-nav {
 .nav-link {
     cursor: pointer;
     color: #636c72;
+    display: flex;
 }
 
 .nav-link:hover {
@@ -544,7 +545,7 @@ body.sidenav-toggled .navbar-sidenav .nav-item:after, body.sidenav-toggled .navb
         max-height: none;
     }
     #mainNav .navbar-collapse .navbar-sidenav>.nav-item>.nav-link {
-        padding: 1em;
+        padding: 1em 1em 0 1em;
     }
     #mainNav .navbar-collapse .navbar-sidenav>.nav-item .sidenav-second-level, #mainNav .navbar-collapse .navbar-sidenav>.nav-item .sidenav-third-level {
         padding-left: 0;
