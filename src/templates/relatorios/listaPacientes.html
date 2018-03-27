@@ -12,6 +12,8 @@
                             <th class="text-center">Nome do Paciente</th>
                             <th class="text-center">Nome da mãe</th>
                             <th class="text-center">Data de nascimento</th>
+                            <th class="text-center">Idade</th>
+                            <th class="text-center">Sexo</th>
                             <th class="text-center">Ação</th>
                         </tr>
                     </thead>
@@ -21,6 +23,8 @@
                             <td class="text-center">{{paciente.nomePaciente}}</td>
                             <td class="text-center">{{paciente.nomeMae}}</td>
                             <td class="text-center">{{paciente.dataNascimento | date: "dd/MM/yyyy"}}</td>
+                            <td class="text-center">{{paciente.idade}}</td>
+                            <td class="text-center">{{paciente.genero}}</td>
                             <td class="text-center">
                                 <button class="btn kan-btn-success kan-btn-sm" ng-click="closeThisDialog(paciente)">
                                     Escolher
