@@ -107,14 +107,9 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
             setTimeout(function () {
                 pacienteFactory.getPaciente($scope.pedidoInternacao.paciente.numProntuario, $scope.pedidoInternacao.paciente.nomeMae)
                     .then(function (response) {
-                        var res = response.data.data;
-                        if (res.length > 0) {
-                            $scope.pedidoInternacao.paciente.nomePaciente = res[0].nomePaciente;
-                            $scope.pedidoInternacao.paciente.nomeMae = res[0].nomeMae;
-                            $scope.pedidoInternacao.paciente.idade = res[0].idade;
-                            $scope.pedidoInternacao.paciente.dataNascimento = new Date(res[0].dataNascimento);
-                            $scope.pedidoInternacao.paciente.genero = res[0].genero;
-                        }
+                        $scope.pedidoInternacao.paciente = response.data.data;
+                        $scope.pedidoInternacao.paciente.dataNascimento = new Date($scope.pedidoInternacao.paciente.dataNascimento);
+
                     });
             }, 1000);
         }
@@ -127,11 +122,13 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                 $scope.pedidoInternacao.dataAdmissao = moment($scope.pedidoInternacao.dataAdmissao).format();
                 $scope.pedidoInternacao.dataPedido = moment($scope.pedidoInternacao.dataPedido).format();
 
-                $scope.pedidoInternacao.ala =  $scope.Alas.filter(function(obj) {
-                    return (obj.idAla == $scope.pedidoInternacao.idAla)})[0];
+                $scope.pedidoInternacao.ala = $scope.Alas.filter(function (obj) {
+                    return (obj.idAla == $scope.pedidoInternacao.idAla)
+                })[0];
 
-                $scope.pedidoInternacao.diagnostico =  $scope.Diagnosticos.filter(function(obj) {
-                    return (obj.idDiagnostico == $scope.pedidoInternacao.idDiagnostico)})[0];
+                $scope.pedidoInternacao.diagnostico = $scope.Diagnosticos.filter(function (obj) {
+                    return (obj.idDiagnostico == $scope.pedidoInternacao.idDiagnostico)
+                })[0];
 
                 pedidoInternacaoFactory.savePedidoInternacao($scope.pedidoInternacao)
                     .then(function (response) {
@@ -151,13 +148,13 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                         $scope.pedidoInternacao.dataPedido = new Date($scope.pedidoInternacao.dataPedido);
                         $scope.pedidoInternacao.dataAdmissao = new Date($scope.pedidoInternacao.dataAdmissao);*/
 
-                        if(response.status == 400){
+                        if (response.status == 400) {
                             swal(
                                 "Erro!",
                                 response.data.messages[0],
                                 "error"
                             )
-                        }else{
+                        } else {
                             console.log(response.data.message);
                             swal(
                                 "Erro!",

@@ -6,6 +6,8 @@ var HJK = "https://kanleitoshjk-service.azurewebsites.net/";
 
 var URL_REQ = "http://localhost:9000/kanleitos/";
 
+URL_REQ = DEV
+
 if (local == "dev-kanleitos.azurewebsites.net") 
     URL_REQ = DEV;
 
