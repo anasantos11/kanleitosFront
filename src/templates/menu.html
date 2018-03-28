@@ -63,7 +63,6 @@
                     </ul>
                 </div>
             </li>
-
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reltório de Leitos">
                 <a class="nav-link" ui-sref="leitos">
                     <img src="img/leito.png" alt="">
@@ -71,8 +70,32 @@
                         Status dos Leitos</span>
                 </a>
             </li>
-
-
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" data-target="#geral-subitens" aria-expanded="false" aria-controls="geral-subitens"
+                    data-toggle="tooltip" data-placement="right" title="Cadastro Gerais">
+                    <img class="menu-icon" src="img/config.png" alt="Cadastro Gerais">
+                    <span class="menu-title ml-2">Cadastros Gerais</span>
+                    <i class="fa fa-caret-down ml-auto mr-2" aria-hidden="true"></i>
+                </a>
+                <div class="collapse" id="geral-subitens">
+                    <ul class="nav flex-column pl-5">
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Hospitais">
+                            <a class="nav-link" ui-sref="hospitais">
+                                <span class="nav-link-text">
+                                    Hospitais
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Isolamentos">
+                            <a class="nav-link" ui-sref="isolamentos">
+                                <span class="nav-link-text">
+                                    Tipos Isolamentos
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
