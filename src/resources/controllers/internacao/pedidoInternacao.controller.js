@@ -1,5 +1,5 @@
-app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "$filter", "pedidoInternacaoFactory", "diagnosticosFactory", "pacienteFactory", "alasFactory", "Notify",
-    function ($scope, $rootScope, $http, $filter, pedidoInternacaoFactory, diagnosticosFactory, pacienteFactory, alasFactory, Notify) {
+app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "$filter", "pedidoInternacaoFactory", "diagnosticosFactory", "pacienteFactory", "alasFactory", "Notify", "svcIsolamento",
+    function ($scope, $rootScope, $http, $filter, pedidoInternacaoFactory, diagnosticosFactory, pacienteFactory, alasFactory, Notify,svcIsolamento) {
 
         $scope.novoPedidoInternacao = function () {
             $scope.pedidoInternacao = {
@@ -60,6 +60,7 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
         $scope.Inicializar = function () {
             $scope.CarregarDiagnosticos();
             $scope.CarregarAlas();
+            $scope.carregarIsolamentos();
         }
 
         $scope.CarregarDiagnosticos = function () {
@@ -103,6 +104,13 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                 });
         };
 
+        $scope.carregarIsolamentos = function(){
+            svcIsolamento.getIsolamentos()
+            .then(function(res){
+                $scope.Isolamentos = res.data.data;
+            })
+        };
+
         $scope.GetPaciente = function () {
             setTimeout(function () {
                 pacienteFactory.getPaciente($scope.pedidoInternacao.paciente.numProntuario, $scope.pedidoInternacao.paciente.nomeMae)
@@ -129,6 +137,12 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                 $scope.pedidoInternacao.diagnostico = $scope.Diagnosticos.filter(function (obj) {
                     return (obj.idDiagnostico == $scope.pedidoInternacao.idDiagnostico)
                 })[0];
+
+                if($scope.pedidoInternacao.precisaIsolamento){
+                    $scope.pedidoInternacao.isolamento = $scope.Isolamentos.filter(function (obj) {
+                        return (obj.idIsolamento == $scope.pedidoInternacao.idIsolamento)
+                    })[0];
+                }
 
                 pedidoInternacaoFactory.savePedidoInternacao($scope.pedidoInternacao)
                     .then(function (response) {

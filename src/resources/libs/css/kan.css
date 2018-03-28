@@ -95,7 +95,7 @@ tbody {
     }
 }
 
-.form-control:disabled, .form-control[readonly], .custom-control-input:disabled, {
+.form-control:disabled, .form-control[readonly] {
     background-color: #e5e5e5;
 }
 
@@ -123,10 +123,6 @@ tbody {
     padding: unset;
 }
 
-.kan-custom, .custom-control-input:checked~.custom-control-indicator {
-    color: #fff;
-    background-color: #28ad98;
-}
 
 .kan-row {
     background-color: #fff;
@@ -264,19 +260,6 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.custom-radio .custom-control-input~.custom-control-indicator {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='%23fff'/%3E%3C/svg%3E");
-}
-
-.custom-control {
-    margin-right: 0.25rem;
-    padding-left: 0.55rem;
-}
-
-.custom-control-indicator {
-    background-color: #28ad9857;
-    top: 0px;
-}
 
 label {
     margin-bottom: 0px;
