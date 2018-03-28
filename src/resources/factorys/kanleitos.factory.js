@@ -199,4 +199,44 @@ app.factory("kanbanFactory", function ($http) {
     }
 
     return kanban;
-})
+});
+
+app.factory('svcIsolamento', function($http){
+    var isolamento = {};
+    //Cadastro de Isolamento
+    isolamento.cadastrarIsolamento = function(isolamento){
+        return $http.post(
+            URL_REQ + "isolamento",
+            isolamento,
+            kanHeaders
+        )
+    };
+    //Get Isolamentos
+    isolamento.getIsolamentos = function(){
+        return $http.get(
+            URL_REQ + "isolamentos",
+            kanHeaders
+        )
+    };
+    //Editar Isolamento
+    isolamento.updateIsolamento = function(isolamento, idIsolamento){
+        return $http.put(
+            URL_REQ + "isolamento",
+            isolamento,
+            {kanHeaders, 
+                params: { idIsolamento: idIsolamento }
+            }
+        )
+    }
+    //Inativar Isolamento
+    isolamento.inativarIsolamento = function(idIsolamento){
+        return $http.post(
+            URL_REQ + "inativarIsolamento",
+            idIsolamento,
+            kanHeaders            
+        )
+    }
+
+
+    return isolamento;
+});
