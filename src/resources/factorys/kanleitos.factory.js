@@ -240,3 +240,43 @@ app.factory('svcIsolamento', function($http){
 
     return isolamento;
 });
+
+app.factory('svcHospital', function($http){
+    var hospital = {};
+    //Cadastro de Hospital
+    hospital.cadastrarHospital = function(hospital){
+        return $http.post(
+            URL_REQ + "hospital",
+            hospital,
+            kanHeaders
+        )
+    };
+    //Get Hospitais
+    hospital.getHospitais = function(){
+        return $http.get(
+            URL_REQ + "hospitais",
+            kanHeaders
+        )
+    };
+    //Editar Hospital
+    hospital.updateHospital = function(hospital, idHospital){
+        return $http.put(
+            URL_REQ + "hospital",
+            hospital,
+            {kanHeaders, 
+                params: { idHospital: idHospital }
+            }
+        )
+    }
+    //Inativar Hospital
+    hospital.inativarHospital = function(idHospital){
+        return $http.post(
+            URL_REQ + "inativarHospital",
+            idHospital,
+            kanHeaders            
+        )
+    }
+
+
+    return hospital;
+});

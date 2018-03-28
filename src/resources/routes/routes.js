@@ -94,7 +94,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			parent: "kanleitos",
 			params: {
 				pacientes: [],
-			  },
+			},
 			url: "/classificacaoPacientes",
 			views: {
 				"contentApp@kanleitos": {
@@ -102,6 +102,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 					controller: function ($scope, $stateParams) {
 						$scope.pacientes = $stateParams.pacientes;
 					}
+				}
+			}
+
+
+		})
+		.state("hospitais", {
+			parent: "kanleitos",
+			url: "/hospitais",
+			views: {
+				"contentApp@kanleitos": {
+					templateUrl: "templates/cadastros-gerais/hospitais.html"
 				}
 			}
 
