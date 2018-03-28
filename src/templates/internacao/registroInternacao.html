@@ -46,7 +46,14 @@
                 <input disabled class="form-control form-control-sm" type="date" ng-model="registroInternacao.pedidoInternacao.dataAdmissao">
             </div>
 
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+                <label>Isolamento
+                    <b class="text-danger">*</b>
+                </label>
+                <input disabled class="form-control form-control-sm" type="text" ng-model="registroInternacao.pedidoInternacao.isolamento.nome">
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
                 <label>Diagnóstico
                     <b class="text-danger">*</b>
                 </label>
@@ -71,7 +78,8 @@
                 <label>Data de nascimento:
                     <b class="text-danger">*</b>
                 </label>
-                <input disabled class="form-control form-control-sm" type="date" ng-model="registroInternacao.pedidoInternacao.paciente.dataNascimento" ng-change="paciente.idade = calcularIdade(paciente.nascimento)">
+                <input disabled class="form-control form-control-sm" type="date" ng-model="registroInternacao.pedidoInternacao.paciente.dataNascimento"
+                    ng-change="paciente.idade = calcularIdade(paciente.nascimento)">
             </div>
 
             <div class="col-12 col-sm-12 col-md-5 col-lg-6 col-xl-6 kan-group">
