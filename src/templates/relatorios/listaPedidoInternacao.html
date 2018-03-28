@@ -9,6 +9,7 @@
                     <thead>
                         <tr>
                             <th class="text-center">Nº Prontuário</th>
+                            <th class="text-center">Isolamento</th>
                             <th class="text-center">Nome do Paciente</th>
                             <th class="text-center">Nome da mãe</th>
                             <th class="text-center">Data Nascimento</th>
@@ -22,6 +23,9 @@
                     <tbody>
                         <tr ng-repeat="pedido in listaPedidos">
                             <td class="text-center">{{pedido.paciente.numProntuario}}</td>
+                            <td title="{{pedido.isolamento.nome}}">
+                                <strong class="text-danger">{{pedido.isolamento.nome}}</strong>
+                            </td>
                             <td class="text-center">{{pedido.paciente.nomePaciente}}</td>
                             <td class="text-center">{{pedido.paciente.nomeMae}}</td>
                             <td class="text-center">{{pedido.paciente.dataNascimento | date : 'dd/MM/yy'}}</td>

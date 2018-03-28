@@ -43,6 +43,7 @@
                     <thead>
                         <tr>
                             <th class="text-center">Ala</th>
+                            <th class="text-center">Isolamento</th>
                             <th class="text-center">Médico</th>
                             <th class="text-center">Residente</th>
                             <th class="text-center">Prontuário</th>
@@ -61,13 +62,14 @@
                                         'table-warning' : pedido.tempo.dias < 1 && pedido.tempo.horas >= 12,
                                         'table-danger'  : pedido.tempo.dias >= 1 }">
                             <td title="{{pedido.ala.nomeAla}}">{{pedido.ala.nomeAla}}</td>
+                            <td title="{{pedido.isolamento.nome}}"><strong class="text-danger">{{pedido.isolamento.nome}}</strong></td>
                             <td class="text-center" title="{{pedido.medicoResponsavel}}">{{pedido.medicoResponsavel}}</td>
                             <td class="text-center" title="{{pedido.residenteResponsavel}}">{{pedido.residenteResponsavel}}</td>
                             <td class="text-center" title="{{pedido.paciente.numProntuario}}">{{pedido.paciente.numProntuario | limitTo: 10}}</td>
                             <td class="text-center" title="{{pedido.paciente.nomePaciente}}">{{pedido.paciente.nomePaciente}}</td>
                             <td class="text-center" title="{{pedido.paciente.dataNascimento | date: 'dd/MM/yy'}}">{{pedido.paciente.dataNascimento | date: "dd/MM/yy"}}</td>
                             <td class="text-center" title="{{pedido.paciente.idade}}">{{pedido.paciente.idade}}</td>
-                            <td class="text-center" title="{{pedido.paciente.sexo}}">{{pedido.paciente.sexo}}</td>
+                            <td class="text-center" title="{{pedido.paciente.genero}}">{{pedido.paciente.genero}}</td>
                             <td class="text-center" title="{{pedido.dataAdmissao | date: 'dd/MM/yy HH:mm'}}">{{pedido.dataAdmissao | date: "dd/MM/yy HH:mm"}}</td>
                             <td class="text-center" title="{{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}">
                                 {{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}</td>
