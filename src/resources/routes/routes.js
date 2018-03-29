@@ -90,6 +90,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			}
 
 		})
+		.state("relatorioTodasInternacoes", {
+			parent: "kanleitos",
+			url: "/todasInterncoes",
+			views: {
+				"contentApp@kanleitos": {
+					templateUrl: "templates/relatorios/todasInternacoes.html"
+				}
+			}
+
+		})
 		.state("classificacaoPacientes", {
 			parent: "kanleitos",
 			params: {
