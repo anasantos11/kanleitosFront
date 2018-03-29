@@ -48,15 +48,58 @@ app.controller('CadastroHospitalController', ["$scope", "$http", "$filter", "svc
         }
 
         $scope.validarDadosHospital = function () {
-            if (!$scope.hospital.nome) {
-                swal(
-                    'Erro!',
-                    'Digite o nome do hospital!',
-                    'error'
-                )
+            if (isNullOrEmpty($scope.hospital.nome)) {
+                alertaPreenchimentoCampo("nome do hospital");
                 return;
             }
+
+            if (!isNullOrEmpty($scope.enderecoSeparado) && (!isNullOrEmpty($scope.enderecoSeparado.cep) ||
+                !isNullOrEmpty($scope.enderecoSeparado.tipoLogradouro) || !isNullOrEmpty($scope.enderecoSeparado.rua) ||
+                !isNullOrEmpty($scope.enderecoSeparado.numero) || !isNullOrEmpty($scope.enderecoSeparado.bairro) ||
+                !isNullOrEmpty($scope.enderecoSeparado.cidade) || !isNullOrEmpty($scope.enderecoSeparado.estado))) {
+
+                if (isNullOrEmpty($scope.enderecoSeparado.cep)) {
+                    alertaPreenchimentoCampo("cep");
+                    return;
+                }
+                if (isNullOrEmpty($scope.enderecoSeparado.tipoLogradouro)) {
+                    alertaPreenchimentoCampo("tipo de logradouro");
+                    return;
+                }
+                if (isNullOrEmpty($scope.enderecoSeparado.rua)) {
+                    alertaPreenchimentoCampo("rua");
+                    return;
+                }
+                if (isNullOrEmpty($scope.enderecoSeparado.numero)) {
+                    alertaPreenchimentoCampo("número do endereço");
+                    return;
+                }
+                if (isNullOrEmpty($scope.enderecoSeparado.bairro)) {
+                    alertaPreenchimentoCampo("bairro");
+                    return;
+                }
+                if (isNullOrEmpty($scope.enderecoSeparado.bairro)) {
+                    alertaPreenchimentoCampo("cidade");
+                    return;
+                }
+                if (isNullOrEmpty($scope.enderecoSeparado.estado)) {
+                    alertaPreenchimentoCampo("estado");
+                    return;
+                }
+                if (isNullOrEmpty($scope.enderecoSeparado.cidade)) {
+                    alertaPreenchimentoCampo("cidade");
+                    return;
+                }
+                $scope.concatenarEndereco();
+            }
+
             return true;
+        };
+
+        $scope.concatenarEndereco = function () {
+            $scope.hospital.endereco = $scope.enderecoSeparado.tipoLogradouro + " " + $scope.enderecoSeparado.rua + ", " +
+                $scope.enderecoSeparado.numero + " - " + $scope.enderecoSeparado.bairro + ", " + $scope.enderecoSeparado.cidade + " - " +
+                $scope.enderecoSeparado.estado + ", " + $scope.enderecoSeparado.cep;
         }
     }
 ]);
