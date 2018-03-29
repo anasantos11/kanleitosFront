@@ -25,4 +25,40 @@ app.controller('HospitaisController', ['$scope', '$state', 'svcHospital', 'Notif
         $state.go('cadastroHospital', { hospital: hospital });
     };
 
+    $scope.inativarHospital = function (hospital) {
+        alertaConfirmar("inativar o hospital")
+            .then(function (res) {
+                if (res.value) {
+                    svcHospital.inativarHospital(hospital.id_hospital)
+                        .then(function (res) {
+                            hospital.inativo = true;
+                            alertaSucesso("Hospital inativado com sucesso.");
+                        })
+                        .catch(function (err) {
+                            alertaErroRequisicao(err);
+                        })
+                }
+
+            })
+
+    };
+
+    $scope.ativarHospital = function (hospital) {
+        alertaConfirmar("ativar o hospital")
+            .then(function (res) {
+                if (res.value) {
+                    svcHospital.ativarHospital(hospital.id_hospital)
+                        .then(function (res) {
+                            hospital.inativo = false;
+                            alertaSucesso("Hospital ativado com sucesso.");
+                        })
+                        .catch(function (err) {
+                            alertaErroRequisicao(err);
+                        })
+                }
+
+            })
+
+    };
+
 }]);

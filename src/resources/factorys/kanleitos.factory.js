@@ -276,6 +276,14 @@ app.factory('svcHospital', function($http){
             kanHeaders            
         )
     }
+     //Ativar Hospital
+     hospital.ativarHospital = function(idHospital){
+        return $http.post(
+            URL_REQ + "ativarHospital",
+            idHospital,
+            kanHeaders            
+        )
+    }
 
 
     return hospital;

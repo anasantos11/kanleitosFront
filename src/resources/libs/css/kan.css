@@ -290,13 +290,17 @@ fieldset.kan-group {
     padding: 0px;
 }
 
-* Sweet Popup */
+/* Sweet Popup */
 .swal2-popup.swal2-modal.swal2-show {
   width: 24em;
   font-size: 20px;
 }
 .swal2-container {
     z-index: 10000;
+}
+/*Ajuste icone*/
+i{
+    cursor: pointer;
 }
 
 /** NOVA NAVEGACAO - MENU **/

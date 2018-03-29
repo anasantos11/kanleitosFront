@@ -29,6 +29,16 @@ function alertaPreenchimentoCampo(campo){
     })
 
 }
+function alertaSucesso(mensagem){
+    swal({
+        text: mensagem,
+        type: 'success',
+        showConfirmButton: false,
+        showCloseButton: true,
+        timer: 2000
+    })
+
+}
 
 function alertaErroRequisicao(err) {
     if (err.status == 400 && err.data.messages != undefined) {
@@ -36,6 +46,7 @@ function alertaErroRequisicao(err) {
             text: err.data.messages[0],
             type: 'error',
             showConfirmButton: false,
+            showCloseButton: true,
             timer: 5000
         })
     } else {
@@ -44,17 +55,18 @@ function alertaErroRequisicao(err) {
             text: 'Desculpe, não conseguimos processar sua solicitação. Verifique os dados e tente novamente.',
             type: 'error',
             showConfirmButton: false,
+            showCloseButton: true,
             timer: 5000
         })
     }
 };
 
-function alertaConfirmarExclusao(acao) {
-    var title = acao == undefined ? "excluir" : acao;
+function alertaConfirmar(acao) {
     return swal({
-        html: 'Tem certeza que deseja <br /> <span class="font-weight-bold">' +  title +  '</span> ?',
+        html: 'Tem certeza que deseja <br /> <span class="font-weight-bold">' +  acao +  '</span> ?',
         type: 'warning',
         showCancelButton: true,
+        showCloseButton: true,
         confirmButtonText: 'Prosseguir',
         cancelButtonText: 'Cancelar',
         confirmButtonColor: '#3085d6',
