@@ -1,6 +1,7 @@
 app.controller('CadastroHospitalController', ["$scope", "$http", "$filter", "svcHospital", "Notify",
     function ($scope, $http, $filter, svcHospital, Notify) {
 
+        $scope.title = "Cadastrar Hospital";
         $scope.enderecoCompleto = false;
         $scope.hospital = {
             nome: null,
@@ -80,6 +81,7 @@ app.controller('CadastroHospitalController', ["$scope", "$http", "$filter", "svc
         }
 
         if (!isNullOrEmpty($scope.ngDialogData.hospital)) {
+            $scope.title = "Editar Hospital:" + $scope.ngDialogData.hospital.nome;
             $scope.enderecoCompleto = true;
             if (!isNullOrEmpty($scope.ngDialogData.hospital.telefone)) {
                 $scope.ngDialogData.hospital.telefone = parseInt($scope.ngDialogData.hospital.telefone);
