@@ -12,7 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.8.2",
-    "gulp": "*",
+    "gulp": "^3.9.1",
     "gulp-concat": "*",
     "gulp-main-bower-files": "^1.6.2",
     "gulp-replace": "^0.6.1"

@@ -8,21 +8,35 @@
                 <table class="table table-bordered table-hover table-sm">
                     <thead>
                         <tr>
-                            <th class="text-center">Nº Prontuário</th>
-                            <th class="text-center">Nome do Paciente</th>
-                            <th class="text-center">Nome da mãe</th>
+                            <th class="text-center">Ala</th>
+                            <th class="text-center">Médico</th>
+                            <th class="text-center">Residente</th>
+                            <th class="text-center">Prontuário</th>
+                            <th class="text-center">Paciente</th>
+                            <th class="text-center">Mãe</th>
+                            <th class="text-center">Data Nasc</th>
                             <th class="text-center">Idade</th>
+                            <th class="text-center">Sexo</th>
+                            <th class="text-center">Isolamento</th>
+                            <th class="text-center">Diagnóstico</th>
                             <th class="text-center">Data Admissão</th>
-                            <th class="text-center">Horas aguardando</th>
+                            <th class="text-center">Tempo aguardando</th>
                             <th class="text-center">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="pedido in listaPedidos">
+                            <td class="text-center">{{pedido.ala.nomeAla}}</td>
+                            <td class="text-center">{{pedido.medicoResponsavel}}</td>
+                            <td class="text-center">{{pedido.residenteResponsavel}}</td>
                             <td class="text-center">{{pedido.paciente.numProntuario}}</td>
                             <td class="text-center">{{pedido.paciente.nomePaciente}}</td>
                             <td class="text-center">{{pedido.paciente.nomeMae}}</td>
+                            <td class="text-center">{{pedido.paciente.dataNascimento | date : 'dd/MM/yy'}}</td>
                             <td class="text-center">{{pedido.paciente.idade}}</td>
+                            <td class="text-center">{{pedido.paciente.genero}}</td>
+                            <td title="{{pedido.isolamento.nome}}" class="text-danger">{{pedido.isolamento.nome}}</td>
+                            <td title="{{pedido.diagnostico.descricaoDiagnostico}}">{{pedido.diagnostico.descricaoDiagnostico}}</td>
                             <td class="text-center">{{pedido.dataAdmissao | date: "dd/MM/yy HH:mm"}}</td>
                             <td class="text-center" title="{{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}">
                                 {{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}</td>

@@ -21,29 +21,54 @@
                 <table class="table table-bordered table-hover table-sm">
                     <thead>
                         <tr>
+<<<<<<< HEAD
                             <th class="text-center">Nome do Paciente</th>
                             <th class="text-center">Idade</th>
                             <th class="text-center">Diagnóstico</th>
                             <th class="text-center">Data Internação</th>
                             <th class="text-center">Dias Internados</th>
                             <th class="text-center">Previsão Alta</th>
+=======
+>>>>>>> 3934f85375c9fe12bd79db5c44efa3df8dcebb25
                             <th class="text-center">Ala</th>
-                            <th class="text-center">Enfermaria</th>
+                            <th class="text-center">Enferm</th>
                             <th class="text-center">Leito</th>
+<<<<<<< HEAD
                             <th class="text-center">Pendência Atual</th>
+=======
+                            <th class="text-center">Médico</th>
+                            <th class="text-center">Residente</th>
+                            <th class="text-center">Admissão</th>
+                            <th class="text-center">Previsao de Alta</th>
+                            <th class="text-center">Dias Internado</th>
+                            <th class="text-center">Prontuário</th>
+                            <th class="text-center">Paciente</th>
+                            <th class="text-center">Data Nasc</th>
+                            <th class="text-center">Idade</th>
+                            <th class="text-center">Sexo</th>
+                            <th class="text-center">Isolamento</th>
+                            <th class="text-center">Diagnóstico</th>
+                            <th class="text-center">Pendência</th>
+>>>>>>> 3934f85375c9fe12bd79db5c44efa3df8dcebb25
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="paciente in pacientes" ng-class="{'table-success' : paciente.classificacao === 'verde', 'table-danger' : paciente.classificacao === 'vermelho', 'table-warning' : paciente.classificacao === 'amarelo'}">
-                            <td title="{{paciente.pedidoInternacao.paciente.nomePaciente}}">{{paciente.pedidoInternacao.paciente.nomePaciente}}</td>
-                            <td class="text-center" title="{{paciente.pedidoInternacao.paciente.idade}}">{{paciente.pedidoInternacao.paciente.idade}}</td>
-                            <td title="{{paciente.pedidoInternacao.diagnostico.descricaoDiagnostico}}">{{paciente.pedidoInternacao.diagnostico.descricaoDiagnostico}}</td>
-                            <td class="text-center">{{paciente.pedidoInternacao.dataAdmissao | date}}</td>
-                            <td class="text-center">{{paciente.diasInternado}}</td>
-                            <td class="text-center">{{paciente.previsaoAlta | date}}</td>
                             <td class="text-center" title="{{paciente.pedidoInternacao.ala.nomeAla}}">{{paciente.pedidoInternacao.ala.nomeAla}}</td>
-                            <td class="text-center">{{paciente.enfermaria.nomeEnfermaria}}</td>
+                            <td class="text-center" title="{{paciente.enfermaria.nomeEnfermaria}}">{{paciente.enfermaria.nomeEnfermaria}}</td>
                             <td class="text-center">{{paciente.leito.nomeLeito}}</td>
+                            <td class="text-center" title="{{paciente.pedidoInternacao.medicoResponsavel}}">{{paciente.pedidoInternacao.medicoResponsavel}}</td>
+                            <td class="text-center" title="{{paciente.pedidoInternacao.residenteResponsavel}}">{{paciente.pedidoInternacao.residenteResponsavel}}</td>
+                            <td class="text-center">{{paciente.pedidoInternacao.dataAdmissao | date : "dd/MM/yy HH:mm"}}</td>
+                            <td class="text-center">{{paciente.previsaoAlta | date : "dd/MM/yy"}}</td>
+                            <td class="text-center">{{paciente.diasInternado}}</td>
+                            <td class="text-center" title="{{paciente.pedidoInternacao.paciente.numProntuario}}">{{paciente.pedidoInternacao.paciente.numProntuario}}</td>
+                            <td class="text-center" title="{{paciente.pedidoInternacao.paciente.nomePaciente}}">{{paciente.pedidoInternacao.paciente.nomePaciente}}</td>
+                            <td class="text-center" title="{{paciente.pedidoInternacao.paciente.dataNascimento | date : 'dd/MM/yy'}}">{{paciente.pedidoInternacao.paciente.dataNascimento | date : "dd/MM/yy"}}</td>
+                            <td class="text-center" title="{{paciente.pedidoInternacao.paciente.idade}}">{{paciente.pedidoInternacao.paciente.idade}}</td>
+                            <td class="text-center" title="{{paciente.pedidoInternacao.paciente.sexo}}">{{paciente.pedidoInternacao.paciente.genero}}</td>
+                            <td class="text-center text-danger" title="{{paciente.pedidoInternacao.isolamento.nome}}"> {{paciente.pedidoInternacao.isolamento.nome}} </td>
+                            <td class="text-center" title="{{paciente.pedidoInternacao.diagnostico.descricaoDiagnostico}}">{{paciente.pedidoInternacao.diagnostico.descricaoDiagnostico}}</td>
                             <td class="text-center">
                                 <button class="btn kan-btn-circle kan-btn-success kan-btn-sm" data-toggle="tooltip" title="{{setAllPendencies(paciente.pendencias)}}">
                                     <i class="fa fa-file"></i>

@@ -31,7 +31,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="estrutura in Leitos | filter : search">
-                            <td class="text-center">{{estrutura.ala.nomeAla}}</td>
+                            <td class="text-center">{{estrutura.enfermaria.ala.nomeAla}}</td>
                             <td class="text-center">{{estrutura.enfermaria.nomeEnfermaria}}</td>
                             <td class="text-center">{{estrutura.nomeLeito}}</td>
                             <td class="text-center">{{estrutura.tipoLeito}}</td>

@@ -73,6 +73,12 @@ gulp.task('libs-css', function () {
                     main: [
                         './dist/css/bootstrap.min.css'
                     ]
+                },
+                sweetalert2: {
+                    main:
+                        [
+                            './dist/sweetalert2.min.css'
+                        ]
                 }
             }
         }))
@@ -91,10 +97,10 @@ gulp.task('libs-js', function () {
                         './dist/js/bootstrap.min.js'
                     ]
                 },
-                sweetalert: {
+                sweetalert2: {
                     main:
                         [
-                            './docs/assets/sweetalert/sweetalert.min.js'
+                            './dist/sweetalert2.min.js'
                         ]
                 }
             }

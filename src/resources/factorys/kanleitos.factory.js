@@ -1,10 +1,15 @@
 var local = window.location.hostname;
-var DEV = "https://dev-kanleitos-service.azurewebsites.net/";
+var DEV = "https://dev-kanleitos-service.azurewebsites.net/kanleitos/";
 var HJK = "https://kanleitoshjk-service.azurewebsites.net/";
 
 
-//var URL_REQ = DEV;
+
 var URL_REQ = "http://localhost:9000/kanleitos/";
+
+//URL_REQ = DEV
+
+if (local == "dev-kanleitos.azurewebsites.net") 
+    URL_REQ = DEV;
 
 if (local == "kanleitoshjk.azurewebsites.net") 
     URL_REQ = HJK;
@@ -128,12 +133,7 @@ app.factory('pedidoInternacaoFactory', function ($http) {
         });
     };
     pedido.getPedido = function (prontuario) {
-        return $http({
-            url: URL_REQ + "pedidoInternacao",
-            method: 'GET',
-            params: { numProntuario: prontuario },
-            kanHeaders
-        });
+        return $http.get(URL_REQ + 'pedidoInternacao/' + prontuario);
     };
     pedido.getPedidosEmAberto = function () {
         return $http({
@@ -199,4 +199,102 @@ app.factory("kanbanFactory", function ($http) {
     }
 
     return kanban;
-})
+});
+
+app.factory('svcIsolamento', function($http){
+    var isolamento = {};
+    //Cadastro de Isolamento
+    isolamento.cadastrarIsolamento = function(isolamento){
+        return $http.post(
+            URL_REQ + "isolamento",
+            isolamento,
+            kanHeaders
+        )
+    };
+    //Get Isolamentos
+    isolamento.getIsolamentos = function(){
+        return $http.get(
+            URL_REQ + "isolamentos",
+            kanHeaders
+        )
+    };
+    //Editar Isolamento
+    isolamento.updateIsolamento = function(isolamento, idIsolamento){
+        return $http.put(
+            URL_REQ + "isolamento",
+            isolamento,
+            {kanHeaders, 
+                params: { idIsolamento: idIsolamento }
+            }
+        )
+    }
+    //Inativar Isolamento
+    isolamento.inativarIsolamento = function(idIsolamento){
+        return $http.post(
+            URL_REQ + "inativarIsolamento",
+            idIsolamento,
+            kanHeaders            
+        )
+    }
+
+    //Ativar Isolamento
+    isolamento.ativarIsolamento = function(idIsolamento){
+        return $http.post(
+            URL_REQ + "ativarIsolamento",
+            idIsolamento,
+            kanHeaders            
+        )
+    }
+    
+
+
+    return isolamento;
+});
+
+app.factory('svcHospital', function($http){
+    var hospital = {};
+    //Cadastro de Hospital
+    hospital.cadastrarHospital = function(hospital){
+        return $http.post(
+            URL_REQ + "hospital",
+            hospital,
+            kanHeaders
+        )
+    };
+    //Get Hospitais
+    hospital.getHospitais = function(){
+        return $http.get(
+            URL_REQ + "hospitais",
+            kanHeaders
+        )
+    };
+    //Editar Hospital
+    hospital.updateHospital = function(hospital, idHospital){
+        return $http.put(
+            URL_REQ + "hospital",
+            hospital,
+            {kanHeaders, 
+                params: { idHospital: idHospital }
+            }
+        )
+    }
+    //Inativar Hospital
+    hospital.inativarHospital = function(idHospital){
+        return $http.post(
+            URL_REQ + "inativarHospital",
+            idHospital,
+            kanHeaders            
+        )
+    }
+     //Ativar Hospital
+     hospital.ativarHospital = function(idHospital){
+        return $http.post(
+            URL_REQ + "ativarHospital",
+            idHospital,
+            kanHeaders            
+        )
+    }
+
+
+    return hospital;
+});

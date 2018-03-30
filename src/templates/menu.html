@@ -35,7 +35,38 @@
                 <a class="nav-link" ui-sref="pedidoInternacao">
                     <img src="img/pedido.png" alt="">
                     <span class="nav-link-text">Pedir Internação</span>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" data-target="#internacao-subitens" aria-expanded="false" aria-controls="internacao-subitens"
+                    data-toggle="tooltip" data-placement="right" title="Internação">
+                    <img class="menu-icon" src="img/pedido.png" alt="Internação">
+                    <span class="menu-title ml-2">Internação</span>
+                    <i class="fa fa-caret-down ml-auto mr-2" aria-hidden="true"></i>
                 </a>
+                <div class="collapse" id="internacao-subitens">
+                    <ul class="nav flex-column pl-5">
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pedir Internação">
+                            <a class="nav-link" ui-sref="pedidoInternacao">
+                                <span class="nav-link-text">
+                                    Pedir Internação
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Registrar Internação">
+                            <a class="nav-link" ui-sref="registroInternacao">
+                                <span class="nav-link-text">
+                                    Registrar Internação
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Pedidos de Internação em Aberto">
+                            <a class="nav-link" ui-sref="relatorioPedidosEmAberto">
+                                <span class="nav-link-text">
+                                    Pedidos em Aberto
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
 
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Registro de Internação">
@@ -64,6 +95,33 @@
                     <img src="img/listaAdd.png" alt="">
                     <span class="nav-link-text">Todas as Internações</span>
                 </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" data-target="#geral-subitens" aria-expanded="false" aria-controls="geral-subitens"
+                    data-toggle="tooltip" data-placement="right" title="Cadastro Gerais">
+                    <img class="menu-icon" src="img/config.png" alt="Cadastro Gerais">
+                    <span class="menu-title ml-2">Cadastros Gerais</span>
+                    <i class="fa fa-caret-down ml-auto mr-2" aria-hidden="true"></i>
+                </a>
+                <div class="collapse" id="geral-subitens">
+                    <ul class="nav flex-column pl-5">
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Hospitais">
+                            <a class="nav-link" ui-sref="hospitais">
+                                <span class="nav-link-text">
+                                    Hospitais
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Isolamentos">
+                            <a class="nav-link" ui-sref="tiposIsolamentos">
+                                <span class="nav-link-text">
+                                    Tipos de Isolamentos
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
         </ul>
     </div>

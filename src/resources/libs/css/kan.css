@@ -95,7 +95,7 @@ tbody {
     }
 }
 
-.form-control:disabled, .form-control[readonly], .custom-control-input:disabled, {
+.form-control:disabled, .form-control[readonly] {
     background-color: #e5e5e5;
 }
 
@@ -123,10 +123,6 @@ tbody {
     padding: unset;
 }
 
-.kan-custom, .custom-control-input:checked~.custom-control-indicator {
-    color: #fff;
-    background-color: #28ad98;
-}
 
 .kan-row {
     background-color: #fff;
@@ -264,19 +260,6 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.custom-radio .custom-control-input~.custom-control-indicator {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='%23fff'/%3E%3C/svg%3E");
-}
-
-.custom-control {
-    margin-right: 0.25rem;
-    padding-left: 0.55rem;
-}
-
-.custom-control-indicator {
-    background-color: #28ad9857;
-    top: 0px;
-}
 
 label {
     margin-bottom: 0px;
@@ -305,6 +288,19 @@ label {
 
 fieldset.kan-group {
     padding: 0px;
+}
+
+/* Sweet Popup */
+.swal2-popup.swal2-modal.swal2-show {
+  width: 24em;
+  font-size: 20px;
+}
+.swal2-container {
+    z-index: 10000;
+}
+/*Ajuste icone*/
+i{
+    cursor: pointer;
 }
 
 /** NOVA NAVEGACAO - MENU **/
@@ -350,7 +346,8 @@ div.fixed-nav {
 
 .nav-link {
     cursor: pointer;
-    color: #636c72;
+    color: inherit;
+    display: flex;
 }
 
 .nav-link:hover {
@@ -544,7 +541,7 @@ body.sidenav-toggled .navbar-sidenav .nav-item:after, body.sidenav-toggled .navb
         max-height: none;
     }
     #mainNav .navbar-collapse .navbar-sidenav>.nav-item>.nav-link {
-        padding: 1em;
+        padding: 1em 1em 0 1em;
     }
     #mainNav .navbar-collapse .navbar-sidenav>.nav-item .sidenav-second-level, #mainNav .navbar-collapse .navbar-sidenav>.nav-item .sidenav-third-level {
         padding-left: 0;
