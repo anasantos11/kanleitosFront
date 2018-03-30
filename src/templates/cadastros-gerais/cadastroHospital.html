@@ -16,98 +16,105 @@
                 </label>
                 <input class="form-control form-control-sm" type="number" placeholder="Informe o telefone com ddd" ng-model="hospital.telefone">
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
-                <label>Cep
+            <div ng-show="enderecoCompleto" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <label>Endereço Completo
                 </label>
-                <input class="form-control form-control-sm" type="number" ng-maxlength="8" placeholder="Informe o cep" ng-model="enderecoSeparado.cep">
+                <input class="form-control form-control-sm" type="text" placeholder="Informe o endereço completo" ng-model="hospital.endereco">
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
-                <label>Tipo de Logradouro
-                </label>
-                <select class="form-control form-control-sm" placeholder="Tipo de Logradouro" ng-model="enderecoSeparado.tipoLogradouro">
-                    <option value="">Selecione</option>
-                    <option value="Aeroporto">Aeroporto</option>
-                    <option value="Alameda">Alameda</option>
-                    <option value="Apartamento">Apartamento</option>
-                    <option value="Avenida">Avenida</option>
-                    <option value="Beco">Beco</option>
-                    <option value="Bloco">Bloco</option>
-                    <option value="Caminho">Caminho</option>
-                    <option value="Escadinha">Escadinha</option>
-                    <option value="Estação">Estação</option>
-                    <option value="Estrada">Estrada</option>
-                    <option value="Fazenda">Fazenda</option>
-                    <option value="Fortaleza">Fortaleza</option>
-                    <option value="Galeria">Galeria</option>
-                    <option value="Ladeira">Ladeira</option>
-                    <option value="Largo">Largo</option>
-                    <option value="Parque">Parque</option>
-                    <option value="Praça">Praça</option>
-                    <option value="Praia">Praia</option>
-                    <option value="Quadra">Quadra</option>
-                    <option value="Quilômetro">Quilômetro</option>
-                    <option value="Quinta">Quinta</option>
-                    <option value="Rodovia">Rodovia</option>
-                    <option value="Rua">Rua</option>
-                    <option value="Super Quadra">Super Quadra</option>
-                    <option value="Travessa">Travessa</option>
-                    <option value="Viaduto">Viaduto</option>
-                    <option value="Vila">Vila</option>
-                </select>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
-                <label>Logradouro
-                </label>
-                <input class="form-control form-control-sm" type="text" placeholder="Informe a rua" ng-model="enderecoSeparado.rua">
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2 kan-group">
-                <label>Número
-                </label>
-                <input class="form-control form-control-sm" type="number" ng-model="enderecoSeparado.numero">
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 kan-group">
-                <label>Bairro
-                </label>
-                <input class="form-control form-control-sm" type="text" placeholder="Informe o bairro" ng-model="enderecoSeparado.bairro">
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
-                <label>Estado
-                </label>
-                <select class="form-control form-control-sm" ng-model="enderecoSeparado.estado">
-                    <option value="">Selecione</option>
-                    <option value="AC">AC</option>
-                    <option value="AL">AL</option>
-                    <option value="AM">AM</option>
-                    <option value="AP">AP</option>
-                    <option value="BA">BA</option>
-                    <option value="CE">CE</option>
-                    <option value="DF">DF</option>
-                    <option value="ES">ES</option>
-                    <option value="GO">GO</option>
-                    <option value="MA">MA</option>
-                    <option value="MG">MG</option>
-                    <option value="MS">MS</option>
-                    <option value="MT">MT</option>
-                    <option value="PA">PA</option>
-                    <option value="PB">PB</option>
-                    <option value="PE">PE</option>
-                    <option value="PI">PI</option>
-                    <option value="PR">PR</option>
-                    <option value="RJ">RJ</option>
-                    <option value="RN">RN</option>
-                    <option value="RS">RS</option>
-                    <option value="RO">RO</option>
-                    <option value="RR">RR</option>
-                    <option value="SC">SC</option>
-                    <option value="SE">SE</option>
-                    <option value="SP">SP</option>
-                    <option value="TO">TO</option>
-                </select>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
-                <label>Cidade
-                </label>
-                <input class="form-control form-control-sm" type="text" placeholder="Informe a cidade" ng-model="enderecoSeparado.cidade">
+            <div ng-show="!enderecoCompleto">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+                    <label>Cep
+                    </label>
+                    <input class="form-control form-control-sm" type="number" ng-maxlength="8" placeholder="Informe o cep" ng-model="enderecoSeparado.cep">
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+                    <label>Tipo de Logradouro
+                    </label>
+                    <select class="form-control form-control-sm" placeholder="Tipo de Logradouro" ng-model="enderecoSeparado.tipoLogradouro">
+                        <option value="">Selecione</option>
+                        <option value="Aeroporto">Aeroporto</option>
+                        <option value="Alameda">Alameda</option>
+                        <option value="Apartamento">Apartamento</option>
+                        <option value="Avenida">Avenida</option>
+                        <option value="Beco">Beco</option>
+                        <option value="Bloco">Bloco</option>
+                        <option value="Caminho">Caminho</option>
+                        <option value="Escadinha">Escadinha</option>
+                        <option value="Estação">Estação</option>
+                        <option value="Estrada">Estrada</option>
+                        <option value="Fazenda">Fazenda</option>
+                        <option value="Fortaleza">Fortaleza</option>
+                        <option value="Galeria">Galeria</option>
+                        <option value="Ladeira">Ladeira</option>
+                        <option value="Largo">Largo</option>
+                        <option value="Parque">Parque</option>
+                        <option value="Praça">Praça</option>
+                        <option value="Praia">Praia</option>
+                        <option value="Quadra">Quadra</option>
+                        <option value="Quilômetro">Quilômetro</option>
+                        <option value="Quinta">Quinta</option>
+                        <option value="Rodovia">Rodovia</option>
+                        <option value="Rua">Rua</option>
+                        <option value="Super Quadra">Super Quadra</option>
+                        <option value="Travessa">Travessa</option>
+                        <option value="Viaduto">Viaduto</option>
+                        <option value="Vila">Vila</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+                    <label>Logradouro
+                    </label>
+                    <input class="form-control form-control-sm" type="text" placeholder="Informe a rua" ng-model="enderecoSeparado.rua">
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2 kan-group">
+                    <label>Número
+                    </label>
+                    <input class="form-control form-control-sm" type="number" ng-model="enderecoSeparado.numero">
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 kan-group">
+                    <label>Bairro
+                    </label>
+                    <input class="form-control form-control-sm" type="text" placeholder="Informe o bairro" ng-model="enderecoSeparado.bairro">
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+                    <label>Estado
+                    </label>
+                    <select class="form-control form-control-sm" ng-model="enderecoSeparado.estado">
+                        <option value="">Selecione</option>
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AM">AM</option>
+                        <option value="AP">AP</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MG">MG</option>
+                        <option value="MS">MS</option>
+                        <option value="MT">MT</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="PR">PR</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SE">SE</option>
+                        <option value="SP">SP</option>
+                        <option value="TO">TO</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+                    <label>Cidade
+                    </label>
+                    <input class="form-control form-control-sm" type="text" placeholder="Informe a cidade" ng-model="enderecoSeparado.cidade">
+                </div>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
                 <label>Especialidade
@@ -116,7 +123,7 @@
             </div>
         </fieldset>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 button-kan-row">
-            <button type="button" class="btn kan-btn-danger" ng-click="closeThisDialog(false)">Cancelar</button>
+            <button type="button" class="btn kan-btn-danger" ng-click="cancelar();closeThisDialog(false)">Cancelar</button>
             <button type="button" class="btn kan-btn-success" ng-click="cadastrarHospital()">Salvar Hospital</button>
         </div>
     </div>

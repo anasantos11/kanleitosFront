@@ -8,11 +8,14 @@ app.controller('HospitaisController', ['$scope', '$state', 'svcHospital', 'Notif
             })
     };
 
-    $scope.openModalCadastroHospital = function () {
-        return Notify.openModal("templates/cadastros-gerais/cadastroHospital.html", null, "50%")
+    $scope.openModalCadastroHospital = function (hospital) {
+        $scope.copia = angular.copy($scope.listaHospitais);
+        return Notify.openModal("templates/cadastros-gerais/cadastroHospital.html",  {hospital: hospital}, "50%")
             .closePromise.then(
                 function (hospitalCadastrado) {
+                    debugger;
                     if (!hospitalCadastrado.value || hospitalCadastrado.value === '$document' || hospitalCadastrado.value === '$closeButton') {
+                        $scope.listaHospitais = $scope.copia;
                         return;
                     } else {
                         $scope.carregarHospitais();

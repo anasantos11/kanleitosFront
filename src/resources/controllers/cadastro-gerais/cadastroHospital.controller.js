@@ -1,6 +1,7 @@
 app.controller('CadastroHospitalController', ["$scope", "$http", "$filter", "svcHospital", "Notify",
     function ($scope, $http, $filter, svcHospital, Notify) {
 
+        $scope.enderecoCompleto = false;
         $scope.hospital = {
             nome: null,
             endereco: null,
@@ -13,36 +14,12 @@ app.controller('CadastroHospitalController', ["$scope", "$http", "$filter", "svc
             if ($scope.validarDadosHospital()) {
                 svcHospital.cadastrarHospital($scope.hospital)
                     .then(function (response) {
-                        if (response.data.data > 0) {
-                            swal('Concluído!',
-                                'Hospital cadastrado com sucesso',
-                                'success'
-                            )
-                            return $scope.closeThisDialog($scope.hospital);
-                        } else {
-                            swal('Erro!',
-                                response.data.messages[0],
-                                'error'
-                            )
-                            return;
-                        }
+                        alertaSucesso("Hospital cadastrado com sucesso");
+                        return $scope.closeThisDialog($scope.hospital);
 
                     })
                     .catch(function (response) {
-                        if (response.status == 400) {
-                            swal(
-                                "Erro!",
-                                response.data.messages[0],
-                                "error"
-                            )
-                        } else {
-                            console.log(response.data.message);
-                            swal(
-                                "Erro!",
-                                "Desculpe, não conseguimos processar sua solicitação. Verifique os dados e tente novamente.",
-                                "error"
-                            )
-                        }
+                        alertaErroRequisicao();
                     })
             }
         }
@@ -100,6 +77,19 @@ app.controller('CadastroHospitalController', ["$scope", "$http", "$filter", "svc
             $scope.hospital.endereco = $scope.enderecoSeparado.tipoLogradouro + " " + $scope.enderecoSeparado.rua + ", " +
                 $scope.enderecoSeparado.numero + " - " + $scope.enderecoSeparado.bairro + ", " + $scope.enderecoSeparado.cidade + " - " +
                 $scope.enderecoSeparado.estado + ", " + $scope.enderecoSeparado.cep;
+        }
+
+        if (!isNullOrEmpty($scope.ngDialogData.hospital)) {
+            $scope.enderecoCompleto = true;
+            if (!isNullOrEmpty($scope.ngDialogData.hospital.telefone)) {
+                $scope.ngDialogData.hospital.telefone = parseInt($scope.ngDialogData.hospital.telefone);
+            }
+            $scope.hospital = $scope.ngDialogData.hospital;
+            $scope.copia = angular.copy($scope.hospital);
+        }
+
+        $scope.cancelar = function () {
+            $scope.hospital = $scope.copia;
         }
     }
 ]);
