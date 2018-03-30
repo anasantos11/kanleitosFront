@@ -346,7 +346,7 @@ div.fixed-nav {
 
 .nav-link {
     cursor: pointer;
-    color: #636c72;
+    color: inherit;
     display: flex;
 }
 
