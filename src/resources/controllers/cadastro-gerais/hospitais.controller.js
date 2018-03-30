@@ -13,7 +13,6 @@ app.controller('HospitaisController', ['$scope', '$state', 'svcHospital', 'Notif
         return Notify.openModal("templates/cadastros-gerais/cadastroHospital.html",  {hospital: hospital}, "50%")
             .closePromise.then(
                 function (hospitalCadastrado) {
-                    debugger;
                     if (!hospitalCadastrado.value || hospitalCadastrado.value === '$document' || hospitalCadastrado.value === '$closeButton') {
                         $scope.listaHospitais = $scope.copia;
                         return;
