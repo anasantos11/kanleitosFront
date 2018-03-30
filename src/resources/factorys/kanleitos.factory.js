@@ -237,6 +237,16 @@ app.factory('svcIsolamento', function($http){
         )
     }
 
+    //Ativar Isolamento
+    isolamento.ativarIsolamento = function(idIsolamento){
+        return $http.post(
+            URL_REQ + "ativarIsolamento",
+            idIsolamento,
+            kanHeaders            
+        )
+    }
+    
+
 
     return isolamento;
 });

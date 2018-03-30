@@ -117,6 +117,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			}
 
 
+		})
+		.state("tiposIsolamentos", {
+			parent: "kanleitos",
+			url: "/tiposIsolamentos",
+			views: {
+				"contentApp@kanleitos": {
+					templateUrl: "templates/cadastros-gerais/tiposIsolamentos.html"
+				}
+			}
+
+
 		});
 })
 

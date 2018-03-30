@@ -1,0 +1,38 @@
+app.controller('CadastroIsolamentoController', ["$scope", "$http",  "svcIsolamento", "Notify",
+    function ($scope, $http, svcIsolamento, Notify) {
+
+        $scope.title = "Cadastrar Isolamento";
+        $scope.isolamento = {
+            nome: null,
+            statusLeito: null
+        }
+
+        $scope.cadastrarIsolamento = function (isolamento) {
+            if ($scope.validarDadosIsolamento()) {
+                svcIsolamento.cadastrarIsolamento($scope.isolamento)
+                    .then(function (response) {
+                        alertaSucesso("Isolamento cadastrado com sucesso");
+                        return $scope.closeThisDialog($scope.isolamento);
+
+                    })
+                    .catch(function (response) {
+                        alertaErroRequisicao();
+                    })
+            }
+        }
+
+        $scope.validarDadosIsolamento = function () {
+            if (isNullOrEmpty($scope.isolamento.nome)) {
+                alertaPreenchimentoCampo("nome do tipo de isolamento");
+                return;
+            }
+
+            return true;
+        };
+
+        if (!isNullOrEmpty($scope.ngDialogData.isolamento)) {
+            $scope.title = "Editar Isolamento:" + $scope.ngDialogData.isolamento.nome;
+            $scope.isolamento = $scope.ngDialogData.isolamento;
+        }
+    }
+]);
