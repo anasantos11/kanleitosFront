@@ -16,11 +16,37 @@
                         Eles poderão ser utilizados para registrar para qual hospital o paciente foi direcionado, em caso de alta por transferência.">
                     </i>
                 </h5>
-                <button class="btn kan-btn-success mb-2" ng-click="openModalCadastroHospital()">
-                    <i class="fa fa-plus fa-1-x kan-icon-success text-light p-0"  data-toggle="tooltip" data-placement="bottom"
-                        title="Cadastrar novo hospital."></i>
-                    Cadastrar Hospital </button>
-                <input id="search" class="col-md-6 form-control form-control-sm" type="text" ng-model="search" placeholder="Digite para pesquisar">
+                <div class="col-lg-12 kan-group">
+                    <label class="mr-2">
+                        <strong>Legenda das ações: </strong>
+                    </label>
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-pencil info text-primary"></i>
+                        <span>
+                            Editar hospital
+                        </span>
+                    </p>
+
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-ban info text-danger"></i>
+                        <span>
+                            Inativar hospital
+                        </span>
+                    </p>
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-check info text-success"></i>
+                        <span>
+                            Ativar hospital
+                        </span>
+                    </p>
+                </div>
+                <div class="col-lg-12 kan-group">
+                    <button class="btn kan-btn-success d-inline-block mr-4" ng-click="openModalCadastroHospital()">
+                        <i class="fa fa-plus fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Cadastrar novo hospital."></i>
+                        Cadastrar Hospital
+                    </button>
+                    <input id="search" class="col-lg-6 form-control form-control-sm d-inline-block" type="text" ng-model="search" placeholder="Digite para pesquisar">
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover table-sm">
