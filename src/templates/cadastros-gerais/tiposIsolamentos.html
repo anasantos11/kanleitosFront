@@ -67,7 +67,7 @@
                                 <span ng-show="!isolamento.inativo">Não</span>
                             </td>
                             <td class="text-center">
-                                <i class="fa fa-pencil text-primary" aria-hidden="true" title="Editar dados do tipo de isolamento" ng-click="openModalCadastroIsolamento(isolamento)"></i>
+                                <i class="fa fa-pencil text-primary" aria-hidden="true" title="Editar dados do tipo de isolamento" ng-click="updateIsolamento(isolamento)"></i>
                                 <i ng-show="!isolamento.inativo" class="fa fa-ban text-danger" aria-hidden="true" title="Inativar tipo de isolamento" ng-click="inativarIsolamento(isolamento)"></i>
                                 <i ng-show="isolamento.inativo" class="fa fa-check text-success" aria-hidden="true" title="Ativar tipo de isolamento" ng-click="ativarIsolamento(isolamento)"></i>
                             </td>

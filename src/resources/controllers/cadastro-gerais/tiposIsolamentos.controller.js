@@ -8,6 +8,11 @@ app.controller('IsolamentosController', ['$scope', '$state', 'svcIsolamento', 'N
             })
     };
 
+    $scope.updateIsolamento = function (isolamento){
+        isolamento.atualizar = true;
+        $scope.openModalCadastroIsolamento(isolamento);
+    };
+
     $scope.openModalCadastroIsolamento = function (isolamento) {
         $scope.copia = angular.copy($scope.listaIsolamentos);
         return Notify.openModal("templates/cadastros-gerais/cadastroTipoIsolamento.html",  {isolamento: isolamento}, "50%")

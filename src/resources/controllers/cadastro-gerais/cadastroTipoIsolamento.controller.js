@@ -1,4 +1,4 @@
-app.controller('CadastroIsolamentoController', ["$scope", "$http",  "svcIsolamento", "Notify",
+app.controller('CadastroIsolamentoController', ["$scope", "$http", "svcIsolamento", "Notify",
     function ($scope, $http, svcIsolamento, Notify) {
 
         $scope.title = "Cadastrar Isolamento";
@@ -19,7 +19,21 @@ app.controller('CadastroIsolamentoController', ["$scope", "$http",  "svcIsolamen
                         alertaErroRequisicao();
                     })
             }
-        }
+        };
+
+        $scope.updateIsolamento = function () {
+            if ($scope.validarDadosIsolamento()) {
+                svcIsolamento.updateIsolamento($scope.isolamento, $scope.isolamento.idIsolamento)
+                    .then(function (response) {
+                        alertaSucesso("Isolamento atualizado com sucesso");
+                        return $scope.closeThisDialog($scope.isolamento);
+
+                    })
+                    .catch(function (response) {
+                        alertaErroRequisicao();
+                    })
+            }
+        };
 
         $scope.validarDadosIsolamento = function () {
             if (isNullOrEmpty($scope.isolamento.nome)) {
