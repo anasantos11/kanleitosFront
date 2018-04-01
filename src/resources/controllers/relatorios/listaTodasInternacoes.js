@@ -1,4 +1,4 @@
-app.controller('ModalPesquisaPedidoInternacaoController', ["$scope", "pedidoInternacaoFactory",
+app.controller('InternacoesController', ["$scope", "pedidoInternacaoFactory",
     function ($scope, pedidoInternacaoFactory) {
         $scope.calcularHorasAguardando = function (dataAtual, dataAdmissao) {
             var one_day = 1000 * 60 * 60 * 24;

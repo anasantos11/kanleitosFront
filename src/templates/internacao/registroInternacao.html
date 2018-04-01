@@ -119,8 +119,8 @@
                 <label for="Status">Enfermaria
                     <b class="text-danger">*</b>
                 </label>
-                <select ng-disabled="registroInternacao.pedidoInternacao.ala.idAla < 0" ng-model="registroInternacao.idEnfermaria" class="form-control form-control-sm"
-                    ng-change="carregarLeitosEnfermaria(registroInternacao.idEnfermaria)">
+                <select ng-disabled="Enfermarias == undefined" ng-model="registroInternacao.idEnfermaria" class="form-control form-control-sm"
+                    ng-change="verificarIsolamentos(registroInternacao.idEnfermaria);carregarLeitosEnfermaria(registroInternacao.idEnfermaria)">
                     <option value="">Selecione a enfermaria</option>
                     <option ng-repeat="enfermaria in Enfermarias" value="{{enfermaria.idEnfermaria}}">{{enfermaria.nomeEnfermaria}}</option>
                 </select>
@@ -148,6 +148,9 @@
                     <b class="text-danger">*</b>
                 </label>
                 <input class="form-control form-control-sm" type="date" ng-model="registroInternacao.previsaoAlta">
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group" id="mensagemIsolamentos">
+              
             </div>
         </fieldset>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 button-kan-row">
