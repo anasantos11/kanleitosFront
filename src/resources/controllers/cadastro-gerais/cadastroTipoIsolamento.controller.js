@@ -11,7 +11,7 @@ app.controller('CadastroIsolamentoController', ["$scope", "$http", "svcIsolament
             if ($scope.validarDadosIsolamento()) {
                 svcIsolamento.cadastrarIsolamento($scope.isolamento)
                     .then(function (response) {
-                        alertaSucesso("Isolamento cadastrado com sucesso");
+                        alertaSucesso("Tipo de Isolamento cadastrado com sucesso");
                         return $scope.closeThisDialog($scope.isolamento);
 
                     })
@@ -25,7 +25,7 @@ app.controller('CadastroIsolamentoController', ["$scope", "$http", "svcIsolament
             if ($scope.validarDadosIsolamento()) {
                 svcIsolamento.updateIsolamento($scope.isolamento, $scope.isolamento.idIsolamento)
                     .then(function (response) {
-                        alertaSucesso("Isolamento atualizado com sucesso");
+                        alertaSucesso("Tipo de Isolamento atualizado com sucesso");
                         return $scope.closeThisDialog($scope.isolamento);
 
                     })
