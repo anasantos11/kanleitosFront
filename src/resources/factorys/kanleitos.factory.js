@@ -93,7 +93,7 @@ app.factory('diagnosticosFactory', function ($http) {
 });
 app.factory('pacienteFactory', function ($http) {
     var pacientes = {};
-    //Get Diagnosticos
+    //Get Pacientes
     pacientes.getPacientes = function () {
         return $http({
             url: URL_REQ + "pacientes",
@@ -121,6 +121,33 @@ app.factory('pacienteFactory', function ($http) {
     };
     return pacientes;
 });
+
+app.factory('dataAdmissaoFactory', function ($http) {
+    var dataAdmissao = {};
+    //Get Data Admissao
+    dataAdmissao.getDataAdmissao = function () {
+        return $http({
+            url: URL_REQ + "dataAdmissao",
+            method: 'GET',
+            kanHeaders
+        });
+    };
+    return dataAdmissao;
+});
+app.factory('tempoEsperaFactory', function ($http) {
+    var tempoEspera = {};
+    //Get Tempo de Espera
+    tempoEspera.getTempoEspera = function () {
+        return $http({
+            url: URL_REQ + "tempoEspera",
+            method: 'GET',
+            kanHeaders
+        });
+    };
+    return tempoEspera;
+});
+
+
 app.factory('pedidoInternacaoFactory', function ($http) {
     var pedido = {};
     //Salvar Pedido Internacao
