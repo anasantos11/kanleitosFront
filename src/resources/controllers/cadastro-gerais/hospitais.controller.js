@@ -8,6 +8,12 @@ app.controller('HospitaisController', ['$scope', '$state', 'svcHospital', 'Notif
             })
     };
 
+    $scope.updateHospital = function (hospital){
+        hospital.atualizar = true;
+        $scope.openModalCadastroHospital(hospital);
+
+    };
+
     $scope.openModalCadastroHospital = function (hospital) {
         $scope.copia = angular.copy($scope.listaHospitais);
         return Notify.openModal("templates/cadastros-gerais/cadastroHospital.html",  {hospital: hospital}, "50%")
@@ -20,11 +26,6 @@ app.controller('HospitaisController', ['$scope', '$state', 'svcHospital', 'Notif
                         $scope.carregarHospitais();
                     }
                 })
-    };
-
-    $scope.updateHospital = function (hospital) {
-        hospital.atualizar = true;
-        $state.go('cadastroHospital', { hospital: hospital });
     };
 
     $scope.inativarHospital = function (hospital) {

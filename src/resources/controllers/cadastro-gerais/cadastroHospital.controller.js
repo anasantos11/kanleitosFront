@@ -11,7 +11,7 @@ app.controller('CadastroHospitalController', ["$scope", "$http", "$filter", "svc
             inativo: false,
         }
 
-        $scope.cadastrarHospital = function (hospital) {
+        $scope.cadastrarHospital = function () {
             if ($scope.validarDadosHospital()) {
                 svcHospital.cadastrarHospital($scope.hospital)
                     .then(function (response) {
@@ -23,7 +23,21 @@ app.controller('CadastroHospitalController', ["$scope", "$http", "$filter", "svc
                         alertaErroRequisicao();
                     })
             }
-        }
+        };
+
+        $scope.updateHospital = function () {
+            if ($scope.validarDadosHospital()) {
+                svcHospital.updateHospital($scope.hospital, $scope.hospital.id_hospital)
+                    .then(function (response) {
+                        alertaSucesso("Hospital atualizado com sucesso");
+                        return $scope.closeThisDialog($scope.hospital);
+
+                    })
+                    .catch(function (response) {
+                        alertaErroRequisicao();
+                    })
+            }
+        };
 
         $scope.validarDadosHospital = function () {
             if (isNullOrEmpty($scope.hospital.nome)) {
@@ -87,7 +101,6 @@ app.controller('CadastroHospitalController', ["$scope", "$http", "$filter", "svc
                 $scope.ngDialogData.hospital.telefone = parseInt($scope.ngDialogData.hospital.telefone);
             }
             $scope.hospital = $scope.ngDialogData.hospital;
-            $scope.copia = angular.copy($scope.hospital);
         }
 
         $scope.cancelar = function () {
