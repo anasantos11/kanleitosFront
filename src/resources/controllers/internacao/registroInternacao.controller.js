@@ -121,7 +121,8 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                             return (obj.idEnfermaria == idEnfermaria);
                         })[0];
 
-                        $scope.mensagemIsolamentos = "A enfermaria <strong>" + enf.nomeEnfermaria.toUpperCase() + "</strong> possui os seguintes isolamentos: " +
+                        $scope.mensagemIsolamentos = "Existem pacientes internados na <strong>" + enf.ala.nomeAla + " enfermaria " +
+                        enf.nomeEnfermaria.toUpperCase() + "</strong> com os seguintes tipos de isolamentos: " +
                         "<strong class='text-danger'> " + listaIsolamentos.join(", ").toLowerCase() + "</strong>";
 
                         document.getElementById("mensagemIsolamentos").innerHTML =  $scope.mensagemIsolamentos;
