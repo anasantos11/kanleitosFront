@@ -1,5 +1,5 @@
-app.controller('FinalizacaoInternacaoController', ["$filter", "svcHospital", "Notify",
-    function ($filter, svcHospital, Notify) {
+app.controller('FinalizacaoInternacaoController', ["$filter", "svcHospital", "registroInternacaoFactory","Notify",
+    function ($filter, svcHospital, registroInternacaoFactory, Notify) {
         var vm = this;
 
         vm.novaFinalizacaoInternacao = function () {
@@ -20,7 +20,7 @@ app.controller('FinalizacaoInternacaoController', ["$filter", "svcHospital", "No
                         return
                     } else {
                         vm.finalizacaoInternacao.registroInternacao = registroInternacao.value;
-                        vm.finalizacaoInternacao.registroInternacao.pedidoInternacao.dataAdmissao = new Date(vm.registroInternacao.pedidoInternacao.dataAdmissao);
+                        vm.finalizacaoInternacao.registroInternacao.pedidoInternacao.dataAdmissao = new Date(registroInternacao.value.pedidoInternacao.dataAdmissao);
                     }
                 })
         };
@@ -36,15 +36,15 @@ app.controller('FinalizacaoInternacaoController', ["$filter", "svcHospital", "No
 
         vm.finalizarInternacao = function () {
             if (vm.validarFinalizacaoInternacao()) {
-                vm.finalizacaoInternacao.dataAlta = moment(vm.finalizacaoInternacao.dataAlta).format();
 
-                if (vm.finalizacaoInternacao.motivoEvasao == "Transferência") {
-                    vm.finalizacaoInternacao.hospital = vm.hospitais.filter(function (obj) {
-                        return (obj.id_hospital == vm.finalizacaoInternacao.idHospital)
-                    })
-                }
+                var  obj = {};
+                obj.dataFinalizacao = moment(vm.finalizacaoInternacao.dataAlta).format();
+                obj.status = vm.finalizacaoInternacao.motivoEvasao;
+                obj.idRegistroInternacao = vm.finalizacaoInternacao.registroInternacao.idRegistroInternacao;
+                obj.idLeito = vm.finalizacaoInternacao.registroInternacao.leito.idLeito;
+                obj.idHospital = vm.finalizacaoInternacao.idHospital;
 
-                registroInternacaoFactory.finalizarInternacao(vm.finalizacaoInternacao)
+                registroInternacaoFactory.finalizarInternacao(obj)
                     .then(function (response) {
                         alertaSucesso("Finalização de internação realizada com sucesso")
                         vm.novaFinalizacaoInternacao();

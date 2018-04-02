@@ -189,6 +189,14 @@ app.factory('registroInternacaoFactory', function ($http) {
             method: 'GET',
             kanHeaders
         });
+    };
+
+    registro.finalizarInternacao = function(dados){
+        return $http.post(
+            URL_REQ + "encerrarInternacao",
+            dados,
+            kanHeaders
+        )
     }
     return registro;
 });
