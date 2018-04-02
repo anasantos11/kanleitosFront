@@ -29,6 +29,17 @@ function alertaPreenchimentoCampo(campo){
     })
 
 }
+
+function alertaErro(mensagem){
+    swal({
+        html: mensagem,
+        type: 'error',
+        showConfirmButton: false,
+        showCloseButton: true,
+        timer: 5000
+    })
+
+}
 function alertaSucesso(mensagem){
     swal({
         text: mensagem,

@@ -70,6 +70,19 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
 		})
 
+		.state("finalizacaoInternacao", {
+			parent: "kanleitos",
+			url: "/finalizacaoInternacao",
+			views: {
+				"contentApp@kanleitos": {
+					templateUrl: "templates/internacao/finalizacaoInternacao.html",
+					controller: "FinalizacaoInternacaoController",
+					controllerAs: "vm"
+				}
+			}
+
+		})
+
 		.state("leitos", {
 			parent: "kanleitos",
 			url: "/leitos",

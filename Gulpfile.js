@@ -8,11 +8,11 @@ var replace = require('gulp-replace');
 var jsAppConcat = [
     "src/app.js",
     "src/resources/app.util.js",
-    "src/resources/routes/*.js",
     "src/resources/factorys/*.js",
     "src/resources/services/*.js",
     "src/resources/controllers/*.js",
     "src/resources/controllers/**/*/*.js",
+    "src/resources/routes/*.js",
 ];
 
 //Arquivos HTML que serão apenas copiados para dist

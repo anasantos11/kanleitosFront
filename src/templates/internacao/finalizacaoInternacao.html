@@ -1,0 +1,125 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <span>Internação</span>
+    </li>
+    <li class="breadcrumb-item active">
+        <span>Finalizar Internação </span>
+    </li>
+</ol>
+
+<div class="kan-row">
+    <!-- REGISTRO INTERNACAO -->
+    <fieldset class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 kan-group pr-2">
+        <h5 class="kan-title">Registro de Internação
+            <i class="fa fa-info fa-1-x kan-icon-info" data-toggle="tooltip" data-placement="bottom" title="Dados do registro de internação">
+            </i>
+            <i class="fa fa-search fa-1-x kan-icon-success" ng-click="vm.openModalPesquisaRegistroInternacao()" data-toggle="tooltip"
+                data-placement="bottom" title="Internações em andamento">
+            </i>
+        </h5>
+        <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-4 kan-group">
+            <label>Prontuário
+                <b class="text-danger">*</b>
+            </label>
+            <input class="form-control form-control-sm" type="number" placeholder="Informe o prontuário" ng-model="vm.finalizacaoInternacao.registroInternacao.pedidoInternacao.paciente.numProntuario"
+            />
+        </div>
+        <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 kan-group">
+            <label>Paciente
+                <b class="text-danger">*</b>
+            </label>
+            <input disabled class="form-control form-control-sm" type="text" ng-model="vm.finalizacaoInternacao.registroInternacao.pedidoInternacao.paciente.nomePaciente"
+            />
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+            <label>Ala
+                <b class="text-danger">*</b>
+            </label>
+            <input disabled class="form-control form-control-sm" type="text" ng-model="vm.finalizacaoInternacao.registroInternacao.pedidoInternacao.ala.nomeAla">
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+            <label>Enfermaria
+                <b class="text-danger">*</b>
+            </label>
+            <input disabled class="form-control form-control-sm" type="text" ng-model="vm.finalizacaoInternacao.registroInternacao.enfermaria.nomeEnfermaria">
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+            <label>Leito
+                <b class="text-danger">*</b>
+            </label>
+            <input disabled class="form-control form-control-sm" type="text" ng-model="vm.finalizacaoInternacao.registroInternacao.leito.nomeLeito">
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+            <label>Diagnóstico
+                <b class="text-danger">*</b>
+            </label>
+            <input disabled class="form-control form-control-sm" type="text" ng-model="vm.finalizacaoInternacao.registroInternacao.pedidoInternacao.diagnostico.descricaoDiagnostico">
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+            <label>Médico Responsável
+                <b class="text-danger">*</b>
+            </label>
+            <input disabled class="form-control form-control-sm" type="text" ng-model="vm.finalizacaoInternacao.registroInternacao.pedidoInternacao.medicoResponsavel">
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+            <label>Residente Responsável
+                <b class="text-danger">*</b>
+            </label>
+            <input disabled class="form-control form-control-sm" type="text" ng-model="vm.finalizacaoInternacao.registroInternacao.pedidoInternacao.residenteResponsavel">
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+            <label>Isolamento
+                <b class="text-danger">*</b>
+            </label>
+            <input disabled class="form-control form-control-sm" type="text" ng-model="vm.finalizacaoInternacao.registroInternacao.isolamento.nome">
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 kan-group">
+            <label>Data de admissão
+                <b class="text-danger">*</b>
+            </label>
+            <input disabled class="form-control form-control-sm" type="date" ng-model="vm.finalizacaoInternacao.registroInternacao.pedidoInternacao.dataAdmissao">
+        </div>
+    </fieldset>
+
+    <!-- FINALIZAÇÃO DE INTERNAÇÃO -->
+    <fieldset class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 kan-group">
+        <h5 class="kan-title">Finalização de Internação
+            <i class="fa fa-info fa-1-x kan-icon-info" data-toggle="tooltip" data-placement="bottom" title="No dados da finalização de internação você escolherá o motivo da evasão do paciente. 
+                Caso o motivo seja transferência hospitalar será necessário informar para qual hospital o paciente foi direcionado.">
+            </i>
+        </h5>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
+            <label>Data da finalização
+                <b class="text-danger">*</b>
+            </label>
+            <input class="form-control form-control-sm" type="date" ng-model="vm.finalizacaoInternacao.dataAlta">
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
+            <label>Motivo da Evasão
+                <b class="text-danger">*</b>
+            </label>
+            <select ng-model="vm.finalizacaoInternacao.motivoEvasao" ng-change="vm.carregarHospitais()" class="form-control form-control-sm">
+                <option value="">Selecione o motivo da evasão</option>
+                <option value="Alta">Alta</option>
+                <option value="Óbito">Óbito</option>
+                <option value="PAD">PAD</option>
+                <option value="Transferência">Transferência Hospitalar</option>
+            </select>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group" ng-show="vm.finalizacaoInternacao.motivoEvasao == 'Transferência'">
+            <label>Hospital
+                <b class="text-danger">*</b>
+            </label>
+            <select ng-model="vm.finalizacaoInternacao.hospital" class="form-control form-control-sm">
+                <option value="">Selecione o hospital</option>
+                <option ng-repeat="hospital in vm.hospitais" value="{{hospital.id_hospital}}">{{hospital.nome}}</option>
+            </select>
+        </div>
+    </fieldset>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 button-kan-row">
+        <button class="btn kan-btn-success" ng-click="vm.finalizarInternacao()">Finalizar Internação </button>
+    </div>
+</div>
