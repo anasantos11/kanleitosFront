@@ -272,6 +272,16 @@ app.factory('svcIsolamento', function($http){
             kanHeaders            
         )
     }
+
+    //Verificar Isolamentos de uma Enfermaria
+    isolamento.getIsolamentosByEnfermaria = function(idEnfermaria){
+        return $http.get(
+            URL_REQ + "isolamentosPedidosConcluidos",
+            {kanHeaders, 
+                params: { idEnfermaria: idEnfermaria }
+            }
+        )
+    }
     
 
 

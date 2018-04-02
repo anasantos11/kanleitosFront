@@ -290,6 +290,11 @@ fieldset.kan-group {
     padding: 0px;
 }
 
+/*Custom Color */
+.custom-control-indicator{
+    background-color: #b3d7ff;
+}
+
 /* Sweet Popup */
 .swal2-popup.swal2-modal.swal2-show {
   width: 24em;

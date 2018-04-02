@@ -73,3 +73,13 @@ function alertaConfirmar(acao) {
         cancelButtonColor: '#d33',
     })
 };
+
+function alertaInformacao(mensagem){
+    swal({
+        html: mensagem,
+        type: 'warning',
+        showConfirmButton: true,
+        showCloseButton: true
+    })
+
+}
