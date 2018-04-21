@@ -1,0 +1,65 @@
+<fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+    <h6 class="m-0">Filtros</h6>
+    <hr class="mt-1 mb-1">
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+        <label>Ala
+        </label>
+        <select ng-model="filtros.idAla" class="form-control form-control-sm">
+            <option value="">Selecione</option>
+            <option ng-repeat="ala in Alas" value="{{ala.idAla}}">{{ala.nomeAla}}</option>
+        </select>
+    </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+        <label>Médico(a) Responsável
+        </label>
+        <input type="text" class="form-control form-control-sm" ng-model="filtros.medicoResponsavel">
+    </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+        <label>Residente Responsável
+        </label>
+        <input type="text" class="form-control form-control-sm" ng-model="filtros.residenteResponsavel">
+    </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+        <label>Isolamento
+        </label>
+        <select ng-model="filtros.idIsolamento" class="form-control form-control-sm">
+            <option value="">Selecione</option>
+            <option ng-repeat="isolamento in Isolamentos" value="{{isolamento.idIsolamento}}">{{isolamento.nome}}</option>
+        </select>
+    </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+        <label>Nome do paciente
+        </label>
+        <input type="text" class="form-control form-control-sm" ng-model="filtros.nomePaciente">
+    </div>
+    <div class="col-12 col-sm-12 col-md-1 col-lg-1 col-xl-1 kan-group">
+        <label>Prontuário
+        </label>
+        <input type="text" class="form-control form-control-sm" ng-model="filtros.numProntuario">
+    </div>
+    <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 kan-group">
+        <label>Data de Admissão
+        </label>
+        <input type="datetime-local" class="form-control form-control-sm" ng-model="filtros.dataAdmissao">
+    </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+        <label>Classificação Tempo Espera
+        </label>
+        <select ng-model="filtros.classificacaoTempoEspera" class="form-control form-control-sm">
+            <option value="">Selecione</option>
+            <option value="verde" class="text-success">Menos de 12 horas</option>
+            <option value="amarelo" class="text-warning">Até 24 horas</option>
+            <option value="vermelho" class="text-danger">Acima de 24 horas</option>
+        </select>
+    </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+        <button class="btn kan-btn-success mt-4">
+            <i class="fa fa-search fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Filtrar pesquisa."></i>
+            Pesquisar
+        </button>
+        <button class="btn kan-btn-danger mt-4">
+            <i class="fa fa-eraser fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Limpar pesquisa."></i>
+            Limpar filtros
+        </button>
+    </div>
+</fieldset>

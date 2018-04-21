@@ -10,6 +10,7 @@ var jsAppConcat = [
     "src/resources/app.util.js",
     "src/resources/factorys/*.js",
     "src/resources/services/*.js",
+    "src/resources/directives/*.js",
     "src/resources/controllers/*.js",
     "src/resources/controllers/**/*/*.js",
     "src/resources/routes/*.js",

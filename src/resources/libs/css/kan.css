@@ -260,6 +260,14 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+input[type=datetime-local]::-webkit-clear-button,
+input[type=datetime-local]::-webkit-outer-spin-button,
+input[type=datetime-local]::-webkit-inner-spin-button {
+    display:none;
+}
+input[type=datetime-local] {
+  -moz-appearance:textfield;
+}
 
 label {
     margin-bottom: 0px;
@@ -289,7 +297,11 @@ label {
 fieldset.kan-group {
     padding: 0px;
 }
-
+hr {
+    color: #2797e9;
+    background-color: #2797e9;
+    height: 1px;
+}
 /*Custom Color */
 .custom-control-indicator{
     background-color: #b3d7ff;
