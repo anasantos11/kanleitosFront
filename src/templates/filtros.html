@@ -5,7 +5,7 @@
         <label>Ala
         </label>
         <select ng-model="model.idAla" class="form-control form-control-sm">
-            <option value="">Selecione</option>
+            <option value="">Todas</option>
             <option ng-repeat="ala in Alas" value="{{ala.idAla}}">{{ala.nomeAla}}</option>
         </select>
     </div>
@@ -23,7 +23,7 @@
         <label>Isolamento
         </label>
         <select ng-model="model.idIsolamento" class="form-control form-control-sm">
-            <option value="">Selecione</option>
+            <option value="">Todos</option>
             <option ng-repeat="isolamento in Isolamentos" value="{{isolamento.idIsolamento}}">{{isolamento.nome}}</option>
         </select>
     </div>
@@ -46,7 +46,7 @@
         <label>Classificação Tempo Espera
         </label>
         <select ng-model="model.classificacaoTempoEspera" class="form-control form-control-sm">
-            <option value="">Selecione</option>
+            <option value="">Todas</option>
             <option value="verde" class="text-success">Menos de 12 horas</option>
             <option value="amarelo" class="text-warning">Até 24 horas</option>
             <option value="vermelho" class="text-danger">Acima de 24 horas</option>
@@ -55,11 +55,11 @@
     <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
         <label>Status do Pedido
         </label>
-        <select ng-model="model.statusPedido" class="form-control form-control-sm">
-            <option value="">Selecione</option>
-            <option value="CANCELADO">Cancelado</option>
-            <option value="CONCLUIDO">Concluído</option>
-            <option value="PENDENTE" selected>Pendente</option>
+        <select ng-model="model.status" class="form-control form-control-sm">
+            <option value="">Todos</option>
+            <option value="Cancelado">Cancelado</option>
+            <option value="Concluído">Concluído</option>
+            <option value="Pendente" selected>Pendente</option>
         </select>
     </div>
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group float-right pb-0">

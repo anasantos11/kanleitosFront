@@ -13,7 +13,7 @@ app.controller('ModalPesquisaPedidoInternacaoController', ["$rootScope", "$scope
                 numProntuario: null,
                 dataAdmissao: null,
                 classificacaoTempoEspera: "",
-                statusPedido: "PENDENTE"
+                status: "Pendente"
             };
         };
 

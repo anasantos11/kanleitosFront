@@ -31,8 +31,11 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
                     numProntuario: null,
                     dataAdmissao: null,
                     classificacaoTempoEspera: "",
-                    statusPedido: "PENDENTE"
+                    status: "Pendente"
                 };
+                setTimeout(function(res) {
+                    scope.filtrarDados();
+                }, 100);
             };
 
             scope.filtrarDados();
