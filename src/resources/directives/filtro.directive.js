@@ -1,8 +1,9 @@
-app.directive('filtros', ['svcIsolamento', 'alasFactory', function (svcIsolamento, alasFactory) {
+app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
     return {
         templateUrl: "templates/filtros.html",
         scope: {
-            dadosFiltros: "="
+            model: "=",
+            evento: "="
         },
         link: function (scope, element, attrs) {
 
@@ -15,7 +16,28 @@ app.directive('filtros', ['svcIsolamento', 'alasFactory', function (svcIsolament
                 .then(function (res) {
                     scope.Isolamentos = res.data.data;
                 });
+
+            scope.filtrarDados = function () {
+                $rootScope.$broadcast(scope.evento);
+            };
+
+            scope.limparFiltros = function () {
+                scope.model = {
+                    idAla: "",
+                    medicoResponsavel: "",
+                    residenteResponsavel: "",
+                    idIsolamento: "",
+                    nomePaciente: "",
+                    numProntuario: null,
+                    dataAdmissao: null,
+                    classificacaoTempoEspera: "",
+                    statusPedido: "PENDENTE"
+                };
+            };
+
+            scope.filtrarDados();
+
         }
     };
-}]);
+});
 

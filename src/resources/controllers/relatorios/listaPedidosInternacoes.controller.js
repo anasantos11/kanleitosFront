@@ -1,5 +1,24 @@
-app.controller('ModalPesquisaPedidoInternacaoController', ["$scope", "pedidoInternacaoFactory",
-    function ($scope, pedidoInternacaoFactory) {
+app.controller('ModalPesquisaPedidoInternacaoController', ["$rootScope", "$scope", "pedidoInternacaoFactory",
+    function ($rootScope, $scope, pedidoInternacaoFactory, $rootscope) {
+
+        $scope.evento = "filtrarPedidos";
+
+        $scope.novoFiltro = function () {
+            $scope.dadosFiltros = {
+                idAla: "",
+                medicoResponsavel: "",
+                residenteResponsavel: "",
+                idIsolamento: "",
+                nomePaciente: "",
+                numProntuario: null,
+                dataAdmissao: null,
+                classificacaoTempoEspera: "",
+                statusPedido: "PENDENTE"
+            };
+        };
+
+        $scope.novoFiltro();
+
         $scope.calcularHorasAguardando = function (dataAtual, dataAdmissao) {
             var one_day = 1000 * 60 * 60 * 24;
 
@@ -35,26 +54,16 @@ app.controller('ModalPesquisaPedidoInternacaoController', ["$scope", "pedidoInte
             };
         };
 
-
         $scope.carregarPedidos = function () {
-            pedidoInternacaoFactory.getPedidosEmAberto()
+            pedidoInternacaoFactory.getPedidosEmAberto($scope.dadosFiltros)
                 .then(function (response) {
                     $scope.listaPedidos = response.data.data;
                     $scope.atualizarHorasAguardando();
-                }, function (response) {
-                    if (response != undefined) {
-                        swal(
-                            'Erro!',
-                            response.data.messages,
-                            'error'
-                        )
-                    } else {
-                        swal(
-                            'Erro!',
-                            'Ocorreu algum erro no servidor',
-                            'error'
-                        )
-                    }
                 });
         };
+
+        $rootScope.$on($scope.evento, function (event) {
+            $scope.carregarPedidos();
+        });
+
     }]);

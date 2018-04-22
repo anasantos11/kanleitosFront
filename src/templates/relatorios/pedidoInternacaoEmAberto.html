@@ -1,4 +1,4 @@
-<div ng-controller="ModalPesquisaPedidoInternacaoController" ng-init="carregarPedidos()">
+<div ng-controller="ModalPesquisaPedidoInternacaoController">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <span>Relatórios</span>
@@ -36,7 +36,7 @@
                         <strong>mais de 24 horas</strong>
                     </span>
                 </p>
-               <filtros dadosFiltros="dadosFiltros"></filtros>
+                <filtros model="dadosFiltros" evento="evento"></filtros>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group table-responsive">
                 <h6 class="m-0">Dados do relatório</h6>

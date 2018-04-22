@@ -4,7 +4,7 @@
     <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
         <label>Ala
         </label>
-        <select ng-model="filtros.idAla" class="form-control form-control-sm">
+        <select ng-model="model.idAla" class="form-control form-control-sm">
             <option value="">Selecione</option>
             <option ng-repeat="ala in Alas" value="{{ala.idAla}}">{{ala.nomeAla}}</option>
         </select>
@@ -12,17 +12,17 @@
     <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
         <label>Médico(a) Responsável
         </label>
-        <input type="text" class="form-control form-control-sm" ng-model="filtros.medicoResponsavel">
+        <input type="text" class="form-control form-control-sm" ng-model="model.medicoResponsavel">
     </div>
     <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
         <label>Residente Responsável
         </label>
-        <input type="text" class="form-control form-control-sm" ng-model="filtros.residenteResponsavel">
+        <input type="text" class="form-control form-control-sm" ng-model="model.residenteResponsavel">
     </div>
     <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
         <label>Isolamento
         </label>
-        <select ng-model="filtros.idIsolamento" class="form-control form-control-sm">
+        <select ng-model="model.idIsolamento" class="form-control form-control-sm">
             <option value="">Selecione</option>
             <option ng-repeat="isolamento in Isolamentos" value="{{isolamento.idIsolamento}}">{{isolamento.nome}}</option>
         </select>
@@ -30,22 +30,22 @@
     <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
         <label>Nome do paciente
         </label>
-        <input type="text" class="form-control form-control-sm" ng-model="filtros.nomePaciente">
+        <input type="text" class="form-control form-control-sm" ng-model="model.nomePaciente">
     </div>
     <div class="col-12 col-sm-12 col-md-1 col-lg-1 col-xl-1 kan-group">
         <label>Prontuário
         </label>
-        <input type="text" class="form-control form-control-sm" ng-model="filtros.numProntuario">
+        <input type="number" class="form-control form-control-sm" ng-model="model.numProntuario">
     </div>
     <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 kan-group">
         <label>Data de Admissão
         </label>
-        <input type="datetime-local" class="form-control form-control-sm" ng-model="filtros.dataAdmissao">
+        <input type="datetime-local" class="form-control form-control-sm" ng-model="model.dataAdmissao">
     </div>
     <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
         <label>Classificação Tempo Espera
         </label>
-        <select ng-model="filtros.classificacaoTempoEspera" class="form-control form-control-sm">
+        <select ng-model="model.classificacaoTempoEspera" class="form-control form-control-sm">
             <option value="">Selecione</option>
             <option value="verde" class="text-success">Menos de 12 horas</option>
             <option value="amarelo" class="text-warning">Até 24 horas</option>
@@ -53,13 +53,23 @@
         </select>
     </div>
     <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
-        <button class="btn kan-btn-success mt-4">
-            <i class="fa fa-search fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Filtrar pesquisa."></i>
-            Pesquisar
-        </button>
-        <button class="btn kan-btn-danger mt-4">
+        <label>Status do Pedido
+        </label>
+        <select ng-model="model.statusPedido" class="form-control form-control-sm">
+            <option value="">Selecione</option>
+            <option value="CANCELADO">Cancelado</option>
+            <option value="CONCLUIDO">Concluído</option>
+            <option value="PENDENTE" selected>Pendente</option>
+        </select>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group float-right pb-0">
+        <button class="btn kan-btn-danger float-right" ng-click="limparFiltros()">
             <i class="fa fa-eraser fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Limpar pesquisa."></i>
             Limpar filtros
+        </button>
+        <button class="btn kan-btn-success float-right mr-2" ng-click="filtrarDados()">
+            <i class="fa fa-search fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Filtrar pesquisa."></i>
+            Pesquisar
         </button>
     </div>
 </fieldset>

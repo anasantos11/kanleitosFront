@@ -162,10 +162,11 @@ app.factory('pedidoInternacaoFactory', function ($http) {
     pedido.getPedido = function (prontuario) {
         return $http.get(URL_REQ + 'pedidoInternacao/' + prontuario);
     };
-    pedido.getPedidosEmAberto = function () {
+    pedido.getPedidosEmAberto = function (filtros) {
         return $http({
             url: URL_REQ + "pedidosEmAberto",
-            method: 'GET',
+            data: filtros,
+            method: 'POST',
             kanHeaders
         });
     };
