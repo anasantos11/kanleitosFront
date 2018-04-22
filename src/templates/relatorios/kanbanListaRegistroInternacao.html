@@ -4,13 +4,13 @@
             <a ui-sref="kanleitos"> Relatório internações </a>
         </li>
         <li class="breadcrumb-item active">
-            <span> Classificação {{pacientes[0].classificacao}} </span>
+            <span> Pacientes Internados na Classificação {{pacientes[0].classificacao}} </span>
         </li>
     </ol>
     <div class="kan-row">
         <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
-                <h5 class="kan-title">Pacientes da Classificação -
+                <h5 class="kan-title">Pacientes Internados na Classificação -
                     <b ng-class="{'text-success' : pacientes[0].classificacao === 'verde', 'text-danger' : pacientes[0].classificacao === 'vermelho', 'text-warning' : pacientes[0].classificacao === 'amarelo'}">
                         {{pacientes[0].classificacao}}
                     </b>

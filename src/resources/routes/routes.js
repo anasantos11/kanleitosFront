@@ -10,7 +10,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 					controller: 'MainController'
 				},
 				'contentApp@kanleitos': {
-					templateUrl: 'templates/relatorios/kanban-leitos.html',
+					templateUrl: 'templates/relatorios/kanbanDashboard.html',
 					controller: 'MainController'
 				},
 				'menuKan@kanleitos': {
@@ -121,7 +121,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			url: "/classificacaoPacientes",
 			views: {
 				"contentApp@kanleitos": {
-					templateUrl: "templates/relatorios/modal-kanban.html",
+					templateUrl: "templates/relatorios/kanbanListaRegistroInternacao.html",
 					controller: function ($scope, $stateParams) {
 						$scope.pacientes = $stateParams.pacientes;
 					}
