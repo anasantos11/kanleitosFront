@@ -11,10 +11,10 @@
     <div class="kan-row">
         <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
-                <h5 class="kan-title">Pedidos de Internação em aberto
-                    <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Aqui você visualizará todos os pedidos de internação em aberto, 
-                    os que estão destacados de vermelho já ultrapassou 24 horas desde o horário da admissão registrada. 
-                    No campo abaixo você consegue filtrar alguma informação na lista.">
+                <h5 class="kan-title">Lista com Pedidos de Internação
+                    <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Aqui você visualizará todos os pedidos de internação.
+                    A primeira vez que a página é carregada será exibido todos os pedidos que estão com status pendente, ou seja, em aberto. 
+                    Através dos campos abaixo você consegue filtrar os dados exibidos, para isso basta inserir as informações que deseja buscar e clicar no botão Pesquisar.">
                     </i>
                 </h5>
                 <p class="d-inline-block mr-4">
@@ -36,6 +36,11 @@
                         <strong>mais de 24 horas</strong>
                     </span>
                 </p>
+                <p class="d-inline-block mr-4">
+                    <i class="fa fa-circle fa-1-x text-secondary"></i>
+                    <span>Concluído ou Cancelado
+                    </span>
+                </p>
                 <filtros model="dadosFiltros" evento="evento"></filtros>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group table-responsive">
@@ -43,7 +48,7 @@
                 <hr class="mt-1 mb-2">
                 <table class="table table-bordered table-hover table-sm">
                     <thead>
-                        <tr>
+                        <tr class="bg-secondary">
                             <th class="text-center">Ala</th>
                             <th class="text-center">Médico</th>
                             <th class="text-center">Residente</th>
@@ -60,9 +65,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="pedido in listaPedidos  | filter : search | orderBy: 'dataAdmissao'" ng-class="{ 'table-success' : pedido.tempo.dias < 1 && pedido.tempo.horas < 12, 
-                                        'table-warning' : pedido.tempo.dias < 1 && pedido.tempo.horas >= 12,
-                                        'table-danger'  : pedido.tempo.dias >= 1 }">
+                        <tr ng-repeat="pedido in listaPedidos  | filter : search | orderBy: 'dataAdmissao'" ng-class="{ 'table-secondary' : pedido.statusPedido == 'CONCLUIDO' || pedido.statusPedido == 'CANCELADO',
+                                        'table-success' : pedido.statusPedido == 'PENDENTE' && pedido.tempo.dias < 1 && pedido.tempo.horas < 12, 
+                                        'table-warning' : pedido.statusPedido == 'PENDENTE' && pedido.tempo.dias < 1 && pedido.tempo.horas >= 12,
+                                        'table-danger'  : pedido.statusPedido == 'PENDENTE' && pedido.tempo.dias >= 1 }">
                             <td title="{{pedido.ala.nomeAla}}">{{pedido.ala.nomeAla}}</td>
                             <td class="text-center" title="{{pedido.medicoResponsavel}}">{{pedido.medicoResponsavel}}</td>
                             <td class="text-center" title="{{pedido.residenteResponsavel}}">{{pedido.residenteResponsavel}}</td>

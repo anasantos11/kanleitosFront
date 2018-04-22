@@ -3,7 +3,8 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
         templateUrl: "templates/filtros.html",
         scope: {
             model: "=",
-            evento: "="
+            evento: "=",
+            ocultaStatus: "=ocultaStatus"
         },
         link: function (scope, element, attrs) {
 

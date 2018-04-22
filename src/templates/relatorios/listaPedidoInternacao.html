@@ -1,13 +1,39 @@
 <div ng-controller="ModalPesquisaPedidoInternacaoController" ng-init="carregarPedidos()">
     <div class="kan-row-modal">
         <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
-            <h5 class="kan-title">Lista de Pedidos de Internações Abertos
-                <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Escolha um pedido para registrar a internação do paciente."></i>
-            </h5>
-            <div class="table-responsive">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <h5 class="kan-title">Lista com Pedidos de Internação em Aberto
+                    <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Aqui você visualizará todos os pedidos de internação em aberto.
+                            Através dos campos abaixo você consegue filtrar os dados exibidos, para isso basta inserir as informações que deseja buscar e clicar no botão Pesquisar.">
+                    </i>
+                </h5>
+                <p class="d-inline-block mr-4">
+                    <i class="fa fa-circle fa-1-x text-success"></i>
+                    <span>Aberto há
+                        <strong>menos de 12 horas</strong>
+                    </span>
+                </p>
+
+                <p class="d-inline-block mr-4">
+                    <i class="fa fa-circle fa-1-x text-warning"></i>
+                    <span>Aberto há
+                        <strong>mais de 12 horas</strong>
+                    </span>
+                </p>
+                <p class="d-inline-block mr-4">
+                    <i class="fa fa-circle fa-1-x text-danger"></i>
+                    <span>Aberto há
+                        <strong>mais de 24 horas</strong>
+                    </span>
+                </p>
+                <filtros model="dadosFiltros" evento="evento" oculta-status="true"></filtros>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group table-responsive">
+                <h6 class="m-0">Dados do relatório</h6>
+                <hr class="mt-1 mb-2">
                 <table class="table table-bordered table-hover table-sm">
                     <thead>
-                        <tr>
+                        <tr class="bg-secondary">
                             <th class="text-center">Ala</th>
                             <th class="text-center">Médico</th>
                             <th class="text-center">Residente</th>
@@ -20,24 +46,27 @@
                             <th class="text-center">Isolamento</th>
                             <th class="text-center">Diagnóstico</th>
                             <th class="text-center">Data Admissão</th>
-                            <th class="text-center">Tempo aguardando</th>
+                            <th class="text-center">Tempo. Esp</th>
                             <th class="text-center">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="pedido in listaPedidos">
-                            <td class="text-center">{{pedido.ala.nomeAla}}</td>
-                            <td class="text-center">{{pedido.medicoResponsavel}}</td>
-                            <td class="text-center">{{pedido.residenteResponsavel}}</td>
-                            <td class="text-center">{{pedido.paciente.numProntuario}}</td>
-                            <td class="text-center">{{pedido.paciente.nomePaciente}}</td>
-                            <td class="text-center">{{pedido.paciente.nomeMae}}</td>
-                            <td class="text-center">{{pedido.paciente.dataNascimento | date : 'dd/MM/yy'}}</td>
-                            <td class="text-center">{{pedido.paciente.idade}}</td>
-                            <td class="text-center">{{pedido.paciente.genero}}</td>
-                            <td title="{{pedido.isolamento.nome}}" class="text-danger">{{pedido.isolamento.nome}}</td>
+                        <tr ng-repeat="pedido in listaPedidos  | filter : search | orderBy: 'dataAdmissao'" ng-class="{ 'table-secondary' : pedido.statusPedido == 'CONCLUIDO' || pedido.statusPedido == 'CANCELADO',
+                                                'table-success' : pedido.statusPedido == 'PENDENTE' && pedido.tempo.dias < 1 && pedido.tempo.horas < 12, 
+                                                'table-warning' : pedido.statusPedido == 'PENDENTE' && pedido.tempo.dias < 1 && pedido.tempo.horas >= 12,
+                                                'table-danger'  : pedido.statusPedido == 'PENDENTE' && pedido.tempo.dias >= 1 }">
+                            <td title="{{pedido.ala.nomeAla}}">{{pedido.ala.nomeAla}}</td>
+                            <td class="text-center" title="{{pedido.medicoResponsavel}}">{{pedido.medicoResponsavel}}</td>
+                            <td class="text-center" title="{{pedido.residenteResponsavel}}">{{pedido.residenteResponsavel}}</td>
+                            <td class="text-center" title="{{pedido.paciente.numProntuario}}">{{pedido.paciente.numProntuario | limitTo: 10}}</td>
+                            <td class="text-center" title="{{pedido.paciente.nomePaciente}}">{{pedido.paciente.nomePaciente}}</td>
+                            <td class="text-center" title="{{pedido.paciente.nomeMae}}">{{pedido.paciente.nomeMae}}</td>
+                            <td class="text-center" title="{{pedido.paciente.dataNascimento | date: 'dd/MM/yy'}}">{{pedido.paciente.dataNascimento | date: "dd/MM/yy"}}</td>
+                            <td class="text-center" title="{{pedido.paciente.idade}}">{{pedido.paciente.idade}}</td>
+                            <td class="text-center" title="{{pedido.paciente.genero}}">{{pedido.paciente.genero}}</td>
+                            <td title="{{pedido.isolamento.nome}}">{{pedido.isolamento.nome}}</td>
                             <td title="{{pedido.diagnostico.descricaoDiagnostico}}">{{pedido.diagnostico.descricaoDiagnostico}}</td>
-                            <td class="text-center">{{pedido.dataAdmissao | date: "dd/MM/yy HH:mm"}}</td>
+                            <td class="text-center" title="{{pedido.dataAdmissao | date: 'dd/MM/yy HH:mm'}}">{{pedido.dataAdmissao | date: "dd/MM/yy HH:mm"}}</td>
                             <td class="text-center" title="{{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}">
                                 {{pedido.tempo.dias + ' dia(s) ' + pedido.tempo.horas + 'h ' + pedido.tempo.minutos + 'min'}}</td>
                             <td class="text-center">

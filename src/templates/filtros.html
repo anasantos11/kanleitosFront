@@ -52,7 +52,7 @@
             <option value="vermelho" class="text-danger">Acima de 24 horas</option>
         </select>
     </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!ocultaStatus">
         <label>Status do Pedido
         </label>
         <select ng-model="model.status" class="form-control form-control-sm">
@@ -62,14 +62,14 @@
             <option value="Pendente" selected>Pendente</option>
         </select>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group float-right pb-0">
-        <button class="btn kan-btn-danger float-right" ng-click="limparFiltros()">
-            <i class="fa fa-eraser fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Limpar pesquisa."></i>
-            Limpar filtros
-        </button>
-        <button class="btn kan-btn-success float-right mr-2" ng-click="filtrarDados()">
+    <div class="col-12 col-sm-12  kan-group float-right pb-0" ng-class="ocultaStatus ? 'col-md-3 col-lg-3 col-xl-3' : 'col-md-12 col-lg-12 col-xl-12 text-right'">
+        <button class="btn kan-btn-success mr-2 d-inline-block" ng-class="{'mt-4' : ocultaStatus}" ng-click="filtrarDados()">
             <i class="fa fa-search fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Filtrar pesquisa."></i>
             Pesquisar
+        </button>
+        <button class="btn kan-btn-danger d-inline-block" ng-class="{'mt-4' : ocultaStatus}" ng-click="limparFiltros()">
+            <i class="fa fa-eraser fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Limpar pesquisa."></i>
+            Limpar filtros
         </button>
     </div>
 </fieldset>
