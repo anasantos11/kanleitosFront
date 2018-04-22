@@ -1,3 +1,10 @@
+.table-responsive{
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
 .ajax-spinner {
     position: absolute;
     top: 0;

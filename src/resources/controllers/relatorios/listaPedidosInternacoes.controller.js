@@ -1,5 +1,5 @@
-app.controller('ModalPesquisaPedidoInternacaoController', ["$rootScope", "$scope", "pedidoInternacaoFactory",
-    function ($rootScope, $scope, pedidoInternacaoFactory, $rootscope) {
+app.controller('ModalPesquisaPedidoInternacaoController', ["$rootScope", "$scope", "pedidoInternacaoFactory", "$http", "$filter",
+    function ($rootScope, $scope, pedidoInternacaoFactory, $http, $filter) {
 
         $scope.evento = "filtrarPedidos";
 
@@ -47,10 +47,27 @@ app.controller('ModalPesquisaPedidoInternacaoController', ["$rootScope", "$scope
 
         };
 
+        $scope.calcularClassificacao = function(pedido){
+            if(pedido.tempo.dias < 1 && pedido.tempo.horas < 12){
+                pedido.classificacaoTempoEspera = "verde";
+            }else if(pedido.tempo.dias < 1 && pedido.tempo.horas >= 12){
+                pedido.classificacaoTempoEspera = "amarela";
+            }else if(pedido.tempo.dias >= 1){
+                pedido.classificacaoTempoEspera = "vermelha";
+            }
+        };
+
         $scope.atualizarHorasAguardando = function () {
             var dataAtual = new Date();
             for (var i = 0; i < $scope.listaPedidos.length; i++) {
-                $scope.listaPedidos[i].tempo = $scope.calcularHorasAguardando(dataAtual, new Date($scope.listaPedidos[i].dataAdmissao))
+                if($scope.listaPedidos[i].statusPedido == 'PENDENTE'){
+                    $scope.listaPedidos[i].tempo = $scope.calcularHorasAguardando(dataAtual, new Date($scope.listaPedidos[i].dataAdmissao));
+                    $scope.calcularClassificacao($scope.listaPedidos[i]);
+                }                
+            };
+
+            if(!isNullOrEmpty($scope.dadosFiltros.classificacaoTempoEspera)){
+                $scope.listaPedidos = $filter('filter')( $scope.listaPedidos, $scope.dadosFiltros.classificacaoTempoEspera);
             };
         };
 
