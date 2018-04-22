@@ -9,7 +9,9 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                 dataInternacao: new Date(),
                 tempoPermanencia: 0,
                 previsaoAlta: new Date(),
-            }
+            };
+            $scope.mensagemIsolamentos = "";
+            document.getElementById("mensagemIsolamentos").innerHTML = $scope.mensagemIsolamentos;
         };
 
         $scope.novoRegistroInternacao();
