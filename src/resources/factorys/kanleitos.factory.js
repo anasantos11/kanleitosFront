@@ -388,3 +388,44 @@ app.factory('svcTipoPendencia', function ($http) {
 
     return tipoPendencia;
 });
+
+app.factory('svcFuncionario', function ($http) {
+    var funcionario = {};
+
+    funcionario.cadastrarFuncionario = function (funcionario) {
+        return $http.post(
+            URL_REQ + "funcionario",
+            funcionario,
+            kanHeaders
+        )
+    };
+
+    funcionario.getFuncionarios = function (status) {
+        return $http.get(
+            URL_REQ + "funcionario",
+            {
+                kanHeaders,
+                params: { inativo: status }
+            }
+        )
+    };
+
+    funcionario.updateFuncionario = function (funcionario) {
+        return $http.put(
+            URL_REQ + "funcionario",
+            funcionario,
+            kanHeaders
+        )
+    }
+
+    funcionario.alterarStatus = function (idFuncionario) {
+        return $http({
+            url: URL_REQ + "funcionario/alterarStatus",
+            method: 'PUT',
+            params: { idFuncionario: idFuncionario },
+            kanHeaders
+        });
+    }
+
+    return funcionario;
+});
