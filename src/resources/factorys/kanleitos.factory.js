@@ -341,7 +341,46 @@ app.factory('svcHospital', function($http){
             kanHeaders            
         )
     }
-
-
     return hospital;
+});
+
+
+app.factory('svcTipoPendencia', function($http){
+    var tipoPendencia = {};
+
+    tipoPendencia.cadastrarTipoPendencia = function(tipoPendencia){
+        return $http.post(
+            URL_REQ + "tipoPendencia",
+            tipoPendencia,
+            kanHeaders
+        )
+    };
+
+    tipoPendencia.getTipoPendencia = function(status){
+        return $http.get(
+            URL_REQ + "tipoPendencia",
+            {kanHeaders, 
+                params: { inativo: status }
+            }
+        )
+    };
+
+    tipoPendencia.updateTipoPendencia = function(tipoPendencia){
+        return $http.put(
+            URL_REQ + "tipoPendencia",
+            tipoPendencia,
+            kanHeaders
+        )
+    }
+
+    tipoPendencia.alterarStatus = function(idTipoPendencia){
+        return $http.put(
+            URL_REQ + "tipoPendencia/alterarStatus",
+            {kanHeaders, 
+                params: { idTipoPendencia: idTipoPendencia }
+            }          
+        )
+    }
+    
+    return tipoPendencia;
 });
