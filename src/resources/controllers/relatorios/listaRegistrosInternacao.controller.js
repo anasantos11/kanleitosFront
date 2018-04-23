@@ -67,7 +67,7 @@ app.controller('RegistrosInternacaoController', ['$rootScope', '$scope', '$state
             $scope.canShowPacientes = true;
         };
 
-        $scope.init = function () {
+        $scope.carregarRegistros = function () {
             registroInternacaoFactory.getRegistrosInternacoes($scope.dadosFiltros)
                 .then(function (res) {
                     $scope.listaRegistros = res.data.data;
@@ -79,7 +79,9 @@ app.controller('RegistrosInternacaoController', ['$rootScope', '$scope', '$state
         };
 
         $rootScope.$on($scope.evento, function (event) {
-            $scope.init();
+            $scope.carregarRegistros();
         });
+
+        $scope.carregarRegistros();
     }
 ])
