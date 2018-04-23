@@ -1,4 +1,4 @@
-app.controller('dashboardController', ['$rootScope', '$scope', '$state', '$stateParams', "$interval", "registroInternacaoFactory", "Notify",
+app.controller('RegistrosInternacaoController', ['$rootScope', '$scope', '$state', '$stateParams', "$interval", "registroInternacaoFactory", "Notify",
     function ($rootScope, $scope, $state, $stateParams, $interval, registroInternacaoFactory, Notify) {
 
         $scope.kanban = {
@@ -52,7 +52,8 @@ app.controller('dashboardController', ['$rootScope', '$scope', '$state', '$state
         $scope.init = function () {
             registroInternacaoFactory.getRegistrosInternacoes()
                 .then(function (res) {
-                    $scope.atualizaPacientesInternados(res.data.data);
+                    $scope.listaRegistros = res.data.data;
+                    $scope.atualizaPacientesInternados($scope.listaRegistros);
                 })
                 .catch(function (res) {
                     console.log(res.data);

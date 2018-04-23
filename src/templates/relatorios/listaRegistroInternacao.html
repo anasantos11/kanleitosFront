@@ -1,47 +1,10 @@
-<div ng-controller="InternacoesController" ng-init="init()">
+<div ng-controller="RegistrosInternacaoController" ng-init="init()">
     <div class="kan-row-modal">
         <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
             <h5 class="kan-title">Lista de pedidoInternacaos de Internações Abertos
                 <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Escolha um registro para finalizar a internação do paciente."></i>
             </h5>
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover table-sm">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Prontuário</th>
-                            <th class="text-center">Paciente</th>
-                            <th class="text-center">Ala</th>
-                            <th class="text-center">Enfermaria</th>
-                            <th class="text-center">Leito</th>
-                            <th class="text-center">Diagnóstico</th>
-                            <th class="text-center">Isolamento</th>
-                            <th class="text-center">Médico Responsável</th>
-                            <th class="text-center">Residente Responsável</th>
-                            <th class="text-center">Data Admissão</th>
-                            <th class="text-center">Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="registro in listaRegistros">
-                            <td class="text-center">{{registro.pedidoInternacao.paciente.numProntuario}}</td>
-                            <td class="text-center">{{registro.pedidoInternacao.paciente.nomePaciente}}</td>
-                            <td class="text-center">{{registro.pedidoInternacao.ala.nomeAla}}</td>
-                            <td class="text-center">{{registro.enfermaria.nomeEnfermaria}}</td>
-                            <td class="text-center">{{registro.leito.nomeLeito}}</td>
-                            <td class="text-center">{{registro.pedidoInternacao.diagnostico.descricaoDiagnostico}}</td>
-                            <td class="text-center">{{registro.pedidoInternacao.isolamento.nome}}</td>
-                            <td class="text-center">{{registro.pedidoInternacao.medicoResponsavel}}</td>
-                            <td class="text-center">{{registro.pedidoInternacao.residenteResponsavel}}</td>
-                            <td class="text-center">{{registro.pedidoInternacao.dataAdmissao | date : "dd/MM/yy HH:mm"}}</td>
-                            <td class="text-center">
-                                <button class="btn kan-btn-success kan-btn-sm" ng-click="closeThisDialog(registro)">
-                                    Escolher
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <lista-registros-internacao registros="listaRegistros" oculta-legenda="false" show-acoes="true"></lista-registros-internacao>
         </fieldset>
     </div>
 </div>

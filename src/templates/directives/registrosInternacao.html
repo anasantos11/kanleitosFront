@@ -1,0 +1,81 @@
+<p class="d-inline-block mr-4" ng-show="!ocultaLegenda">
+    <i class="fa fa-circle fa-1-x text-success"></i>
+    <span>Internado
+        <strong>abaixo de 6 dias</strong>
+    </span>
+</p>
+<p class="d-inline-block mr-4" ng-show="!ocultaLegenda">
+    <i class="fa fa-circle fa-1-x text-warning"></i>
+    <span>Internado
+        <strong>de 6 a 10 dias</strong>
+    </span>
+</p>
+<p class="d-inline-block mr-4" ng-show="!ocultaLegenda">
+    <i class="fa fa-circle fa-1-x text-danger"></i>
+    <span>Internado
+        <strong>acima de 10 dias</strong>
+    </span>
+</p>
+<p class="d-inline-block mr-4" ng-show="!ocultaLegenda">
+    <i class="fa fa-circle fa-1-x text-secondary"></i>
+    <span>Finalizado
+    </span>
+</p>
+<filtros model="dadosFiltros" evento="evento"></filtros>
+</div>
+<h6 class="m-0">Dados do relatório</h6>
+<hr class="mt-1 mb-2">
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-sm">
+        <thead>
+            <tr class="bg-secondary">
+                <th class="text-center">Ala</th>
+                <th class="text-center">Enferm</th>
+                <th class="text-center">Leito</th>
+                <th class="text-center">Médico</th>
+                <th class="text-center">Residente</th>
+                <th class="text-center">Admissão</th>
+                <th class="text-center">Previsao de Alta</th>
+                <th class="text-center">Dias Internado</th>
+                <th class="text-center">Prontuário</th>
+                <th class="text-center">Paciente</th>
+                <th class="text-center">Data Nasc</th>
+                <th class="text-center">Idade</th>
+                <th class="text-center">Sexo</th>
+                <th class="text-center">Isolamento</th>
+                <th class="text-center">Diagnóstico</th>
+                <th class="text-center">Pendência</th>
+                <th class="text-center" ng-show="showAcoes">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="registro in registros" ng-class="{'table-success' : registro.classificacao === 'verde', 'table-danger' : registro.classificacao === 'vermelho', 'table-warning' : registro.classificacao === 'amarelo'}">
+                <td class="text-center" title="{{registro.pedidoInternacao.ala.nomeAla}}">{{registro.pedidoInternacao.ala.nomeAla}}</td>
+                <td class="text-center" title="{{registro.enfermaria.nomeEnfermaria}}">{{registro.enfermaria.nomeEnfermaria}}</td>
+                <td class="text-center">{{registro.leito.nomeLeito}}</td>
+                <td class="text-center" title="{{registro.pedidoInternacao.medicoResponsavel}}">{{registro.pedidoInternacao.medicoResponsavel}}</td>
+                <td class="text-center" title="{{registro.pedidoInternacao.residenteResponsavel}}">{{registro.pedidoInternacao.residenteResponsavel}}</td>
+                <td class="text-center">{{registro.pedidoInternacao.dataAdmissao | date : "dd/MM/yy HH:mm"}}</td>
+                <td class="text-center">{{registro.previsaoAlta | date : "dd/MM/yy"}}</td>
+                <td class="text-center">{{registro.diasInternado}}</td>
+                <td class="text-center" title="{{registro.pedidoInternacao.paciente.numProntuario}}">{{registro.pedidoInternacao.paciente.numProntuario}}</td>
+                <td class="text-center" title="{{registro.pedidoInternacao.paciente.nomePaciente}}">{{registro.pedidoInternacao.paciente.nomePaciente}}</td>
+                <td class="text-center" title="{{registro.pedidoInternacao.paciente.dataNascimento | date : 'dd/MM/yy'}}">{{registro.pedidoInternacao.paciente.dataNascimento | date : "dd/MM/yy"}}</td>
+                <td class="text-center" title="{{registro.pedidoInternacao.paciente.idade}}">{{registro.pedidoInternacao.paciente.idade}}</td>
+                <td class="text-center" title="{{registro.pedidoInternacao.paciente.sexo}}">{{registro.pedidoInternacao.paciente.genero}}</td>
+                <td class="text-center text-danger" title="{{registro.pedidoInternacao.isolamento.nome}}"> {{registro.pedidoInternacao.isolamento.nome}} </td>
+                <td class="text-center" title="{{registro.pedidoInternacao.diagnostico.descricaoDiagnostico}}">{{registro.pedidoInternacao.diagnostico.descricaoDiagnostico}}</td>
+                <td class="text-center">
+                    <button class="btn kan-btn-circle kan-btn-success kan-btn-sm" data-toggle="tooltip" title="Pendências">
+                        <i class="fa fa-file"></i>
+                    </button>
+                </td>
+                <td class="text-center" ng-show="showAcoes">
+                    <button class="btn kan-btn-success kan-btn-sm" ng-click="closeThisDialog(registro)">
+                        Escolher
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>

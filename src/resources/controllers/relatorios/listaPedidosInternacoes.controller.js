@@ -1,4 +1,4 @@
-app.controller('ModalPesquisaPedidoInternacaoController', ["$rootScope", "$scope", "pedidoInternacaoFactory", "$http", "$filter",
+app.controller('PedidosInternacaoController', ["$rootScope", "$scope", "pedidoInternacaoFactory", "$http", "$filter",
     function ($rootScope, $scope, pedidoInternacaoFactory, $http, $filter) {
 
         $scope.evento = "filtrarPedidos";
