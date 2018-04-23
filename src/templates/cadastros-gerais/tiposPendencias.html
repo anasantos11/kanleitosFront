@@ -59,15 +59,14 @@
                     <tbody>
                         <tr ng-repeat="tipoPendencia in listaTiposPendencias  | filter : search | orderBy: 'nome'">
                             <td title="{{tipoPendencia.nome}}">{{tipoPendencia.nome}}</td>
-                            <td title="Status">Status</td>
                             <td class="text-center">
                                 <span ng-show="tipoPendencia.inativo">Sim</span>
                                 <span ng-show="!tipoPendencia.inativo">Não</span>
                             </td>
                             <td class="text-center">
                                 <i class="fa fa-pencil text-primary" aria-hidden="true" title="Editar dados do tipo de pendência" ng-click="updateTipoPendencia(tipoPendencia)"></i>
-                                <i ng-show="!tipoPendencia.inativo" class="fa fa-ban text-danger" aria-hidden="true" title="Inativar tipo de pendência" ng-click="alterarStatus(tipoPendencia)"></i>
-                                <i ng-show="tipoPendencia.inativo" class="fa fa-check text-success" aria-hidden="true" title="Ativar tipo de pendência" ng-click="alterarStatus(tipoPendencia)"></i>
+                                <i ng-show="!tipoPendencia.inativo" class="fa fa-ban text-danger" aria-hidden="true" title="Inativar tipo de pendência" ng-click="inativarTipoPendencia(tipoPendencia)"></i>
+                                <i ng-show="tipoPendencia.inativo" class="fa fa-check text-success" aria-hidden="true" title="Ativar tipo de pendência" ng-click="ativarTipoPendencia(tipoPendencia)"></i>
                             </td>
                         </tr>
                     </tbody>

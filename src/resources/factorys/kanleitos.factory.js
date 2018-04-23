@@ -8,10 +8,10 @@ var URL_REQ = "http://localhost:9000/kanleitos/";
 
 //URL_REQ = DEV
 
-if (local == "dev-kanleitos.azurewebsites.net") 
+if (local == "dev-kanleitos.azurewebsites.net")
     URL_REQ = DEV;
 
-if (local == "kanleitoshjk.azurewebsites.net") 
+if (local == "kanleitoshjk.azurewebsites.net")
     URL_REQ = HJK;
 
 
@@ -184,7 +184,7 @@ app.factory('registroInternacaoFactory', function ($http) {
         });
     };
 
-    registro.getRegistrosInternacoes = function(filtros){
+    registro.getRegistrosInternacoes = function (filtros) {
         return $http({
             url: URL_REQ + "pacientesInternados",
             method: 'POST',
@@ -193,7 +193,7 @@ app.factory('registroInternacaoFactory', function ($http) {
         });
     };
 
-    registro.finalizarInternacao = function(dados){
+    registro.finalizarInternacao = function (dados) {
         return $http.post(
             URL_REQ + "encerrarInternacao",
             dados,
@@ -238,10 +238,10 @@ app.factory("kanbanFactory", function ($http) {
     return kanban;
 });
 
-app.factory('svcIsolamento', function($http){
+app.factory('svcIsolamento', function ($http) {
     var isolamento = {};
     //Cadastro de Isolamento
-    isolamento.cadastrarIsolamento = function(isolamento){
+    isolamento.cadastrarIsolamento = function (isolamento) {
         return $http.post(
             URL_REQ + "isolamento",
             isolamento,
@@ -249,59 +249,61 @@ app.factory('svcIsolamento', function($http){
         )
     };
     //Get Isolamentos
-    isolamento.getIsolamentos = function(){
+    isolamento.getIsolamentos = function () {
         return $http.get(
             URL_REQ + "isolamentos",
             kanHeaders
         )
     };
     //Editar Isolamento
-    isolamento.updateIsolamento = function(isolamento, idIsolamento){
+    isolamento.updateIsolamento = function (isolamento, idIsolamento) {
         return $http.put(
             URL_REQ + "isolamento",
             isolamento,
-            {kanHeaders, 
+            {
+                kanHeaders,
                 params: { idIsolamento: idIsolamento }
             }
         )
     }
     //Inativar Isolamento
-    isolamento.inativarIsolamento = function(idIsolamento){
+    isolamento.inativarIsolamento = function (idIsolamento) {
         return $http.post(
             URL_REQ + "inativarIsolamento",
             idIsolamento,
-            kanHeaders            
+            kanHeaders
         )
     }
 
     //Ativar Isolamento
-    isolamento.ativarIsolamento = function(idIsolamento){
+    isolamento.ativarIsolamento = function (idIsolamento) {
         return $http.post(
             URL_REQ + "ativarIsolamento",
             idIsolamento,
-            kanHeaders            
+            kanHeaders
         )
     }
 
     //Verificar Isolamentos de uma Enfermaria
-    isolamento.getIsolamentosByEnfermaria = function(idEnfermaria){
+    isolamento.getIsolamentosByEnfermaria = function (idEnfermaria) {
         return $http.get(
             URL_REQ + "isolamentosPedidosConcluidos",
-            {kanHeaders, 
+            {
+                kanHeaders,
                 params: { idEnfermaria: idEnfermaria }
             }
         )
     }
-    
+
 
 
     return isolamento;
 });
 
-app.factory('svcHospital', function($http){
+app.factory('svcHospital', function ($http) {
     var hospital = {};
     //Cadastro de Hospital
-    hospital.cadastrarHospital = function(hospital){
+    hospital.cadastrarHospital = function (hospital) {
         return $http.post(
             URL_REQ + "hospital",
             hospital,
@@ -309,46 +311,47 @@ app.factory('svcHospital', function($http){
         )
     };
     //Get Hospitais
-    hospital.getHospitais = function(){
+    hospital.getHospitais = function () {
         return $http.get(
             URL_REQ + "hospitais",
             kanHeaders
         )
     };
     //Editar Hospital
-    hospital.updateHospital = function(hospital, idHospital){
+    hospital.updateHospital = function (hospital, idHospital) {
         return $http.put(
             URL_REQ + "hospital",
             hospital,
-            {kanHeaders, 
+            {
+                kanHeaders,
                 params: { idHospital: idHospital }
             }
         )
     }
     //Inativar Hospital
-    hospital.inativarHospital = function(idHospital){
+    hospital.inativarHospital = function (idHospital) {
         return $http.post(
             URL_REQ + "inativarHospital",
             idHospital,
-            kanHeaders            
+            kanHeaders
         )
     }
-     //Ativar Hospital
-     hospital.ativarHospital = function(idHospital){
+    //Ativar Hospital
+    hospital.ativarHospital = function (idHospital) {
         return $http.post(
             URL_REQ + "ativarHospital",
             idHospital,
-            kanHeaders            
+            kanHeaders
         )
     }
     return hospital;
 });
 
 
-app.factory('svcTipoPendencia', function($http){
+app.factory('svcTipoPendencia', function ($http) {
     var tipoPendencia = {};
 
-    tipoPendencia.cadastrarTipoPendencia = function(tipoPendencia){
+    tipoPendencia.cadastrarTipoPendencia = function (tipoPendencia) {
         return $http.post(
             URL_REQ + "tipoPendencia",
             tipoPendencia,
@@ -356,16 +359,17 @@ app.factory('svcTipoPendencia', function($http){
         )
     };
 
-    tipoPendencia.getTipoPendencia = function(status){
+    tipoPendencia.getTiposPendencias = function (status) {
         return $http.get(
             URL_REQ + "tipoPendencia",
-            {kanHeaders, 
+            {
+                kanHeaders,
                 params: { inativo: status }
             }
         )
     };
 
-    tipoPendencia.updateTipoPendencia = function(tipoPendencia){
+    tipoPendencia.updateTipoPendencia = function (tipoPendencia) {
         return $http.put(
             URL_REQ + "tipoPendencia",
             tipoPendencia,
@@ -373,14 +377,14 @@ app.factory('svcTipoPendencia', function($http){
         )
     }
 
-    tipoPendencia.alterarStatus = function(idTipoPendencia){
-        return $http.put(
-            URL_REQ + "tipoPendencia/alterarStatus",
-            {kanHeaders, 
-                params: { idTipoPendencia: idTipoPendencia }
-            }          
-        )
+    tipoPendencia.alterarStatus = function (idTipoPendencia) {
+        return $http({
+            url: URL_REQ + "tipoPendencia/alterarStatus",
+            method: 'PUT',
+            params: { idTipoPendencia: idTipoPendencia },
+            kanHeaders
+        });
     }
-    
+
     return tipoPendencia;
 });
