@@ -1,0 +1,18 @@
+<div ng-controller="RegistrosInternacaoController" ng-init="init()">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <span>Relatórios</span>
+        </li>
+        <li class="breadcrumb-item active">
+            <span>Lista de Registros de Internação</span>
+        </li>
+    </ol>
+    <div class="kan-row">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <h5 class="kan-title">Lista de Registros de Internação
+                <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Escolha um registro para finalizar a internação do paciente."></i>
+            </h5>
+            <lista-registros-internacao registros="listaRegistros" oculta-legenda="false" ></lista-registros-internacao>
+        </fieldset>
+    </div>
+</div>

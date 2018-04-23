@@ -14,7 +14,7 @@ app.controller('FinalizacaoInternacaoController', ["$filter", "svcHospital", "re
         vm.novaFinalizacaoInternacao();
 
         vm.openModalPesquisaRegistroInternacao = function () {
-            return Notify.openModal("templates/relatorios/listaRegistroInternacao.html", null, "95%")
+            return Notify.openModal("templates/relatorios/listaRegistrosInternacaoAbertos.html", null, "95%")
                 .closePromise.then((registroInternacao) => {
                     if (!registroInternacao.value || registroInternacao.value === '$document' || registroInternacao.value === '$closeButton') {
                         return

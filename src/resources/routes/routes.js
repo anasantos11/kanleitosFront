@@ -93,22 +93,22 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			}
 
 		})
-		.state("relatorioPedidosEmAberto", {
+		.state("pedidosInternacao", {
 			parent: "kanleitos",
-			url: "/relatorioPedidosEmAberto",
+			url: "/pedidosInternacao",
 			views: {
 				"contentApp@kanleitos": {
-					templateUrl: "templates/relatorios/pedidoInternacaoEmAberto.html"
+					templateUrl: "templates/relatorios/listaPedidosInternacaoAbertos.html"
 				}
 			}
 
 		})
-		.state("relatorioTodasInternacoes", {
+		.state("registrosInternacao", {
 			parent: "kanleitos",
-			url: "/todasInterncoes",
+			url: "/registrosInternacao",
 			views: {
 				"contentApp@kanleitos": {
-					templateUrl: "templates/relatorios/todasInternacoes.html"
+					templateUrl: "templates/relatorios/listaRegistrosInternacao.html"
 				}
 			}
 
