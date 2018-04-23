@@ -10,10 +10,10 @@ app.controller('FuncionariosController', ['$scope', '$state', 'svcFuncionario', 
 
     $scope.updateFuncionario = function (funcionario) {
         funcionario.atualizar = true;
-        $scope.openModalFuncionario(funcionario);
+        $scope.openModalCadastroFuncionario(funcionario);
     };
 
-    $scope.openModalFuncionario = function (funcionario) {
+    $scope.openModalCadastroFuncionario = function (funcionario) {
         $scope.copia = angular.copy($scope.listaFuncionarios);
         return Notify.openModal("templates/cadastros-gerais/cadastroFuncionario.html", { funcionario: funcionario }, "50%")
             .closePromise.then(
@@ -28,14 +28,14 @@ app.controller('FuncionariosController', ['$scope', '$state', 'svcFuncionario', 
     };
 
     $scope.alterarStatus = function (funcionario, tipo) {
-        svcTipoPendencia.alterarStatus(funcionario.idFuncionario)
+        svcFuncionario.alterarStatus(funcionario.idFuncionario)
             .then(function (res) {
                 if (tipo == "inativar") {
                     funcionario.inativo = true;
                     alertaSucesso("Funcionário inativado com sucesso.");
                 } else {
                     funcionario.inativo = false;
-                    alertaSucesso("Funcionário ativada com sucesso.");
+                    alertaSucesso("Funcionário ativado com sucesso.");
                 }
             })
             .catch(function (err) {

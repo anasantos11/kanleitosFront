@@ -1,0 +1,30 @@
+<div ng-controller="CadastroFuncionarioController">
+    <div class="kan-row-modal">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <h5 class="kan-title">{{title}}
+                <i class="fa fa-info fa-1-x kan-icon-info" data-toggle="tooltip" data-placement="bottom" title="Tela para cadastrar funcionário."></i>
+            </h5>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <label>Nome do Funcionário
+                    <b class="text-danger">*</b>
+                </label>
+                <input class="form-control form-control-sm" type="text" placeholder="Informe o nome do funcionário" ng-model="funcionario.nome">
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <label>Especialidade
+                    <b class="text-danger">*</b>
+                </label>
+                <input class="form-control form-control-sm" type="text" placeholder="Informe a especialidade" ng-model="funcionario.especialidade">
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <label>CRM
+                </label>
+                <input class="form-control form-control-sm" type="number" placeholder="Informe o crm" ng-model="funcionario.crm">
+            </div>
+        </fieldset>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 button-kan-row">
+            <button type="button" class="btn kan-btn-danger" ng-click="closeThisDialog(false)">Cancelar</button>
+            <button type="button" class="btn kan-btn-success" ng-click="funcionario.atualizar ? updateFuncionario() : cadastrarFuncionario()">Salvar Funcionário</button>
+        </div>
+    </div>
+</div>

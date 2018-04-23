@@ -61,7 +61,7 @@
                     <tbody>
                         <tr ng-repeat="funcionario in listaFuncionarios  | filter : search | orderBy: 'nome'">
                             <td title="{{funcionario.nome}}">{{funcionario.nome}}</td>
-                            <td title="{{funcionario.especilidade}}">{{funcionario.especilidade}}</td>
+                            <td title="{{funcionario.especilidade}}">{{funcionario.especialidade}}</td>
                             <td title="{{funcionario.crm}}">{{funcionario.crm}}</td>
                             <td class="text-center">
                                 <span ng-show="funcionario.inativo">Sim</span>
