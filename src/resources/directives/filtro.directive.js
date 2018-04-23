@@ -1,6 +1,6 @@
 app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
     return {
-        templateUrl: "templates/filtros.html",
+        templateUrl: "templates/directives/filtros.html",
         scope: {
             model: "=",
             evento: "=",
