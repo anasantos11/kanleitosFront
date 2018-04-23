@@ -38,7 +38,7 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         };
 
         $scope.openModalPesquisaPedidoInternacao = () => {
-            return Notify.openModal("templates/relatorios/listaPedidoInternacao.html", null, "95%")
+            return Notify.openModal("templates/relatorios/listaPedidosInternacaoAbertos.html", null, "95%")
                 .closePromise.then((pedidoInternacao) => {
                     if (!pedidoInternacao.value || pedidoInternacao.value === '$document' || pedidoInternacao.value === '$closeButton') {
                         return

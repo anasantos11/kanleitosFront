@@ -12,7 +12,7 @@ app.controller('PedidosInternacaoController', ["$rootScope", "$scope", "pedidoIn
                 nomePaciente: "",
                 numProntuario: null,
                 dataAdmissao: null,
-                classificacaoTempoEspera: "",
+                classificacao: "",
                 status: "Pendente"
             };
         };
@@ -49,11 +49,11 @@ app.controller('PedidosInternacaoController', ["$rootScope", "$scope", "pedidoIn
 
         $scope.calcularClassificacao = function(pedido){
             if(pedido.tempo.dias < 1 && pedido.tempo.horas < 12){
-                pedido.classificacaoTempoEspera = "verde";
+                pedido.classificacao = "verde";
             }else if(pedido.tempo.dias < 1 && pedido.tempo.horas >= 12){
-                pedido.classificacaoTempoEspera = "amarela";
+                pedido.classificacao = "amarela";
             }else if(pedido.tempo.dias >= 1){
-                pedido.classificacaoTempoEspera = "vermelha";
+                pedido.classificacao = "vermelha";
             }
         };
 
@@ -66,8 +66,8 @@ app.controller('PedidosInternacaoController', ["$rootScope", "$scope", "pedidoIn
                 }                
             };
 
-            if(!isNullOrEmpty($scope.dadosFiltros.classificacaoTempoEspera)){
-                $scope.listaPedidos = $filter('filter')( $scope.listaPedidos, $scope.dadosFiltros.classificacaoTempoEspera);
+            if(!isNullOrEmpty($scope.dadosFiltros.classificacao)){
+                $scope.listaPedidos = $filter('filter')( $scope.listaPedidos, $scope.dadosFiltros.classificacao);
             };
         };
 

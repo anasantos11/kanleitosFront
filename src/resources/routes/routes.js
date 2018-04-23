@@ -98,7 +98,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			url: "/pedidosInternacao",
 			views: {
 				"contentApp@kanleitos": {
-					templateUrl: "templates/relatorios/listaPedidosInternacaoAbertos.html"
+					templateUrl: "templates/relatorios/listaPedidosInternacao.html"
 				}
 			}
 

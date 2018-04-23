@@ -16,12 +16,12 @@
         <strong>acima de 10 dias</strong>
     </span>
 </p>
-<p class="d-inline-block mr-4" ng-show="!ocultaLegenda">
+<p class="d-inline-block mr-4" ng-show="!ocultaLegenda && !ocultaStatus">
     <i class="fa fa-circle fa-1-x text-secondary"></i>
     <span>Finalizado
     </span>
 </p>
-<filtros model="dadosFiltros" evento="evento"></filtros>
+<filtros model="dadosFiltros" evento="evento" oculta-status="ocultaStatus"></filtros>
 </div>
 <h6 class="m-0">Dados do relatório</h6>
 <hr class="mt-1 mb-2">

@@ -4,11 +4,14 @@ app.directive('listaRegistrosInternacao', function () {
         scope: {
             registros: "=",
             ocultaLegenda: "=",
-            showAcoes: "="
+            showAcoes: "=",
+            model: "=",
+            evento: "=",
+            ocultaStatus: "=ocultaStatus",
         },
         link: function (scope, element, attrs) {
 
-            scope.closeModal = function(registro){
+            scope.closeModal = function (registro) {
                 scope.$parent.closeThisDialog(registro);
             }
         }

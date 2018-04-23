@@ -4,7 +4,8 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
         scope: {
             model: "=",
             evento: "=",
-            ocultaStatus: "=ocultaStatus"
+            ocultaStatus: "=ocultaStatus",
+            isPedido: "=isPedido"
         },
         link: function (scope, element, attrs) {
 
@@ -31,7 +32,7 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
                     nomePaciente: "",
                     numProntuario: null,
                     dataAdmissao: null,
-                    classificacaoTempoEspera: "",
+                    classificacao: "",
                     status: "Pendente"
                 };
                 setTimeout(function(res) {

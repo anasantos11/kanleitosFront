@@ -9,6 +9,22 @@
             <option ng-repeat="ala in Alas" value="{{ala.idAla}}">{{ala.nomeAla}}</option>
         </select>
     </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
+        <label>Enfermaria
+        </label>
+        <select ng-model="model.idEnfermaria" class="form-control form-control-sm">
+            <option value="">Todas</option>
+            <option ng-repeat="enfermaria in Enfermarias" value="{{enfermaria.idEnfermaria}}">{{enfermaria.nomeEnfermaria}}</option>
+        </select>
+    </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
+        <label>Leito
+        </label>
+        <select ng-model="model.idLeito" class="form-control form-control-sm">
+            <option value="">Todos</option>
+            <option ng-repeat="leito in Leitos" value="{{leito.idLeito}}">{{leito.nomeLeito}}</option>
+        </select>
+    </div>
     <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
         <label>Médico(a) Responsável
         </label>
@@ -32,28 +48,33 @@
         </label>
         <input type="text" class="form-control form-control-sm" ng-model="model.nomePaciente">
     </div>
-    <div class="col-12 col-sm-12 col-md-1 col-lg-1 col-xl-1 kan-group">
+    <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
         <label>Prontuário
         </label>
         <input type="number" class="form-control form-control-sm" ng-model="model.numProntuario">
     </div>
-    <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 kan-group">
+    <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
         <label>Data Admissão
         </label>
-        <input type="datetime-local" class="form-control form-control-sm" ng-model="model.dataAdmissao">
+        <input type="date" class="form-control form-control-sm" ng-model="model.dataAdmissao">
     </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
+        <label>Previsão Alta
+        </label>
+        <input type="date" class="form-control form-control-sm" ng-model="model.previsaoAlta">
+    </div>
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="isPedido">
         <label>Tempo Aguardando
         </label>
-        <select ng-model="model.classificacaoTempoEspera" class="form-control form-control-sm">
+        <select ng-model="model.classificacao" class="form-control form-control-sm">
             <option value="">Sem filtro</option>
             <option value="verde" class="text-success">Abaixo de 12 horas</option>
             <option value="amarelo" class="text-warning">De 12 a 24 horas</option>
             <option value="vermelho" class="text-danger">Acima de 24 horas</option>
         </select>
     </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!ocultaStatus">
-        <label>Status do Pedido
+    <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-show="isPedido && !ocultaStatus" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
+        <label>Status
         </label>
         <select ng-model="model.status" class="form-control form-control-sm">
             <option value="">Todos</option>
@@ -62,12 +83,34 @@
             <option value="Pendente" selected>Pendente</option>
         </select>
     </div>
-    <div class="col-12 col-sm-12  kan-group float-right pb-0" ng-class="ocultaStatus ? 'col-md-3 col-lg-3 col-xl-3' : 'col-md-12 col-lg-12 col-xl-12 text-right'">
-        <button class="btn kan-btn-success mr-2 d-inline-block" ng-class="{'mt-4' : ocultaStatus}" ng-click="filtrarDados()">
+    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
+        <label>Tempo Internado
+        </label>
+        <select ng-model="model.classificacao" class="form-control form-control-sm">
+            <option value="">Sem filtro</option>
+            <option value="verde" class="text-success">Abaixo de 6 dias</option>
+            <option value="amarelo" class="text-warning">De 6 a 10 dias</option>
+            <option value="vermelho" class="text-danger">Acima de 10 dias</option>
+        </select>
+    </div>
+    <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-show="!isPedido && !ocultaStatus" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
+        <label>Status
+        </label>
+        <select ng-model="model.status" class="form-control form-control-sm">
+            <option value="">Todos</option>
+            <option value="Alta">Alta</option>
+            <option value="Em Andamento" selected>Em Andamento</option>
+            <option value="Óbito">Óbito</option>
+            <option value="PAD">PAD</option>
+            <option value="Transferência">Transferência</option>
+        </select>
+    </div>
+    <div class="col-12 col-sm-12  kan-group float-right text-right pb-0" ng-class="ocultaStatus ? 'col-md-3 col-lg-4 col-xl-3' : 'col-md-12 col-lg-12 col-xl-12'">
+        <button class="btn kan-btn-success mr-2 d-inline-block" ng-class="{'mt-2' : ocultaStatus}" ng-click="filtrarDados()">
             <i class="fa fa-search fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Filtrar pesquisa."></i>
             Pesquisar
         </button>
-        <button class="btn kan-btn-danger d-inline-block" ng-class="{'mt-4' : ocultaStatus}" ng-click="limparFiltros()">
+        <button class="btn kan-btn-danger d-inline-block" ng-class="{'mt-2' : ocultaStatus}" ng-click="limparFiltros()">
             <i class="fa fa-eraser fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Limpar pesquisa."></i>
             Limpar filtros
         </button>
