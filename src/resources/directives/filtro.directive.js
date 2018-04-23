@@ -26,15 +26,21 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
             scope.limparFiltros = function () {
                 scope.model = {
                     idAla: "",
+                    idEnfermaria: "",
+                    idLeito: "",
                     medicoResponsavel: "",
                     residenteResponsavel: "",
                     idIsolamento: "",
                     nomePaciente: "",
                     numProntuario: null,
                     dataAdmissao: null,
+                    previsaoAlta: null,
                     classificacao: "",
-                    status: "Pendente"
+                    status: "Em Andamento"
                 };
+                if(scope.isPedido){
+                    scope.model.status="Pendente";
+                }
                 setTimeout(function(res) {
                     scope.filtrarDados();
                 }, 100);

@@ -5,7 +5,7 @@ app.directive('listaRegistrosInternacao', function () {
             registros: "=",
             ocultaLegenda: "=",
             showAcoes: "=",
-            model: "=",
+            dadosFiltros: "=",
             evento: "=",
             ocultaStatus: "=ocultaStatus",
         },
@@ -14,6 +14,7 @@ app.directive('listaRegistrosInternacao', function () {
             scope.closeModal = function (registro) {
                 scope.$parent.closeThisDialog(registro);
             }
+
         }
     };
 });

@@ -184,10 +184,11 @@ app.factory('registroInternacaoFactory', function ($http) {
         });
     };
 
-    registro.getRegistrosInternacoes = function(){
+    registro.getRegistrosInternacoes = function(filtros){
         return $http({
             url: URL_REQ + "pacientesInternados",
-            method: 'GET',
+            method: 'POST',
+            data: filtros,
             kanHeaders
         });
     };

@@ -14,11 +14,31 @@ app.controller('RegistrosInternacaoController', ['$rootScope', '$scope', '$state
                 qtdPacientes: 0,
                 pacientes: []
             }
-        }
+        };
 
+        $scope.evento = "filtrarRegistros";
+
+        $scope.novoFiltro = function () {
+            $scope.dadosFiltros = {
+                idAla: "",
+                idEnfermaria: "",
+                idLeito: "",
+                medicoResponsavel: "",
+                residenteResponsavel: "",
+                idIsolamento: "",
+                nomePaciente: "",
+                numProntuario: null,
+                dataAdmissao: null,
+                previsaoAlta: null,
+                classificacao: "",
+                status: "Em Andamento"
+            };
+        };
+
+        $scope.novoFiltro();
         $scope.canShowPacientes = false;
 
-        $scope.openDadosPaciente = function (pacientes){
+        $scope.openDadosPaciente = function (pacientes) {
             $state.go('classificacaoPacientes', { pacientes: pacientes });
         };
 
@@ -44,13 +64,11 @@ app.controller('RegistrosInternacaoController', ['$rootScope', '$scope', '$state
                     $scope.kanban.vermelho.pacientes.push(pacientes[i]);
                 }
             }
-
             $scope.canShowPacientes = true;
-
         };
 
         $scope.init = function () {
-            registroInternacaoFactory.getRegistrosInternacoes()
+            registroInternacaoFactory.getRegistrosInternacoes($scope.dadosFiltros)
                 .then(function (res) {
                     $scope.listaRegistros = res.data.data;
                     $scope.atualizaPacientesInternados($scope.listaRegistros);
@@ -60,18 +78,8 @@ app.controller('RegistrosInternacaoController', ['$rootScope', '$scope', '$state
                 });
         };
 
-        const setAllPendencies = (pendencia) => {
-            var res = "Nenhuma Pendencia"
-            if (pendencia.length) {
-                res = ""
-                for (var i = 0; i < pendencia.length; i++) {
-                    res += "<div style='width: 100px;'>" + pendencia[i] + " </div>"
-                }
-            }
-
-            return res;
-        };
-
-        $scope.setAllPendencies= setAllPendencies;
+        $rootScope.$on($scope.evento, function (event) {
+            $scope.init();
+        });
     }
 ])
