@@ -158,6 +158,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 					templateUrl: "templates/cadastros-gerais/tiposPendencias.html"
 				}
 			}
+		})
+		.state("funcionarios", {
+			parent: "kanleitos",
+			url: "/funcionarios",
+			views: {
+				"contentApp@kanleitos": {
+					templateUrl: "templates/cadastros-gerais/funcionarios.html"
+				}
+			}
 		});
 })
 

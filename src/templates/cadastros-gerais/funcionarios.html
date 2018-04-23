@@ -1,0 +1,80 @@
+<div ng-controller="FuncionariosController" ng-init="carregarFuncionarios()">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <span>Cadastros Gerais</span>
+        </li>
+        <li class="breadcrumb-item active">
+            <span>Funcionários</span>
+        </li>
+    </ol>
+
+    <div class="kan-row">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <h5 class="kan-title">Funcionários Cadastrados
+                    <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Aqui você visualizará os funcionários cadastrados.">
+                    </i>
+                </h5>
+                <div class="col-lg-12 kan-group">
+                    <label class="mr-2">
+                        <strong>Legenda das ações: </strong>
+                    </label>
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-pencil info text-primary"></i>
+                        <span>
+                            Editar funcionário
+                        </span>
+                    </p>
+
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-ban info text-danger"></i>
+                        <span>
+                            Inativar funcionário
+                        </span>
+                    </p>
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-check info text-success"></i>
+                        <span>
+                            Ativar funcionário
+                        </span>
+                    </p>
+                </div>
+                <div class="col-lg-12 kan-group">
+                    <button class="btn kan-btn-success d-inline-block mr-4" ng-click="openModalCadastroFuncionario(null)">
+                        <i class="fa fa-plus fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Cadastrar novo funcionário."></i>
+                        Cadastrar Funcionário
+                    </button>
+                    <input id="search" class="col-lg-6 form-control form-control-sm d-inline-block" type="text" ng-model="search" placeholder="Digite para pesquisar">
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nome</th>
+                            <th class="text-center">Especialidade</th>
+                            <th class="text-center">CRM</th>
+                            <th class="text-center">Inativo</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="funcionario in listaFuncionarios  | filter : search | orderBy: 'nome'">
+                            <td title="{{funcionario.nome}}">{{funcionario.nome}}</td>
+                            <td title="{{funcionario.especilidade}}">{{funcionario.especilidade}}</td>
+                            <td title="{{funcionario.crm}}">{{funcionario.crm}}</td>
+                            <td class="text-center">
+                                <span ng-show="funcionario.inativo">Sim</span>
+                                <span ng-show="!funcionario.inativo">Não</span>
+                            </td>
+                            <td class="text-center">
+                                <i class="fa fa-pencil text-primary" aria-hidden="true" title="Editar dados do funcionário" ng-click="updateFuncionario(funcionario)"></i>
+                                <i ng-show="!funcionario.inativo" class="fa fa-ban text-danger" aria-hidden="true" title="Inativar funcionário" ng-click="inativarFuncionario(funcionario)"></i>
+                                <i ng-show="funcionario.inativo" class="fa fa-check text-success" aria-hidden="true" title="Ativar funcionário" ng-click="ativarFuncionario(funcionario)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
