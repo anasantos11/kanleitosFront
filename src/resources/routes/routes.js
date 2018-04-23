@@ -149,8 +149,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 					templateUrl: "templates/cadastros-gerais/tiposIsolamentos.html"
 				}
 			}
-
-
+		})
+		.state("tiposPendencias", {
+			parent: "kanleitos",
+			url: "/tiposPendencias",
+			views: {
+				"contentApp@kanleitos": {
+					templateUrl: "templates/cadastros-gerais/tiposPendencias.html"
+				}
+			}
 		});
 })
 
