@@ -152,6 +152,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
 
 		})
+		.state("enfermarias", {
+			parent: "kanleitos",
+			url: "/enfermarias",
+			views: {
+				"contentApp@kanleitos": {
+					templateUrl: "templates/cadastros-gerais/enfermarias.html"
+				}
+			}
+
+
+		})
 		.state("tiposExames", {
 			parent: "kanleitos",
 			url: "/tiposExames",

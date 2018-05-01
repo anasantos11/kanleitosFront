@@ -35,10 +35,11 @@ app.factory('alasFactory', function ($http) {
     };
 
     //Alterar status da ala
-    alas.alterarStatus = function(ala, idAla){
+    alas.alterarStatus = function(idAla){
         return $http({
             url: URL_REQ + "alas/alterarStatus",
             method: 'PUT',
+            params: {idAla: idAla},
             kanHeaders
         });
     };
@@ -68,6 +69,17 @@ app.factory('enfermariaFactory', function ($http) {
             kanHeaders
         });
     };
+
+        //Alterar status da enfermaria
+        enfermarias.alterarStatus = function(idEnfermaria){
+            return $http({
+                url: URL_REQ + "enfermaria/alterarStatus",
+                method: 'PUT',
+                params: { idEnfermaria: idEnfermaria},
+                kanHeaders
+            });
+        };
+
     return enfermarias;
 });
 

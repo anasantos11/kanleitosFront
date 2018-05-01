@@ -1,18 +1,18 @@
-<div ng-controller="AlasController" ng-init="carregarAlas()">
+<div ng-controller="EnfermariasController" ng-init="carregarEnfermarias()">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <span>Cadastros Gerais</span>
         </li>
         <li class="breadcrumb-item active">
-            <span>Alas</span>
+            <span>Enfermarias</span>
         </li>
     </ol>
 
     <div class="kan-row">
         <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
-                <h5 class="kan-title">Alas Cadastradas
-                    <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Aqui você visualizará as alas já cadastrados no sistema e poderá adicionar ou editá-las.">
+                <h5 class="kan-title">Enfermarias Cadastradas
+                    <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Aqui você visualizará as enfermarias já cadastrados no sistema e poderá adicionar ou editá-las.">
                     </i>
                 </h5>
                 <div class="col-lg-12 kan-group">
@@ -22,13 +22,13 @@
                     <p class="d-inline-block mr-4">
                         <i class="fa fa-ban info text-danger"></i>
                         <span>
-                            Inativar ala
+                            Inativar enfermaria
                         </span>
                     </p>
                     <p class="d-inline-block mr-4">
                         <i class="fa fa-check info text-success"></i>
                         <span>
-                            Ativar ala
+                            Ativar enfermaria
                         </span>
                     </p>
                 </div>
@@ -40,7 +40,9 @@
                 <table class="table table-bordered table-hover table-sm">
                     <thead>
                         <tr>
-                            <th class="text-center">Nome Ala</th>
+                            <th class="text-center">Ala</th>
+                            <th class="text-center">Nome Enfermaria</th>
+                            <th class="text-center">Gênero</th>
                             <th class="text-center">Inativo</th>
                             <th class="text-center">Ações</th>
                         </tr>
@@ -48,6 +50,8 @@
                     <tbody>
                         <tr ng-repeat="ala in listaAlas  | filter : search | orderBy: 'nome'">
                             <td class="text-capitalize" title="{{ala.nome}}">{{ala.nome}}</td>
+                            <td class="text-capitalize" title="{{enfermaria.nome}}">{{enfermaria.nome}}</td>
+                            <td class="text-capitalize" title="{{genero.nome}}">{{genero.nome}}</td>
                             <td class="text-center">
                                 <span ng-show="ala.inativo">Sim</span>
                                 <span ng-show="!ala.inativo">Não</span>
