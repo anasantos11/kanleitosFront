@@ -238,6 +238,55 @@ app.factory("kanbanFactory", function ($http) {
     return kanban;
 });
 
+app.factory('svcExame', function ($http) {
+    var exame = {};
+    //Cadastro de Exame
+    exame.cadastrarExame = function (exame) {
+        return $http.post(
+            URL_REQ + "exame",
+            exame,
+            kanHeaders
+        )
+    };
+    //Get Exames
+    exame.getExames = function () {
+        return $http.get(
+            URL_REQ + "exames",
+            kanHeaders
+        )
+    };
+    //Editar Exame
+    exame.updateExame = function (exame, idExame) {
+        return $http.put(
+            URL_REQ + "exame",
+            exame,
+            {
+                kanHeaders,
+                params: { idExame: idExame }
+            }
+        )
+    }
+    //Inativar Exame
+    exame.inativarExame = function (idExame) {
+        return $http.post(
+            URL_REQ + "inativarExame",
+            idExame,
+            kanHeaders
+        )
+    }
+
+    //Ativar Exame
+    exame.ativarExame = function (idExame) {
+        return $http.post(
+            URL_REQ + "ativarExame",
+            idExame,
+            kanHeaders
+        )
+    }
+
+    return exame;
+});
+
 app.factory('svcIsolamento', function ($http) {
     var isolamento = {};
     //Cadastro de Isolamento

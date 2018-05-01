@@ -1,0 +1,21 @@
+<div ng-controller="CadastroExameController">
+    <div class="kan-row-modal">
+        <!-- PACIENTE -->
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <h5 class="kan-title">{{title}}
+                <i class="fa fa-info fa-1-x kan-icon-info" data-toggle="tooltip" data-placement="bottom" title="Tela para cadastrar tipo de exame"></i>
+            </h5>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <label>Nome do Tipo de Exame
+                    <b class="text-danger">*</b>
+                </label>
+                <input class="form-control form-control-sm" type="text" placeholder="Informe o nome do tipo de exame" ng-model="exame.nome">
+            </div>
+
+        </fieldset>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 button-kan-row">
+            <button type="button" class="btn kan-btn-danger" ng-click="closeThisDialog(false)">Cancelar</button>
+            <button type="button" class="btn kan-btn-success" ng-click="exame.atualizar ? updateExame() : cadastrarExame()">Salvar Exame</button>
+        </div>
+    </div>
+</div>
