@@ -17,7 +17,7 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         $scope.novoRegistroInternacao();
 
         $scope.carregarLeitosEnfermaria = function (enfermaria) {
-            leitoFactory.getLeitoEnfermaria(enfermaria)
+            leitoFactory.getLeitoEnfermaria(enfermaria, true)
                 .then(function (response) {
                     $scope.Leitos = response.data.data;
                 }, function (response) {
@@ -53,7 +53,7 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
         }
 
         $scope.CarregarEnfermarias = function (idAla) {
-            enfermariaFactory.getEnfermariasByAlas(idAla)
+            enfermariaFactory.getEnfermariasByAlas(idAla, true)
                 .then(function (response) {
                     $scope.Enfermarias = response.data.data;
                 }, function (response) {
@@ -73,7 +73,7 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                 });
         };
         $scope.CarregarLeitos = function () {
-            leitoFactory.getLeitos()
+            leitoFactory.getLeitos(true)
                 .then(function (response) {
                     $scope.Leitos = response.data.data;
                 }, function (response) {

@@ -25,34 +25,46 @@ var kanHeaders = {
 app.factory('alasFactory', function ($http) {
     var alas = {};
     //Get alas
-    alas.getAlas = function () {
+    alas.getAlas = function (status) {
         return $http({
             url: URL_REQ + "alas",
             method: 'GET',
+            params: { ativo: status },
             kanHeaders
         });
     };
+
+    //Alterar status da ala
+    alas.alterarStatus = function(ala, idAla){
+        return $http({
+            url: URL_REQ + "alas/alterarStatus",
+            method: 'PUT',
+            kanHeaders
+        });
+    };
+
     return alas;
 });
 
 app.factory('enfermariaFactory', function ($http) {
     var enfermarias = {};
     //Get Enfermarias
-    enfermarias.getEnfermarias = function () {
+    enfermarias.getEnfermarias = function (status) {
         return $http({
             url: URL_REQ + "enfermarias",
             method: 'GET',
+            params: { ativo: status },
             kanHeaders
         });
     };
 
     //Get Enfermarias By Ala
-
-    enfermarias.getEnfermariasByAlas = function (idAla) {
+    
+    enfermarias.getEnfermariasByAlas = function (idAla, status) {
         return $http({
             url: URL_REQ + "enfermariasByAla",
             method: 'GET',
-            params: { idAla: idAla },
+            params: { idAla: idAla, ativo: status },
             kanHeaders
         });
     };
@@ -69,11 +81,11 @@ app.factory('leitoFactory', function ($http) {
             kanHeaders
         });
     };
-    leitos.getLeitoEnfermaria = function (idEnfermaria) {
+    leitos.getLeitoEnfermaria = function (idEnfermaria, status) {
         return $http({
             url: URL_REQ + "leitosEnfermarias",
             method: 'GET',
-            params: { idEnfermaria: idEnfermaria },
+            params: { idEnfermaria: idEnfermaria, ativo: status },
             kanHeaders
         });
     };

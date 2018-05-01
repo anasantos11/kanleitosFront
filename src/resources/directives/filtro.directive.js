@@ -9,7 +9,7 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
         },
         link: function (scope, element, attrs) {
 
-            alasFactory.getAlas()
+            alasFactory.getAlas(false)
                 .then(function (res) {
                     scope.Alas = res.data.data
                 });

@@ -141,6 +141,17 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
 
 		})
+		.state("alas", {
+			parent: "kanleitos",
+			url: "/alas",
+			views: {
+				"contentApp@kanleitos": {
+					templateUrl: "templates/cadastros-gerais/alas.html"
+				}
+			}
+
+
+		})
 		.state("tiposExames", {
 			parent: "kanleitos",
 			url: "/tiposExames",

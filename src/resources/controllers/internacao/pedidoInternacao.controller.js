@@ -84,7 +84,7 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                 });
         };
         $scope.CarregarAlas = function () {
-            alasFactory.getAlas()
+            alasFactory.getAlas(true)
                 .then(function (response) {
                     $scope.Alas = response.data.data;
                 }, function (response) {

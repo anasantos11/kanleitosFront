@@ -33,7 +33,7 @@ app.controller('leitosController', ["$scope", "$http", "$filter", "alasFactory",
     }
 
     $scope.CarregarLeitos = function () {
-        return leitoFactory.getLeitos()
+        return leitoFactory.getLeitos(false)
             .then(function (response) {
                 var res = response.data.data;
                 var page = 1;
