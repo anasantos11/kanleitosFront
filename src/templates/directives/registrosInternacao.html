@@ -67,7 +67,8 @@
                 <td class="text-center text-danger" title="{{registro.pedidoInternacao.isolamento.nome}}"> {{registro.pedidoInternacao.isolamento.nome}} </td>
                 <td class="text-center" title="{{registro.pedidoInternacao.diagnostico.descricaoDiagnostico}}">{{registro.pedidoInternacao.diagnostico.descricaoDiagnostico}}</td>
                 <td class="text-center">
-                    <button class="btn kan-btn-circle kan-btn-success kan-btn-sm" data-toggle="tooltip" title="Pendências">
+                    <button class="btn kan-btn-circle kan-btn-success kan-btn-sm" data-toggle="tooltip" title="Pendências"
+                    ng-click="openModalPendenciasInternacao(registro)">
                         <i class="fa fa-file"></i>
                     </button>
                 </td>

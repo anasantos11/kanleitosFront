@@ -1,4 +1,4 @@
-app.directive('listaRegistrosInternacao', function () {
+app.directive('listaRegistrosInternacao', function (Notify) {
     return {
         templateUrl: "templates/directives/registrosInternacao.html",
         scope: {
@@ -14,6 +14,10 @@ app.directive('listaRegistrosInternacao', function () {
             scope.closeModal = function (registro) {
                 scope.$parent.closeThisDialog(registro);
             }
+
+            scope.openModalPendenciasInternacao = (registro) => {
+                return Notify.openModal("templates/internacao/pendenciaInternacao.html", { idRegistroInternacao: registro.idRegistroInternacao }, "95%")
+            };
 
         }
     };

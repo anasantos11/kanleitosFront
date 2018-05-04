@@ -359,12 +359,12 @@ app.factory('svcTipoPendencia', function ($http) {
         )
     };
 
-    tipoPendencia.getTiposPendencias = function (status) {
+    tipoPendencia.getTiposPendencias = function (somenteAtivos) {
         return $http.get(
             URL_REQ + "tipoPendencia",
             {
                 kanHeaders,
-                params: { inativo: status }
+                params: { somenteAtivos: somenteAtivos }
             }
         )
     };
@@ -428,4 +428,37 @@ app.factory('svcFuncionario', function ($http) {
     }
 
     return funcionario;
+});
+
+
+app.factory('svcPendenciaInternacao', function ($http) {
+    var pendenciaInternacao = {};
+
+    pendenciaInternacao.cadastrarPendenciaInternacao = function (pendenciaInternacao) {
+        return $http.post(
+            URL_REQ + "pendenciaInternacao",
+            pendenciaInternacao,
+            kanHeaders
+        )
+    };
+
+    pendenciaInternacao.getPendenciasInternacao = function (idRegistroInternacao) {
+        return $http.get(
+            URL_REQ + "pendenciaInternacao",
+            {
+                kanHeaders,
+                params: { idRegistroInternacao: idRegistroInternacao }
+            }
+        )
+    };
+
+    pendenciaInternacao.updatePendenciaInternacao = function (pendenciaInternacao) {
+        return $http.put(
+            URL_REQ + "pendenciaInternacao",
+            pendenciaInternacao,
+            kanHeaders
+        )
+    }
+    
+    return pendenciaInternacao;
 });

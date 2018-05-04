@@ -1,0 +1,64 @@
+<div ng-controller="PendenciaInternacao">
+    <div class="kan-row-modal">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <h5 class="kan-title">Pendências da Internação</h5>
+                <div class="col-lg-12 kan-group">
+                    <label class="mr-2">
+                        <strong>Legenda das ações: </strong>
+                    </label>
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-pencil info text-primary"></i>
+                        <span>
+                            Editar pendência
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <h6 class="m-0">Dados</h6>
+            <hr class="mt-1 mb-2">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Tipo</th>
+                            <th class="text-center">Data Início</th>
+                            <th class="text-center">Data Prevista Conclusão</th>
+                            <th class="text-center">Data de Conclusão</th>
+                            <th class="text-center">Observações</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pendencia in listaPendencias  | filter : search | orderBy: 'nome'">
+                            <td>
+                                <select ng-model="pendencia.tipoPendencia" class="form-control form-control-sm" ng-options="tipo.nome for tipo in tiposPendencias track by tipo.idPendencia">
+                                </select>
+                            </td>
+                            <td>
+                                <input type="date" ng-model="pendencia.dataInicio" filter="date" class="form-control form-control-sm">
+                            </td>
+                            <td>
+                                <input type="date" ng-model="pendencia.previsaoConclusao" class="form-control form-control-sm">
+                            </td>
+                            <td>
+                                <input type="date" ng-model="pendencia.dataConclusao" class="form-control form-control-sm">
+                            </td>
+                            <td>
+                                <input type="text" ng-model="pendencia.observacao" class="form-control form-control-sm">
+                            </td>
+                            <!--<td title="{{pendencia.tipoPendencia.nome}}">{{pendencia.tipoPendencia.nome}}</td>
+                            <td title="{{pendencia.dataInicio | date: 'dd/MM/yy'}}">{{pendencia.dataInicio | date: "dd/MM/yy"}}</td>
+                            <td title="{{pendencia.previsaoConclusao | date: 'dd/MM/yy'}}">{{pendencia.previsaoConclusao | date: 'dd/MM/yy'}}</td>
+                            <td title="{{pendencia.dataConclusao | date: 'dd/MM/yy'}}">{{pendencia.dataConclusao | date: 'dd/MM/yy'}}</td>
+                            <td title="{{pendencia.observacoes}}">{{pendencia.observacao}}</td>-->
+                            <td class="text-center">
+                                <i class="fa fa-pencil text-primary" aria-hidden="true" title="Editar dados da pendência" ng-click="updatePendencia(pendencia)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+</div>
