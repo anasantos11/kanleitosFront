@@ -459,6 +459,49 @@ app.factory('svcPendenciaInternacao', function ($http) {
             kanHeaders
         )
     }
-    
+
     return pendenciaInternacao;
+});
+
+
+app.factory('svcObservacaoInternacao', function ($http) {
+    var observacaoInternacao = {};
+
+    observacaoInternacao.cadastrarObservacaoInternacao = function (observacaoInternacao) {
+        return $http.post(
+            URL_REQ + "observacaoInternacao",
+            observacaoInternacao,
+            kanHeaders
+        )
+    };
+
+    observacaoInternacao.getObservacoesInternacao = function (idRegistroInternacao) {
+        return $http.get(
+            URL_REQ + "observacaoInternacao",
+            {
+                kanHeaders,
+                params: { idRegistroInternacao: idRegistroInternacao }
+            }
+        )
+    };
+
+    observacaoInternacao.updateObservacaoInternacao = function (observacaoInternacao) {
+        return $http.put(
+            URL_REQ + "observacaoInternacao",
+            observacaoInternacao,
+            kanHeaders
+        )
+    };
+
+    observacaoInternacao.deletearObservacaoInternacao = function (idObservacaoInternacao) {
+        return $http.delete(
+            URL_REQ + "observacaoInternacao",
+            {
+                kanHeaders,
+                params: { idObservacaoInternacao: idObservacaoInternacao }
+            }
+        )
+    };
+
+    return observacaoInternacao;
 });
