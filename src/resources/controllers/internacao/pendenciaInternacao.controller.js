@@ -1,10 +1,15 @@
 app.controller('PendenciaInternacao', ["$scope", "$http", "svcPendenciaInternacao", "svcTipoPendencia", "Notify", "$filter",
     function ($scope, $http, svcPendenciaInternacao, svcTipoPendencia, Notify, $filter) {
 
+        $scope.listaPendencias = [];
+        
         if (!isNullOrEmpty($scope.ngDialogData.idRegistroInternacao)) {
             svcPendenciaInternacao.getPendenciasInternacao($scope.ngDialogData.idRegistroInternacao)
                 .then(function (res) {
-                    $scope.listaPendencias = res.data.data;
+                    if(res.data.data.length > 0){
+                        $scope.listaPendencias = res.data.data;
+                    }
+                    
                     $scope.listaPendencias.forEach(function (pendencia) {
                         if (!isNullOrEmpty(pendencia.dataInicio))
                             pendencia.dataInicio = new Date(pendencia.dataInicio);

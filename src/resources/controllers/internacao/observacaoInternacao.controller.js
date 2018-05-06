@@ -1,10 +1,14 @@
 app.controller('ObservacaoInternacao', ["$scope", "$http", "svcObservacaoInternacao", "Notify", "$filter",
     function ($scope, $http, svcObservacaoInternacao, Notify, $filter) {
 
+        $scope.listaObservacoes = [];
+
         if (!isNullOrEmpty($scope.ngDialogData.idRegistroInternacao)) {
             svcObservacaoInternacao.getObservacoesInternacao($scope.ngDialogData.idRegistroInternacao)
                 .then(function (res) {
-                    $scope.listaObservacoes = res.data.data;
+                    if (res.data.data.length > 0) {
+                        $scope.listaObservacoes = res.data.data;
+                    }
                     $scope.listaObservacoes.forEach(function (observacao) {
                         if (!isNullOrEmpty(observacao.data))
                             observacao.data = new Date(observacao.data);

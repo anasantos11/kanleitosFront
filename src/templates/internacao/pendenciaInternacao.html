@@ -68,7 +68,7 @@
                             </td>
                             <td>
                                 <span ng-show="!pendencia.edicao" title="{{pendencia.observacao}}">{{pendencia.observacao}}</span>
-                                <textarea ng-show="pendencia.edicao" ng-model="pendencia.observacao" class="form-control form-control-sm"></textarea>
+                                <textarea maxlength="500" ng-show="pendencia.edicao" ng-model="pendencia.observacao" class="form-control form-control-sm"></textarea>
                             </td>
                             <td class="text-center">
                                 <span ng-show="!pendencia.edicao" title="{{pendencia.dataConclusao | date: 'dd/MM/yy'}}">{{pendencia.dataConclusao | date: 'dd/MM/yy'}}</span>

@@ -52,11 +52,11 @@
                         <tr ng-repeat="observacao in listaObservacoes">
                             <td>
                                 <span ng-show="!observacao.edicao" title="{{observacao.descricao}}">{{observacao.descricao}}</span>
-                                <textarea ng-show="observacao.edicao" ng-model="observacao.descricao" class="form-control form-control-sm"></textarea>
+                                <textarea maxlength="500" ng-show="observacao.edicao" ng-model="observacao.descricao" class="form-control form-control-sm"></textarea>
                             </td>
                             <td class="text-center">
-                                <span ng-show="!observacao.edicao" title="{{observacao.data | date: 'dd/MM/yy'}}">{{observacao.data | date: 'dd/MM/yy'}}</span>
-                                <input ng-show="observacao.edicao" type="date" ng-model="observacao.data" class="form-control form-control-sm">
+                                <span ng-show="!observacao.edicao" title="{{observacao.data | date: 'dd/MM/yy HH:mm'}}">{{observacao.data | date: 'dd/MM/yy HH:mm'}}</span>
+                                <input ng-show="observacao.edicao" type="datetime-local" ng-model="observacao.data" class="form-control form-control-sm">
                             </td>
                             <td class="text-center">
                                 <button class="btn-icon" ng-show="!observacao.edicao" ng-click="editarObservacaoInternacao(observacao)">
