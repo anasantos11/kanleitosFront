@@ -79,6 +79,9 @@
                                 <button class="btn-icon" ng-show="!pendencia.dataConclusao && !pendencia.edicao" ng-click="editarPendenciaInternacao(pendencia)">
                                     <i class="fa fa-pencil fa-lg text-primary p-1" aria-hidden="true" title="Editar dados da pendência da internação"></i>
                                 </button>
+                                <button class="btn-icon" ng-show="!pendencia.dataConclusao && !pendencia.edicao" ng-click="deletarPendenciaInternacao(pendencia)">
+                                    <i class="fa fa-trash fa-lg text-danger p-1" aria-hidden="true" title="Deletar pendência da internação"></i>
+                                </button>
                                 <button class="btn-icon" ng-show="(!pendencia.dataConclusao && pendencia.edicao) || pendencia.edicao" ng-click="salvarPendenciaInternacao(pendencia)">
                                     <i class="fa fa-save fa-lg kan-icon-success p-1" aria-hidden="true" title="Salvar pendência da internação"></i>
                                 </button>

@@ -460,6 +460,16 @@ app.factory('svcPendenciaInternacao', function ($http) {
         )
     }
 
+    pendenciaInternacao.deletarPendenciaInternacao = function (idPendenciaInternacao) {
+        return $http.delete(
+            URL_REQ + "pendenciaInternacao",
+            {
+                kanHeaders,
+                params: { idPendenciaInternacao: idPendenciaInternacao }
+            }
+        )
+    };
+
     return pendenciaInternacao;
 });
 

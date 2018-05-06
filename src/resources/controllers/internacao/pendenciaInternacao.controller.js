@@ -2,14 +2,14 @@ app.controller('PendenciaInternacao', ["$scope", "$http", "svcPendenciaInternaca
     function ($scope, $http, svcPendenciaInternacao, svcTipoPendencia, Notify, $filter) {
 
         $scope.listaPendencias = [];
-        
+
         if (!isNullOrEmpty($scope.ngDialogData.idRegistroInternacao)) {
             svcPendenciaInternacao.getPendenciasInternacao($scope.ngDialogData.idRegistroInternacao)
                 .then(function (res) {
-                    if(res.data.data.length > 0){
+                    if (res.data.data.length > 0) {
                         $scope.listaPendencias = res.data.data;
                     }
-                    
+
                     $scope.listaPendencias.forEach(function (pendencia) {
                         if (!isNullOrEmpty(pendencia.dataInicio))
                             pendencia.dataInicio = new Date(pendencia.dataInicio);
@@ -36,7 +36,7 @@ app.controller('PendenciaInternacao', ["$scope", "$http", "svcPendenciaInternaca
                     pendencia.registroInternacao.idRegistroInternacao = $scope.ngDialogData.idRegistroInternacao;
                     svcPendenciaInternacao.cadastrarPendenciaInternacao(pendencia)
                         .then(function (res) {
-                            alertaSucesso("Pendência de Internação cadastrada com sucesso.");
+                            alertaSucesso("Pendência da Internação cadastrada com sucesso.");
                             pendencia.idPendenciaInternacao = res.data.data;
                             pendencia.edicao = false;
                             pendencia.nova = false;
@@ -47,7 +47,7 @@ app.controller('PendenciaInternacao', ["$scope", "$http", "svcPendenciaInternaca
                 } else {
                     svcPendenciaInternacao.updatePendenciaInternacao(pendencia)
                         .then(function (res) {
-                            alertaSucesso("Pendência de Internação atualizada com sucesso.")
+                            alertaSucesso("Pendência da Internação atualizada com sucesso.")
                             pendencia.edicao = false;
                             delete $scope.copiaListaPendencias;
                         })
@@ -61,6 +61,23 @@ app.controller('PendenciaInternacao', ["$scope", "$http", "svcPendenciaInternaca
         $scope.editarPendenciaInternacao = function (pendencia) {
             $scope.copiaListaPendencias = angular.copy($scope.listaPendencias);
             pendencia.edicao = true;
+        };
+
+        $scope.deletarPendenciaInternacao = function (pendencia) {
+            alertaConfirmar("deletar a pendência da internação")
+                .then(function (res) {
+                    if (res.value) {
+                        svcPendenciaInternacao.deletarPendenciaInternacao(pendencia.idPendenciaInternacao)
+                            .then(function (res) {
+                                alertaSucesso("Pendência da internação deletada com sucesso.")
+                                var indice = $scope.listaPendencias.indexOf(pendencia);
+                                $scope.listaPendencias.splice(indice, 1);
+                            })
+                            .catch(function (err) {
+                                alertaErroRequisicao(err);
+                            })
+                    }
+                })
         };
 
         $scope.cancelarEdicao = function (pendencia) {
