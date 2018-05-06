@@ -51,7 +51,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="pendencia in listaPendencias  | filter : search | orderBy: '-dataInicio'">
+                        <tr ng-repeat="pendencia in listaPendencias  | filter : search">
                             <td class="text-center">
                                 <span ng-show="!pendencia.edicao" title="{{pendencia.tipoPendencia.nome}}">{{pendencia.tipoPendencia.nome}}</span>
                                 <select ng-show="pendencia.edicao" ng-model="pendencia.tipoPendencia" class="form-control form-control-sm" ng-options="tipo.nome for tipo in tiposPendencias track by tipo.idPendencia">
@@ -75,13 +75,14 @@
                                 <input ng-show="pendencia.edicao" type="date" ng-model="pendencia.dataConclusao" class="form-control form-control-sm">
                             </td>
                             <td class="text-center">
-                                <button class="btn-icon" ng-disabled="pendencia.edicao" ng-click="editarPendenciaInternacao(pendencia)">
+                                <span class="font-weight-bold" ng-show="pendencia.dataConclusao && !pendencia.edicao">Pendência concluída</span>
+                                <button class="btn-icon" ng-show="!pendencia.dataConclusao && !pendencia.edicao" ng-click="editarPendenciaInternacao(pendencia)">
                                     <i class="fa fa-pencil fa-lg text-primary p-1" aria-hidden="true" title="Editar dados da pendência da internação"></i>
                                 </button>
-                                <button class="btn-icon" ng-disabled="!pendencia.edicao" ng-click="salvarPendenciaInternacao(pendencia)">
+                                <button class="btn-icon" ng-show="(!pendencia.dataConclusao && pendencia.edicao) || pendencia.edicao" ng-click="salvarPendenciaInternacao(pendencia)">
                                     <i class="fa fa-save fa-lg kan-icon-success p-1" aria-hidden="true" title="Salvar pendência da internação"></i>
                                 </button>
-                                <button class="btn-icon" ng-show="pendencia.edicao" ng-click="cancelarEdicao(pendencia)">
+                                <button class="btn-icon" ng-show="(!pendencia.dataConclusao && pendencia.edicao) || pendencia.edicao" ng-click="cancelarEdicao(pendencia)">
                                     <i class="fa fa-ban fa-lg text-danger p-1" aria-hidden="true" title="Cancelar edição da pendência"></i>
                                 </button>
                             </td>
