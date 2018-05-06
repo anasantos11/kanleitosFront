@@ -25,31 +25,32 @@ app.controller('PendenciaInternacao', ["$scope", "$http", "svcPendenciaInternaca
             });
 
         $scope.salvarPendenciaInternacao = function (pendencia) {
-            if (pendencia.nova) {
-                pendencia.registroInternacao = {};
-                pendencia.registroInternacao.idRegistroInternacao = $scope.ngDialogData.idRegistroInternacao;
-                svcPendenciaInternacao.cadastrarPendenciaInternacao(pendencia)
-                    .then(function (res) {
-                        alertaSucesso("Pendência de Internação cadastrada com sucesso.");
-                        pendencia.idPendenciaInternacao = res.data.data;
-                        pendencia.edicao = false;
-                        pendencia.nova = false;
-                    })
-                    .catch(function (err) {
-                        alertaErroRequisicao(err);
-                    })
-            }else{
-                svcPendenciaInternacao.updatePendenciaInternacao(pendencia)
-                .then(function (res) {
-                    alertaSucesso("Pendência de Internação atualizada com sucesso.")
-                    pendencia.edicao = false;
-                    delete $scope.copiaListaPendencias;
-                })
-                .catch(function (err) {
-                    alertaErroRequisicao(err);
-                })
+            if ($scope.validarPendenciaInternacao(pendencia)) {
+                if (pendencia.nova) {
+                    pendencia.registroInternacao = {};
+                    pendencia.registroInternacao.idRegistroInternacao = $scope.ngDialogData.idRegistroInternacao;
+                    svcPendenciaInternacao.cadastrarPendenciaInternacao(pendencia)
+                        .then(function (res) {
+                            alertaSucesso("Pendência de Internação cadastrada com sucesso.");
+                            pendencia.idPendenciaInternacao = res.data.data;
+                            pendencia.edicao = false;
+                            pendencia.nova = false;
+                        })
+                        .catch(function (err) {
+                            alertaErroRequisicao(err);
+                        })
+                } else {
+                    svcPendenciaInternacao.updatePendenciaInternacao(pendencia)
+                        .then(function (res) {
+                            alertaSucesso("Pendência de Internação atualizada com sucesso.")
+                            pendencia.edicao = false;
+                            delete $scope.copiaListaPendencias;
+                        })
+                        .catch(function (err) {
+                            alertaErroRequisicao(err);
+                        })
+                }
             }
-            
         };
 
         $scope.editarPendenciaInternacao = function (pendencia) {
@@ -58,10 +59,10 @@ app.controller('PendenciaInternacao', ["$scope", "$http", "svcPendenciaInternaca
         };
 
         $scope.cancelarEdicao = function (pendencia) {
-            if(pendencia.nova){
+            if (pendencia.nova) {
                 var indice = $scope.listaPendencias.indexOf(pendencia);
                 $scope.listaPendencias.splice(indice, 1)
-            }else{
+            } else {
                 $scope.listaPendencias = $scope.copiaListaPendencias;
                 pendencia.edicao = false;
             }
@@ -75,6 +76,23 @@ app.controller('PendenciaInternacao', ["$scope", "$http", "svcPendenciaInternaca
             };
             $scope.listaPendencias.splice(0, 0, pendencia);
         };
+
+        $scope.validarPendenciaInternacao = function (pendencia) {
+            if (isNullOrEmpty(pendencia.tipoPendencia)) {
+                alertaErro("O tipo de pendência precisa ser informado.")
+                return;
+            }
+            if (isNullOrEmpty(pendencia.dataInicio)) {
+                alertaErro("A data de início precisa ser informada.")
+                return;
+            }
+            if (isNullOrEmpty(pendencia.previsaoConclusao)) {
+                alertaErro("A data da previsão de conclusão precisa ser informada.")
+                return;
+            }
+
+            return true;
+        }
 
     }
 ]);

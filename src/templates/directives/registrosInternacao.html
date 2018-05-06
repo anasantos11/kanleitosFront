@@ -45,14 +45,15 @@
                 <th class="text-center">Sexo</th>
                 <th class="text-center">Isolamento</th>
                 <th class="text-center">Diagnóstico</th>
-                <th class="text-center">Pendência</th>
+                <th class="text-center">Pendências</th>
+                <th class="text-center">Observações</th>
                 <th class="text-center" ng-show="showAcoes">Ações</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="registro in registros" ng-class="{'table-success' : registro.classificacao === 'verde', 'table-danger' : registro.classificacao === 'vermelho', 'table-warning' : registro.classificacao === 'amarelo'}">
                 <td class="text-center" title="{{registro.pedidoInternacao.ala.nomeAla}}">{{registro.pedidoInternacao.ala.nomeAla}}</td>
-                <td class="text-center" title="{{registro.enfermaria.nomeEnfermaria}}">{{registro.enfermaria.nomeEnfermaria}}</td>
+                <td class="text-center" title="{{registro.leito.enfermaria.nomeEnfermaria}}">{{registro.leito.enfermaria.nomeEnfermaria}}</td>
                 <td class="text-center">{{registro.leito.nomeLeito}}</td>
                 <td class="text-center" title="{{registro.pedidoInternacao.medicoResponsavel}}">{{registro.pedidoInternacao.medicoResponsavel}}</td>
                 <td class="text-center" title="{{registro.pedidoInternacao.residenteResponsavel}}">{{registro.pedidoInternacao.residenteResponsavel}}</td>
@@ -66,9 +67,13 @@
                 <td class="text-center" title="{{registro.pedidoInternacao.paciente.sexo}}">{{registro.pedidoInternacao.paciente.genero}}</td>
                 <td class="text-center text-danger" title="{{registro.pedidoInternacao.isolamento.nome}}"> {{registro.pedidoInternacao.isolamento.nome}} </td>
                 <td class="text-center" title="{{registro.pedidoInternacao.diagnostico.descricaoDiagnostico}}">{{registro.pedidoInternacao.diagnostico.descricaoDiagnostico}}</td>
-                <td class="text-center">
-                    <button class="btn kan-btn-circle kan-btn-success kan-btn-sm" data-toggle="tooltip" title="Pendências"
-                    ng-click="openModalPendenciasInternacao(registro)">
+                <td class="text-center" ng-click="openModalPendenciasInternacao(registro)">
+                    <button class="btn kan-btn-circle kan-btn-danger kan-btn-sm" data-toggle="tooltip" title="Pendências">
+                        <i class="fa fa-file"></i>
+                    </button>
+                </td>
+                <td class="text-center" ng-click="openModalObservacoesInternacao(registro)">
+                    <button class="btn kan-btn-circle kan-btn-success kan-btn-sm" data-toggle="tooltip" title="Observações">
                         <i class="fa fa-file"></i>
                     </button>
                 </td>
