@@ -1,0 +1,81 @@
+<div ng-controller="ObservacaoInternacao">
+    <div class="kan-row-modal">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <h5 class="kan-title">Observações da Internação</h5>
+                <div class="col-lg-12 kan-group p-0">
+                    <label class="mr-2">
+                        <strong>Legenda das ações: </strong>
+                    </label>
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-pencil info text-primary"></i>
+                        <span>
+                            Editar observação
+                        </span>
+                    </p>
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-trash text-danger"></i>
+                        <span>
+                            Deletar observação
+                        </span>
+                    </p>
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-save kan-icon-success p-0"></i>
+                        <span>
+                            Salvar observação
+                        </span>
+                    </p>
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-ban text-danger"></i>
+                        <span>
+                            Cancelar alterações
+                        </span>
+                    </p>
+                </div>
+                <button class="btn kan-btn-success col-12 col-sm-4 col-md-3 col-lg-3 col-xl-2" ng-click="adicionarObservacao()">
+                    <i class="fa fa-plus fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Adicionar observação da internação"></i>
+                    Adicionar observação
+                </button>
+            </div>
+            <h6 class="m-0">Dados</h6>
+            <hr class="mt-1 mb-2">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Descrição</th>
+                            <th class="text-center">Data</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="observacao in listaObservacoes">
+                            <td>
+                                <span ng-show="!observacao.edicao" title="{{observacao.descricao}}">{{observacao.descricao}}</span>
+                                <textarea ng-show="observacao.edicao" ng-model="observacao.descricao" class="form-control form-control-sm"></textarea>
+                            </td>
+                            <td class="text-center">
+                                <span ng-show="!observacao.edicao" title="{{observacao.data | date: 'dd/MM/yy'}}">{{observacao.data | date: 'dd/MM/yy'}}</span>
+                                <input ng-show="observacao.edicao" type="date" ng-model="observacao.data" class="form-control form-control-sm">
+                            </td>
+                            <td class="text-center">
+                                <button class="btn-icon" ng-show="!observacao.edicao" ng-click="editarObservacaoInternacao(observacao)">
+                                    <i class="fa fa-pencil fa-lg text-primary p-1" aria-hidden="true" title="Editar dados da observação da internação"></i>
+                                </button>
+                                <button class="btn-icon" ng-show="!observacao.edicao" ng-click="deletarObservacaoInternacao(observacao)">
+                                    <i class="fa fa-trash fa-lg text-danger p-1" aria-hidden="true" title="Deletar observação da internação"></i>
+                                </button>
+                                <button class="btn-icon" ng-show="observacao.edicao" ng-click="salvarObservacaoInternacao(observacao)">
+                                    <i class="fa fa-save fa-lg kan-icon-success p-1" aria-hidden="true" title="Salvar observação da internação"></i>
+                                </button>
+                                <button class="btn-icon" ng-show="observacao.edicao" ng-click="cancelarEdicao(observacao)">
+                                    <i class="fa fa-ban fa-lg text-danger p-1" aria-hidden="true" title="Cancelar edição da observação"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+</div>

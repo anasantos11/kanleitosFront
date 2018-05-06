@@ -493,7 +493,7 @@ app.factory('svcObservacaoInternacao', function ($http) {
         )
     };
 
-    observacaoInternacao.deletearObservacaoInternacao = function (idObservacaoInternacao) {
+    observacaoInternacao.deletarObservacaoInternacao = function (idObservacaoInternacao) {
         return $http.delete(
             URL_REQ + "observacaoInternacao",
             {
