@@ -3,7 +3,7 @@
         <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
                 <h5 class="kan-title">Pendências da Internação</h5>
-                <div class="col-lg-12 kan-group">
+                <div class="col-lg-12 kan-group p-0">
                     <label class="mr-2">
                         <strong>Legenda das ações: </strong>
                     </label>
@@ -13,7 +13,20 @@
                             Editar pendência
                         </span>
                     </p>
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-save kan-icon-success p-0"></i>
+                        <span>
+                            Salvar pendência
+                        </span>
+                    </p>
+                    <p class="d-inline-block mr-4">
+                        <i class="fa fa-ban text-danger"></i>
+                        <span>
+                            Cancelar edição da pendência
+                        </span>
+                    </p>
                 </div>
+                <input id="search" class="col-md-4 form-control form-control-sm" type="text" ng-model="search" placeholder="Digite para pesquisar">
             </div>
             <h6 class="m-0">Dados</h6>
             <hr class="mt-1 mb-2">
@@ -31,29 +44,37 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="pendencia in listaPendencias  | filter : search | orderBy: 'nome'">
-                            <td>
-                                <select ng-model="pendencia.tipoPendencia" class="form-control form-control-sm" ng-options="tipo.nome for tipo in tiposPendencias track by tipo.idPendencia">
+                            <td class="text-center">
+                                <span ng-show="!pendencia.Edicao" title="{{pendencia.tipoPendencia.nome}}">{{pendencia.tipoPendencia.nome}}</span>
+                                <select ng-show="pendencia.Edicao" ng-model="pendencia.tipoPendencia" class="form-control form-control-sm" ng-options="tipo.nome for tipo in tiposPendencias track by tipo.idPendencia">
                                 </select>
                             </td>
-                            <td>
-                                <input type="date" ng-model="pendencia.dataInicio" class="form-control form-control-sm">
-                            </td>
-                            <td>
-                                <input type="date" ng-model="pendencia.previsaoConclusao" class="form-control form-control-sm">
-                            </td>
-                            <td>
-                                <input type="date" ng-model="pendencia.dataConclusao" class="form-control form-control-sm">
-                            </td>
-                            <td>
-                                <input type="text" ng-model="pendencia.observacao" class="form-control form-control-sm">
-                            </td>
-                            <!--<td title="{{pendencia.tipoPendencia.nome}}">{{pendencia.tipoPendencia.nome}}</td>
-                            <td title="{{pendencia.dataInicio | date: 'dd/MM/yy'}}">{{pendencia.dataInicio | date: "dd/MM/yy"}}</td>
-                            <td title="{{pendencia.previsaoConclusao | date: 'dd/MM/yy'}}">{{pendencia.previsaoConclusao | date: 'dd/MM/yy'}}</td>
-                            <td title="{{pendencia.dataConclusao | date: 'dd/MM/yy'}}">{{pendencia.dataConclusao | date: 'dd/MM/yy'}}</td>
-                            <td title="{{pendencia.observacoes}}">{{pendencia.observacao}}</td>-->
                             <td class="text-center">
-                                <i class="fa fa-pencil text-primary" aria-hidden="true" title="Editar dados da pendência" ng-click="updatePendencia(pendencia)"></i>
+                                <span ng-show="!pendencia.Edicao" title="{{pendencia.dataInicio | date: 'dd/MM/yy'}}">{{pendencia.dataInicio | date: 'dd/MM/yy'}}</span>
+                                <input ng-show="pendencia.Edicao" type="date" ng-model="pendencia.dataInicio" class="form-control form-control-sm">
+                            </td>
+                            <td class="text-center">
+                                <span ng-show="!pendencia.Edicao" title="{{pendencia.previsaoConclusao | date: 'dd/MM/yy'}}">{{pendencia.previsaoConclusao | date: 'dd/MM/yy'}}</span>
+                                <input ng-show="pendencia.Edicao" type="date" ng-model="pendencia.previsaoConclusao" class="form-control form-control-sm">
+                            </td>
+                            <td class="text-center">
+                                <span ng-show="!pendencia.Edicao" title="{{pendencia.dataConclusao | date: 'dd/MM/yy'}}">{{pendencia.dataConclusao | date: 'dd/MM/yy'}}</span>
+                                <input ng-show="pendencia.Edicao" type="date" ng-model="pendencia.dataConclusao" class="form-control form-control-sm">
+                            </td>
+                            <td>
+                                <span ng-show="!pendencia.Edicao" title="{{pendencia.observacao}}">{{pendencia.observacao}}</span>
+                                <textarea ng-show="pendencia.Edicao" ng-model="pendencia.observacao" class="form-control form-control-sm"></textarea>
+                            </td>
+                            <td class="text-center">
+                                <button class="btn-icon" ng-disabled="pendencia.Edicao" ng-click="editarPendenciaInternacao(pendencia)">
+                                    <i class="fa fa-pencil fa-lg text-primary p-1" aria-hidden="true" title="Editar dados da pendência da internação"></i>
+                                </button>
+                                <button class="btn-icon" ng-disabled="!pendencia.Edicao" ng-click="updatePendenciaInternacao(pendencia)">
+                                    <i class="fa fa-save fa-lg kan-icon-success p-1" aria-hidden="true" title="Salvar pendência da internação"></i>
+                                </button>
+                                <button class="btn-icon" ng-show="pendencia.Edicao" ng-click="cancelarEdicao(pendencia)">
+                                    <i class="fa fa-ban fa-lg text-danger p-1" aria-hidden="true" title="Cancelar edição da pendência"></i>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
