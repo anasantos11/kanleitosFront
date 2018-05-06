@@ -24,26 +24,56 @@ app.controller('PendenciaInternacao', ["$scope", "$http", "svcPendenciaInternaca
                 $scope.tiposPendencias = res.data.data;
             });
 
-        $scope.updatePendenciaInternacao = function (pendencia) {
-            svcPendenciaInternacao.updatePendenciaInternacao(pendencia)
+        $scope.salvarPendenciaInternacao = function (pendencia) {
+            if (pendencia.nova) {
+                pendencia.registroInternacao = {};
+                pendencia.registroInternacao.idRegistroInternacao = $scope.ngDialogData.idRegistroInternacao;
+                svcPendenciaInternacao.cadastrarPendenciaInternacao(pendencia)
+                    .then(function (res) {
+                        alertaSucesso("Pendência de Internação cadastrada com sucesso.");
+                        pendencia.idPendenciaInternacao = res.data.data;
+                        pendencia.edicao = false;
+                        pendencia.nova = false;
+                    })
+                    .catch(function (err) {
+                        alertaErroRequisicao(err);
+                    })
+            }else{
+                svcPendenciaInternacao.updatePendenciaInternacao(pendencia)
                 .then(function (res) {
                     alertaSucesso("Pendência de Internação atualizada com sucesso.")
-                    pendencia.Edicao = false;
+                    pendencia.edicao = false;
                     delete $scope.copiaListaPendencias;
                 })
                 .catch(function (err) {
                     alertaErroRequisicao(err);
                 })
+            }
+            
         };
 
         $scope.editarPendenciaInternacao = function (pendencia) {
             $scope.copiaListaPendencias = angular.copy($scope.listaPendencias);
-            pendencia.Edicao = true;
+            pendencia.edicao = true;
         };
 
         $scope.cancelarEdicao = function (pendencia) {
-            $scope.listaPendencias = $scope.copiaListaPendencias;
-            pendencia.Edicao = false;
+            if(pendencia.nova){
+                var indice = $scope.listaPendencias.indexOf(pendencia);
+                $scope.listaPendencias.splice(indice, 1)
+            }else{
+                $scope.listaPendencias = $scope.copiaListaPendencias;
+                pendencia.edicao = false;
+            }
+
+        };
+
+        $scope.adicionarPendencia = function () {
+            var pendencia = {
+                edicao: true,
+                nova: true
+            };
+            $scope.listaPendencias.splice(0, 0, pendencia);
         };
 
     }
