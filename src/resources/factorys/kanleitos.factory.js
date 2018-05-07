@@ -421,12 +421,12 @@ app.factory('svcTipoPendencia', function ($http) {
         )
     };
 
-    tipoPendencia.getTiposPendencias = function (status) {
+    tipoPendencia.getTiposPendencias = function (somenteAtivos) {
         return $http.get(
             URL_REQ + "tipoPendencia",
             {
                 kanHeaders,
-                params: { inativo: status }
+                params: { somenteAtivos: somenteAtivos }
             }
         )
     };
@@ -490,4 +490,90 @@ app.factory('svcFuncionario', function ($http) {
     }
 
     return funcionario;
+});
+
+
+app.factory('svcPendenciaInternacao', function ($http) {
+    var pendenciaInternacao = {};
+
+    pendenciaInternacao.cadastrarPendenciaInternacao = function (pendenciaInternacao) {
+        return $http.post(
+            URL_REQ + "pendenciaInternacao",
+            pendenciaInternacao,
+            kanHeaders
+        )
+    };
+
+    pendenciaInternacao.getPendenciasInternacao = function (idRegistroInternacao) {
+        return $http.get(
+            URL_REQ + "pendenciaInternacao",
+            {
+                kanHeaders,
+                params: { idRegistroInternacao: idRegistroInternacao }
+            }
+        )
+    };
+
+    pendenciaInternacao.updatePendenciaInternacao = function (pendenciaInternacao) {
+        return $http.put(
+            URL_REQ + "pendenciaInternacao",
+            pendenciaInternacao,
+            kanHeaders
+        )
+    }
+
+    pendenciaInternacao.deletarPendenciaInternacao = function (idPendenciaInternacao) {
+        return $http.delete(
+            URL_REQ + "pendenciaInternacao",
+            {
+                kanHeaders,
+                params: { idPendenciaInternacao: idPendenciaInternacao }
+            }
+        )
+    };
+
+    return pendenciaInternacao;
+});
+
+
+app.factory('svcObservacaoInternacao', function ($http) {
+    var observacaoInternacao = {};
+
+    observacaoInternacao.cadastrarObservacaoInternacao = function (observacaoInternacao) {
+        return $http.post(
+            URL_REQ + "observacaoInternacao",
+            observacaoInternacao,
+            kanHeaders
+        )
+    };
+
+    observacaoInternacao.getObservacoesInternacao = function (idRegistroInternacao) {
+        return $http.get(
+            URL_REQ + "observacaoInternacao",
+            {
+                kanHeaders,
+                params: { idRegistroInternacao: idRegistroInternacao }
+            }
+        )
+    };
+
+    observacaoInternacao.updateObservacaoInternacao = function (observacaoInternacao) {
+        return $http.put(
+            URL_REQ + "observacaoInternacao",
+            observacaoInternacao,
+            kanHeaders
+        )
+    };
+
+    observacaoInternacao.deletarObservacaoInternacao = function (idObservacaoInternacao) {
+        return $http.delete(
+            URL_REQ + "observacaoInternacao",
+            {
+                kanHeaders,
+                params: { idObservacaoInternacao: idObservacaoInternacao }
+            }
+        )
+    };
+
+    return observacaoInternacao;
 });
