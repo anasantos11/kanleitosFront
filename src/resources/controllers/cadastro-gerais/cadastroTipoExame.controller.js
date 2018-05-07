@@ -1,32 +1,31 @@
-app.controller('CadastroExameController', ["$scope", "$http", "svcExame", "Notify",
-    function ($scope, $http, svcExame, Notify) {
+app.controller('CadastroTipoExameController', ["$scope", "$http", "svcTipoExame", "Notify",
+    function ($scope, $http, svcTipoExame, Notify) {
 
-        $scope.title = "Cadastrar Exame";
-        $scope.Exame = {
+        $scope.title = "Cadastrar Tipo Exame";
+        $scope.tipoExame = {
             nome: null,
             statusLeito: null
         }
 
-        $scope.cadastrarExame = function (exame) {
+        $scope.cadastrarTipoExame = function (tipoExame) {
             if ($scope.validarDadosExame()) {
-                svcExame.cadastrarExame($scope.exame)
+                svcTipoExame.cadastrarTipoExame($scope.tipoExame)
                     .then(function (response) {
                         alertaSucesso("Tipo de exame cadastrado com sucesso");
-                        return $scope.closeThisDialog($scope.exame);
-
+                        return $scope.closeThisDialog($scope.tipoExame);
                     })
-                    .catch(function (response) {
-                        alertaErroRequisicao();
+                    .catch(function (err) {
+                        alertaErroRequisicao(err);
                     })
             }
         };
 
-        $scope.updateExame = function () {
+        $scope.updateTipoExame = function () {
             if ($scope.validarDadosExame()) {
-                svcExame.updateExame($scope.exame, $scope.exame.idExame)
+                svcTipoExame.updateTipoExame($scope.tipoExame, $scope.tipoExame.tipoExameId)
                     .then(function (response) {
-                        alertaSucesso("Tipo de Exame atualizado com sucesso");
-                        return $scope.closeThisDialog($scope.exame);
+                        alertaSucesso("Tipo de exame atualizado com sucesso");
+                        return $scope.closeThisDialog($scope.tipoExame);
 
                     })
                     .catch(function (response) {
@@ -36,17 +35,16 @@ app.controller('CadastroExameController', ["$scope", "$http", "svcExame", "Notif
         };
 
         $scope.validarDadosExame = function () {
-            if (isNullOrEmpty($scope.exame.nome)) {
+            if (isNullOrEmpty($scope.tipoExame.nome)) {
                 alertaPreenchimentoCampo("nome do tipo de exame");
                 return;
             }
-
             return true;
         };
 
-        if (!isNullOrEmpty($scope.ngDialogData.exame)) {
-            $scope.title = "Editar Exame:" + $scope.ngDialogData.exame.nome;
-            $scope.exame = $scope.ngDialogData.exame;
+        if (!isNullOrEmpty($scope.ngDialogData.tipoExame)) {
+            $scope.title = "Editar Exame:" + $scope.ngDialogData.tipoExame.nome;
+            $scope.tipoExame = $scope.ngDialogData.tipoExame;
         }
     }
 ]);

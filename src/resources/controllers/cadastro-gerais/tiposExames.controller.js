@@ -1,25 +1,25 @@
-app.controller('ExamesController', ['$scope', '$state', 'svcExame', 'Notify', function ($scope, $state, svcExame, Notify) {
+app.controller('ExamesController', ['$scope', '$state', 'svcTipoExame', 'Notify', function ($scope, $state, svcTipoExame, Notify) {
 
 
     $scope.carregarExames = function () {
-        svcExame.getExames()
+        svcTipoExame.getTiposExames(false)
             .then(function (res) {
-                $scope.listaExames = res.data.data;
+                $scope.listaTiposExames = res.data.data;
             })
     };
 
-    $scope.updateExame = function (exame){
-        exame.atualizar = true;
-        $scope.openModalCadastroExame(exame);
+    $scope.updateTipoExame = function (tipoExame) {
+        tipoExame.atualizar = true;
+        $scope.openModalCadastroTipoExame(tipoExame);
     };
 
-    $scope.openModalCadastroExame = function (exame) {
-        $scope.copia = angular.copy($scope.listaExames);
-        return Notify.openModal("templates/cadastros-gerais/cadastroTipoExame.html",  {exame: exame}, "50%")
+    $scope.openModalCadastroTipoExame = function (tipoExame) {
+        $scope.copia = angular.copy($scope.listaTiposExames);
+        return Notify.openModal("templates/cadastros-gerais/cadastroTipoExame.html", { tipoExame: tipoExame }, "50%")
             .closePromise.then(
-                function (exameCadastrado) {
-                    if (!exameCadastrado.value || exameCadastrado.value === '$document' || exameCadastrado.value === '$closeButton') {
-                        $scope.listaExames = $scope.copia;
+                function (tipoExameCadastrado) {
+                    if (!tipoExameCadastrado.value || tipoExameCadastrado.value === '$document' || tipoExameCadastrado.value === '$closeButton') {
+                        $scope.listaTiposExames = $scope.copia;
                         return;
                     } else {
                         $scope.carregarExames();
@@ -27,40 +27,33 @@ app.controller('ExamesController', ['$scope', '$state', 'svcExame', 'Notify', fu
                 })
     };
 
-    $scope.inativarExame = function (exame) {
-        alertaConfirmar("inativar o tipo de exame")
-            .then(function (res) {
-                if (res.value) {
-                    svcExame.inativarExame(exame.idExame)
-                        .then(function (res) {
-                            exame.inativo = true;
-                            alertaSucesso("Tipo de exame inativado com sucesso.");
-                        })
-                        .catch(function (err) {
-                            alertaErroRequisicao(err);
-                        })
-                }
 
-            })
-
+    $scope.confirmarAlteracaoStatus = function (tipoExame, tipo) {
+        if (tipo == "inativar") {
+            alertaConfirmar("inativar o tipo de exame")
+                .then(function (res) {
+                    if (res.value) {
+                        $scope.alterarStatus(tipoExame, "Tipo de exame inativado com sucesso.");
+                    }
+                })
+        } else {
+            alertaConfirmar("ativar o tipo de exame")
+                .then(function (res) {
+                    if (res.value) {
+                        $scope.alterarStatus(tipoExame, "Tipo de exame ativado com sucesso.");
+                    }
+                })
+        }
     };
 
-    $scope.ativarExame = function (exame) {
-        alertaConfirmar("ativar o tipo de exame")
+    $scope.alterarStatus = function (tipoExame, mensagem) {
+        svcTipoExame.alterarStatus(tipoExame.tipoExameId)
             .then(function (res) {
-                if (res.value) {
-                    svcExame.ativarExame(exame.idExame)
-                        .then(function (res) {
-                            exame.inativo = false;
-                            alertaSucesso("Tipo de exame ativado com sucesso.");
-                        })
-                        .catch(function (err) {
-                            alertaErroRequisicao(err);
-                        })
-                }
-
+                tipoExame.inativo = !tipoExame.inativo;
+                alertaSucesso(mensagem);
             })
-
+            .catch(function (err) {
+                alertaErroRequisicao(err);
+            })
     };
-
 }]);

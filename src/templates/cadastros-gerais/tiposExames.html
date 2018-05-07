@@ -40,7 +40,7 @@
                     </p>
                 </div>
                 <div class="col-lg-12 kan-group">
-                    <button class="btn kan-btn-success d-inline-block mr-4" ng-click="openModalCadastroExame(null)">
+                    <button class="btn kan-btn-success d-inline-block mr-4" ng-click="openModalCadastroTipoExame(null)">
                         <i class="fa fa-plus fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Cadastrar novo tipo de exame."></i>
                         Cadastrar Exame
                     </button>
@@ -57,17 +57,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="exame in listaExames  | filter : search | orderBy: 'nome'">
-                            <td title="{{exame.nome}}">{{exame.nome}}</td>
-                            <td title="Status">Status</td>
+                        <tr ng-repeat="tipoExame in listaTiposExames  | filter : search | orderBy: 'nome'">
+                            <td title="{{tipoExame.nome}}">{{tipoExame.nome}}</td>
                             <td class="text-center">
-                                <span ng-show="exame.inativo">Sim</span>
-                                <span ng-show="!exame.inativo">Não</span>
+                                <span ng-show="tipoExame.inativo">Sim</span>
+                                <span ng-show="!tipoExame.inativo">Não</span>
                             </td>
                             <td class="text-center">
-                                <i class="fa fa-pencil text-primary" aria-hidden="true" title="Editar dados do tipo de exame" ng-click="updateExame(exame)"></i>
-                                <i ng-show="!exame.inativo" class="fa fa-ban text-danger" aria-hidden="true" title="Inativar tipo de exame" ng-click="inativarExame(exame)"></i>
-                                <i ng-show="exame.inativo" class="fa fa-check text-success" aria-hidden="true" title="Ativar tipo de exame" ng-click="ativarExame(exame)"></i>
+                                <i class="fa fa-pencil text-primary" aria-hidden="true" title="Editar dados do tipo de exame" ng-click="updateTipoExame(tipoExame)"></i>
+                                <i ng-show="!tipoExame.inativo" class="fa fa-ban text-danger" aria-hidden="true" title="Inativar tipo de exame" ng-click="confirmarAlteracaoStatus(tipoExame, 'inativar')"></i>
+                                <i ng-show="tipoExame.inativo" class="fa fa-check text-success" aria-hidden="true" title="Ativar tipo de exame" ng-click="confirmarAlteracaoStatus(tipoExame, 'ativar')"></i>
                             </td>
                         </tr>
                     </tbody>

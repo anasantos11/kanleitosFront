@@ -35,11 +35,11 @@ app.factory('alasFactory', function ($http) {
     };
 
     //Alterar status da ala
-    alas.alterarStatus = function(idAla){
+    alas.alterarStatus = function (idAla) {
         return $http({
             url: URL_REQ + "ala/alterarStatus",
             method: 'PUT',
-            params: {idAla: idAla},
+            params: { idAla: idAla },
             kanHeaders
         });
     };
@@ -60,7 +60,7 @@ app.factory('enfermariaFactory', function ($http) {
     };
 
     //Get Enfermarias By Ala
-    
+
     enfermarias.getEnfermariasByAlas = function (idAla, status) {
         return $http({
             url: URL_REQ + "enfermariasByAla",
@@ -70,15 +70,15 @@ app.factory('enfermariaFactory', function ($http) {
         });
     };
 
-        //Alterar status da enfermaria
-        enfermarias.alterarStatus = function(idEnfermaria){
-            return $http({
-                url: URL_REQ + "enfermaria/alterarStatus",
-                method: 'PUT',
-                params: { idEnfermaria: idEnfermaria},
-                kanHeaders
-            });
-        };
+    //Alterar status da enfermaria
+    enfermarias.alterarStatus = function (idEnfermaria) {
+        return $http({
+            url: URL_REQ + "enfermaria/alterarStatus",
+            method: 'PUT',
+            params: { idEnfermaria: idEnfermaria },
+            kanHeaders
+        });
+    };
 
     return enfermarias;
 });
@@ -262,53 +262,42 @@ app.factory("kanbanFactory", function ($http) {
     return kanban;
 });
 
-app.factory('svcExame', function ($http) {
-    var exame = {};
+app.factory('svcTipoExame', function ($http) {
+    var tipoExame = {};
     //Cadastro de Exame
-    exame.cadastrarExame = function (exame) {
+    tipoExame.cadastrarTipoExame = function (tipoExame) {
         return $http.post(
-            URL_REQ + "exame",
-            exame,
+            URL_REQ + "tipoExame",
+            tipoExame,
             kanHeaders
         )
     };
-    //Get Exames
-    exame.getExames = function () {
+
+    tipoExame.getTiposExames = function (status) {
         return $http.get(
-            URL_REQ + "exames",
-            kanHeaders
-        )
-    };
-    //Editar Exame
-    exame.updateExame = function (exame, idExame) {
-        return $http.put(
-            URL_REQ + "exame",
-            exame,
+            URL_REQ + "tiposExames",
             {
                 kanHeaders,
-                params: { idExame: idExame }
+                params: { ativo: status }
             }
         )
-    }
-    //Inativar Exame
-    exame.inativarExame = function (idExame) {
-        return $http.post(
-            URL_REQ + "inativarExame",
-            idExame,
+    };
+    tipoExame.updateTipoExame = function (tipoExame) {
+        return $http.put(
+            URL_REQ + "tipoExame",
+            tipoExame,
             kanHeaders
         )
-    }
-
-    //Ativar Exame
-    exame.ativarExame = function (idExame) {
-        return $http.post(
-            URL_REQ + "ativarExame",
-            idExame,
+    };
+    tipoExame.alterarStatus = function (idTipoExame) {
+        return $http({
+            url: URL_REQ + "tipoExame/alterarStatus",
+            method: 'PUT',
+            params: { tipoExameId: idTipoExame },
             kanHeaders
-        )
+        });
     }
-
-    return exame;
+    return tipoExame;
 });
 
 app.factory('svcIsolamento', function ($http) {
