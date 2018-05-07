@@ -1,5 +1,5 @@
 app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "$filter", "pedidoInternacaoFactory", "diagnosticosFactory", "pacienteFactory", "alasFactory", "Notify", "svcIsolamento",
-    function ($scope, $rootScope, $http, $filter, pedidoInternacaoFactory, diagnosticosFactory, pacienteFactory, alasFactory, Notify,svcIsolamento) {
+    function ($scope, $rootScope, $http, $filter, pedidoInternacaoFactory, diagnosticosFactory, pacienteFactory, alasFactory, Notify, svcIsolamento) {
 
         $scope.novoPedidoInternacao = function () {
             $scope.pedidoInternacao = {
@@ -104,11 +104,11 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                 });
         };
 
-        $scope.carregarIsolamentos = function(){
+        $scope.carregarIsolamentos = function () {
             svcIsolamento.getIsolamentos()
-            .then(function(res){
-                $scope.Isolamentos = res.data.data;
-            })
+                .then(function (res) {
+                    $scope.Isolamentos = res.data.data;
+                })
         };
 
         $scope.GetPaciente = function () {
@@ -138,7 +138,7 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                     return (obj.idDiagnostico == $scope.pedidoInternacao.idDiagnostico)
                 })[0];
 
-                if($scope.pedidoInternacao.precisaIsolamento){
+                if ($scope.pedidoInternacao.precisaIsolamento) {
                     $scope.pedidoInternacao.isolamento = $scope.Isolamentos.filter(function (obj) {
                         return (obj.idIsolamento == $scope.pedidoInternacao.idIsolamento)
                     })[0];
@@ -146,91 +146,50 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
 
                 pedidoInternacaoFactory.savePedidoInternacao($scope.pedidoInternacao)
                     .then(function (response) {
-                        if (response.data.data > 0) {
-
-                            swal('Concluído!',
-                                'Pedido realizado com sucesso',
-                                'success'
-                            );
-
-                            $scope.novoPedidoInternacao();
-                        };
-
+                        alertaSucesso("Pedido de internação realizado com sucesso.")
+                        $scope.novoPedidoInternacao();
                     })
-                    .catch((response) => {
-                        /*$scope.pedidoInternacao.paciente.dataNascimento = new Date($scope.pedidoInternacao.paciente.dataNascimento);
-                        $scope.pedidoInternacao.dataPedido = new Date($scope.pedidoInternacao.dataPedido);
-                        $scope.pedidoInternacao.dataAdmissao = new Date($scope.pedidoInternacao.dataAdmissao);*/
-
-                        if (response.status == 400) {
-                            swal(
-                                "Erro!",
-                                response.data.messages[0],
-                                "error"
-                            )
-                        } else {
-                            console.log(response.data.message);
-                            swal(
-                                "Erro!",
-                                "Desculpe, não conseguimos processar sua solicitação. Verifique os dados e tente novamente.",
-                                "error"
-                            )
-                        }
-
-                    }
-
-                    );
+                    .catch(function (err) {
+                        alertaErroRequisicao(err);
+                    });
             }
         }
         $scope.validarDadosPedidoInternacao = function () {
             if ($scope.pedidoInternacao.paciente.numProntuario <= 0) {
-                swal(
-                    'Erro!',
-                    'Digite o número do prontuário!',
-                    'error'
-                )
+                alertaPreenchimentoCampo("número do prontuário");
                 return;
             }
-            if ($scope.pedidoInternacao.aih == "") {
-                swal(
-                    'Erro!',
-                    'Digite o número do aih!',
-                    'error'
-                )
+            if (isNullOrEmpty($scope.pedidoInternacao.aih)) {
+                alertaPreenchimentoCampo("aih");
                 return;
             }
-            if ($scope.pedidoInternacao.idDiagnostico == undefined) {
-                swal(
-                    'Erro!',
-                    'Selecione um diagnóstico!',
-                    'error'
-                )
+            if (isNullOrEmpty($scope.pedidoInternacao.idAla)) {
+                alertaPreenchimentoCampo("ala");
                 return;
             }
-            if ($scope.pedidoInternacao.idAla == undefined) {
-                swal(
-                    'Erro!',
-                    'Selecione uma Ala!',
-                    'error'
-                )
+            if (isNullOrEmpty($scope.pedidoInternacao.idDiagnostico)) {
+                alertaPreenchimentoCampo("diagnóstico");
                 return;
             }
-            if ($scope.pedidoInternacao.dataAdmissao == "") {
-                swal(
-                    'Erro!',
-                    'Insira a data de admissão!',
-                    'error'
-                )
+            if (isNullOrEmpty($scope.pedidoInternacao.dataAdmissao)) {
+                alertaPreenchimentoCampo("data de admissão");
                 return;
             }
-            if ($scope.pedidoInternacao.medicoResponsavel == "" && $scope.pedidoInternacao.residenteResponsavel == "") {
-                swal(
-                    'Erro!',
-                    'Deve informar ao menos um responsável',
-                    'error'
-                )
+            if (isNullOrEmpty($scope.pedidoInternacao.medicoResponsavel)) {
+                alertaPreenchimentoCampo("médico responsável");
                 return;
             }
+
+            if (isNullOrEmpty($scope.pedidoInternacao.residenteResponsavel)) {
+                alertaPreenchimentoCampo("residente responsável");
+                return;
+            }
+
+            if ($scope.pedidoInternacao.precisaIsolamento && isNullOrEmpty($scope.pedidoInternacao.idIsolamento)) {
+                alertaPreenchimentoCampo("isolamento");
+                return;
+            }
+
             return true;
         }
 

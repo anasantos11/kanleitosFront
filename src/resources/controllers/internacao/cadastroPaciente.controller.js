@@ -15,7 +15,7 @@ app.controller('ModalCadastroController', ["$scope", "$http", "$filter", "pacien
                 $scope.paciente.dataNascimento = moment($scope.paciente.dataNascimento).format();
                 pacienteFactory.savePaciente($scope.paciente)
                     .then(function (response) {
-                        alertaSucesso("Cadastro realizado com sucesso.");
+                        alertaSucesso("Cadastro do paciente realizado com sucesso.");
                         return $scope.closeThisDialog($scope.paciente);
                     })
                     .catch(function (err) {
@@ -25,27 +25,27 @@ app.controller('ModalCadastroController', ["$scope", "$http", "$filter", "pacien
         }
 
         $scope.validarDadosPaciente = function () {
-            if (!$scope.paciente.numProntuario) {
+            if (isNullOrEmpty($scope.paciente.numProntuario)) {
                 alertaPreenchimentoCampo("número do prontuário");
                 return;
             }
-            if (!$scope.paciente.nomePaciente) {
+            if (isNullOrEmpty($scope.paciente.nomePaciente)) {
                 alertaPreenchimentoCampo("nome do paciente");
                 return;
             }
-            if (!$scope.paciente.nomeMae) {
+            if (isNullOrEmpty($scope.paciente.nomeMae)) {
                 alertaPreenchimentoCampo("nome da mãe do paciente");
                 return;
             }
-            if (!$scope.paciente.dataNascimento) {
+            if (isNullOrEmpty($scope.paciente.dataNascimento)) {
                 alertaPreenchimentoCampo("data de nascimento");
                 return;
             }
-            if (!$scope.paciente.idade) {
+            if (isNullOrEmpty($scope.paciente.idade)) {
                 alertaPreenchimentoCampo("idade");
                 return;
             }
-            if (!$scope.paciente.genero) {
+            if (isNullOrEmpty($scope.paciente.genero)) {
                 alertaPreenchimentoCampo("sexo");
                 return;
             }
