@@ -8,16 +8,29 @@ app.controller('AlasController', ['$scope', '$state', 'alasFactory', 'Notify', f
             })
     };
 
-    $scope.alterarStatus = function (ala, tipo) {
+    $scope.confirmarAlteracaoStatus = function (ala, tipo) {
+        if (tipo == "inativar") {
+            alertaConfirmar("inativar ala, suas enfermarias e leitos. ")
+                .then(function (res) {
+                    if (res.value) {
+                        $scope.alterarStatus(ala, "Ala inativada com sucesso.");
+                    }
+                })
+        } else {
+            alertaConfirmar("ativar ala, suas enfermarias e leitos. ")
+                .then(function (res) {
+                    if (res.value) {
+                        $scope.alterarStatus(ala, "Ala ativada com sucesso.");
+                    }
+                })
+        }
+    };
+
+    $scope.alterarStatus = function (ala, mensagem) {
         alasFactory.alterarStatus(ala.idAla)
             .then(function (res) {
-                if (tipo == "inativar") {
-                    ala.inativa = true;
-                    alertaSucesso("Ala inativada com sucesso.");
-                } else {
-                    ala.inativa = false;
-                    alertaSucesso("Ala ativada com sucesso.");
-                }
+                ala.inativa = !ala.inativa;
+                alertaSucesso(mensagem);
             })
             .catch(function (err) {
                 alertaErroRequisicao(err);

@@ -53,8 +53,8 @@
                                 <span ng-show="!ala.inativa">Não</span>
                             </td>
                             <td class="text-center">
-                                <i ng-show="!ala.inativa" class="fa fa-ban text-danger" aria-hidden="true" title="Inativar ala" ng-click="alterarStatus(ala, 'inativar')"></i>
-                                <i ng-show="ala.inativa" class="fa fa-check text-success" aria-hidden="true" title="Ativar ala" ng-click="alterarStatus(ala, 'ativar')"></i>
+                                <i ng-show="!ala.inativa" class="fa fa-ban text-danger" aria-hidden="true" title="Inativar ala" ng-click="confirmarAlteracaoStatus(ala, 'inativar')"></i>
+                                <i ng-show="ala.inativa" class="fa fa-check text-success" aria-hidden="true" title="Ativar ala" ng-click="confirmarAlteracaoStatus(ala, 'ativar')"></i>
                             </td>
                         </tr>
                     </tbody>
