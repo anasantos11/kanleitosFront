@@ -4,9 +4,9 @@ var HJK = "https://kanleitoshjk-service.azurewebsites.net/";
 
 
 
-//var URL_REQ = "http://localhost:9000/kanleitos/";
+var URL_REQ = "http://localhost:9000/kanleitos/";
 
-URL_REQ = DEV
+//URL_REQ = DEV
 
 if (local == "dev-kanleitos.azurewebsites.net")
     URL_REQ = DEV;
@@ -37,7 +37,7 @@ app.factory('alasFactory', function ($http) {
     //Alterar status da ala
     alas.alterarStatus = function(idAla){
         return $http({
-            url: URL_REQ + "alas/alterarStatus",
+            url: URL_REQ + "ala/alterarStatus",
             method: 'PUT',
             params: {idAla: idAla},
             kanHeaders

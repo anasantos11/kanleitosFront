@@ -1,21 +1,21 @@
-app.controller('AlasController', ['$scope', '$state', 'svcAla', 'Notify', function ($scope, $state, svcAla, Notify) {
+app.controller('AlasController', ['$scope', '$state', 'alasFactory', 'Notify', function ($scope, $state, alasFactory, Notify) {
 
 
-    $scope.carregarAla = function () {
-        svcAla.geAla()
+    $scope.carregarAlas = function () {
+        alasFactory.getAlas(false)
             .then(function (res) {
                 $scope.listaAlas = res.data.data;
             })
     };
 
-    $scope.alterarStatus = function (ala) {
-        svcAla.alterarStatus(ala.idAla)
+    $scope.alterarStatus = function (ala, tipo) {
+        alasFactory.alterarStatus(ala.idAla)
             .then(function (res) {
                 if (tipo == "inativar") {
-                    ala.inativo = true;
+                    ala.inativa = true;
                     alertaSucesso("Ala inativada com sucesso.");
                 } else {
-                    ala.inativo = false;
+                    ala.inativa = false;
                     alertaSucesso("Ala ativada com sucesso.");
                 }
             })
