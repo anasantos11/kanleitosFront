@@ -1,3 +1,7 @@
+.title-expand:hover {
+    background-color: #cfd2d6;
+    cursor: pointer;
+}
 .table-responsive {
     display: block;
     width: 100%;
@@ -171,6 +175,9 @@ tbody {
     color: #28ad98;
     padding-left: 0.625rem;
 }
+.text-kan {
+    color: #28ad98;
+}
 
 button:disabled, button[disabled]>i {
     cursor: not-allowed;
@@ -316,8 +323,8 @@ fieldset.kan-group {
 }
 
 hr {
-    color: #2797e9;
-    background-color: #2797e9;
+    color: #28ad98;
+    background-color:#28ad98;
     height: 1px;
 }
 

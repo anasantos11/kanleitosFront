@@ -86,10 +86,11 @@ app.factory('enfermariaFactory', function ($http) {
 app.factory('leitoFactory', function ($http) {
     var leitos = {};
     //Get Leitos
-    leitos.getLeitos = function () {
+    leitos.getLeitos = function (status) {
         return $http({
             url: URL_REQ + "leitos",
             method: 'GET',
+            params: { ativo: status },
             kanHeaders
         });
     };

@@ -1,118 +1,127 @@
-<fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
-    <h6 class="m-0">Filtros</h6>
-    <hr class="mt-1 mb-1">
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
-        <label>Ala
-        </label>
-        <select ng-model="model.idAla" class="form-control form-control-sm">
-            <option value="">Todas</option>
-            <option ng-repeat="ala in Alas" value="{{ala.idAla}}">{{ala.nomeAla}}</option>
-        </select>
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
-        <label>Enfermaria
-        </label>
-        <select ng-model="model.idEnfermaria" class="form-control form-control-sm">
-            <option value="">Todas</option>
-            <option ng-repeat="enfermaria in Enfermarias" value="{{enfermaria.idEnfermaria}}">{{enfermaria.nomeEnfermaria}}</option>
-        </select>
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
-        <label>Leito
-        </label>
-        <select ng-model="model.idLeito" class="form-control form-control-sm">
-            <option value="">Todos</option>
-            <option ng-repeat="leito in Leitos" value="{{leito.idLeito}}">{{leito.nomeLeito}}</option>
-        </select>
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
-        <label>Médico(a) Responsável
-        </label>
-        <input type="text" class="form-control form-control-sm" ng-model="model.medicoResponsavel">
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
-        <label>Residente Responsável
-        </label>
-        <input type="text" class="form-control form-control-sm" ng-model="model.residenteResponsavel">
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
-        <label>Isolamento
-        </label>
-        <select ng-model="model.idIsolamento" class="form-control form-control-sm">
-            <option value="">Todos</option>
-            <option ng-repeat="isolamento in Isolamentos" value="{{isolamento.idIsolamento}}">{{isolamento.nome}}</option>
-        </select>
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
-        <label>Nome do paciente
-        </label>
-        <input type="text" class="form-control form-control-sm" ng-model="model.nomePaciente">
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
-        <label>Prontuário
-        </label>
-        <input type="number" class="form-control form-control-sm" ng-model="model.numProntuario">
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
-        <label>Data Admissão
-        </label>
-        <input type="date" class="form-control form-control-sm" ng-model="model.dataAdmissao">
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
-        <label>Previsão Alta
-        </label>
-        <input type="date" class="form-control form-control-sm" ng-model="model.previsaoAlta">
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="isPedido">
-        <label>Tempo Aguardando
-        </label>
-        <select ng-model="model.classificacao" class="form-control form-control-sm">
-            <option value="">Sem filtro</option>
-            <option value="verde" class="text-success">Abaixo de 12 horas</option>
-            <option value="amarelo" class="text-warning">De 12 a 24 horas</option>
-            <option value="vermelho" class="text-danger">Acima de 24 horas</option>
-        </select>
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-show="isPedido && !ocultaStatus" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
-        <label>Status
-        </label>
-        <select ng-model="model.status" class="form-control form-control-sm">
-            <option value="">Todos</option>
-            <option value="Cancelado">Cancelado</option>
-            <option value="Concluído">Concluído</option>
-            <option value="Pendente" selected>Pendente</option>
-        </select>
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
-        <label>Tempo Internado
-        </label>
-        <select ng-model="model.classificacao" class="form-control form-control-sm">
-            <option value="">Sem filtro</option>
-            <option value="verde" class="text-success">Abaixo de 6 dias</option>
-            <option value="amarelo" class="text-warning">De 6 a 10 dias</option>
-            <option value="vermelho" class="text-danger">Acima de 10 dias</option>
-        </select>
-    </div>
-    <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-show="!isPedido && !ocultaStatus" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
-        <label>Status
-        </label>
-        <select ng-model="model.status" class="form-control form-control-sm">
-            <option value="">Todos</option>
-            <option value="Alta">Alta</option>
-            <option value="Em Andamento" selected>Em Andamento</option>
-            <option value="Óbito">Óbito</option>
-            <option value="PAD">PAD</option>
-            <option value="Transferência">Transferência</option>
-        </select>
-    </div>
-    <div class="col-12 col-sm-12  kan-group float-right text-right pb-0" ng-class="ocultaStatus ? 'col-md-3 col-lg-4 col-xl-3' : 'col-md-12 col-lg-12 col-xl-12'">
-        <button class="btn kan-btn-success mr-2 d-inline-block" ng-class="{'mt-2' : ocultaStatus}" ng-click="filtrarDados()">
-            <i class="fa fa-search fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Filtrar pesquisa."></i>
-            Pesquisar
-        </button>
-        <button class="btn kan-btn-danger d-inline-block" ng-class="{'mt-2' : ocultaStatus}" ng-click="limparFiltros()">
-            <i class="fa fa-eraser fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Limpar pesquisa."></i>
-            Limpar filtros
-        </button>
-    </div>
+<fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group mb-2" ng-init="expandido == true">
+    <fieldset class="title-expand">
+        <h6 class="m-0" data-toggle="collapse" data-target="#camposFiltros" aria-expanded="false" aria-controls="camposFiltros" ng-click="expandido = !expandido">
+            <i class="fa fa-lg text-kan font-weight-bold" ng-class="expandido ? 'fa-angle-double-up' : 'fa-angle-double-down'" aria-hidden="true"></i>
+            Filtros (clique para
+            <span class="font-weight-bold text-kan">{{expandido ? 'contrair' : 'expandir' }}</span>)
+        </h6>
+        <hr class="mt-1 mb-1">
+    </fieldset>
+
+    <fieldset class="collapse" id="camposFiltros">
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+            <label>Ala
+            </label>
+            <select ng-model="model.idAla" class="form-control form-control-sm">
+                <option value="">Todas</option>
+                <option ng-repeat="ala in Alas" value="{{ala.idAla}}">{{ala.nomeAla}}</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
+            <label>Enfermaria
+            </label>
+            <select ng-model="model.idEnfermaria" class="form-control form-control-sm">
+                <option value="">Todas</option>
+                <option ng-repeat="enfermaria in Enfermarias" value="{{enfermaria.idEnfermaria}}">{{enfermaria.nomeEnfermaria}}</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
+            <label>Leito
+            </label>
+            <select ng-model="model.idLeito" class="form-control form-control-sm">
+                <option value="">Todos</option>
+                <option ng-repeat="leito in Leitos" value="{{leito.idLeito}}">{{leito.nomeLeito}}</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+            <label>Médico(a) Responsável
+            </label>
+            <input type="text" class="form-control form-control-sm" ng-model="model.medicoResponsavel">
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+            <label>Residente Responsável
+            </label>
+            <input type="text" class="form-control form-control-sm" ng-model="model.residenteResponsavel">
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+            <label>Isolamento
+            </label>
+            <select ng-model="model.idIsolamento" class="form-control form-control-sm">
+                <option value="">Todos</option>
+                <option ng-repeat="isolamento in Isolamentos" value="{{isolamento.idIsolamento}}">{{isolamento.nome}}</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+            <label>Nome do paciente
+            </label>
+            <input type="text" class="form-control form-control-sm" ng-model="model.nomePaciente">
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
+            <label>Prontuário
+            </label>
+            <input type="number" class="form-control form-control-sm" ng-model="model.numProntuario">
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
+            <label>Data Admissão
+            </label>
+            <input type="date" class="form-control form-control-sm" ng-model="model.dataAdmissao">
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
+            <label>Previsão Alta
+            </label>
+            <input type="date" class="form-control form-control-sm" ng-model="model.previsaoAlta">
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="isPedido">
+            <label>Tempo Aguardando
+            </label>
+            <select ng-model="model.classificacao" class="form-control form-control-sm">
+                <option value="">Sem filtro</option>
+                <option value="verde" class="text-success">Abaixo de 12 horas</option>
+                <option value="amarelo" class="text-warning">De 12 a 24 horas</option>
+                <option value="vermelho" class="text-danger">Acima de 24 horas</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-show="isPedido && !ocultaStatus" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
+            <label>Status
+            </label>
+            <select ng-model="model.status" class="form-control form-control-sm">
+                <option value="">Todos</option>
+                <option value="Cancelado">Cancelado</option>
+                <option value="Concluído">Concluído</option>
+                <option value="Pendente" selected>Pendente</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group" ng-show="!isPedido">
+            <label>Tempo Internado
+            </label>
+            <select ng-model="model.classificacao" class="form-control form-control-sm">
+                <option value="">Sem filtro</option>
+                <option value="verde" class="text-success">Abaixo de 6 dias</option>
+                <option value="amarelo" class="text-warning">De 6 a 10 dias</option>
+                <option value="vermelho" class="text-danger">Acima de 10 dias</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-xl-3 kan-group" ng-show="!isPedido && !ocultaStatus" ng-class="isPedido && !ocultaStatus ? 'col-lg-2' : 'col-lg-3'">
+            <label>Status
+            </label>
+            <select ng-model="model.status" class="form-control form-control-sm">
+                <option value="">Todos</option>
+                <option value="Alta">Alta</option>
+                <option value="Em Andamento" selected>Em Andamento</option>
+                <option value="Óbito">Óbito</option>
+                <option value="PAD">PAD</option>
+                <option value="Transferência">Transferência</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-12  kan-group float-right text-right pb-0" ng-class="ocultaStatus ? 'col-md-3 col-lg-4 col-xl-3' : 'col-md-12 col-lg-12 col-xl-12'">
+            <button class="btn kan-btn-success mr-2 d-inline-block" ng-class="{'mt-2' : ocultaStatus}" ng-click="filtrarDados()">
+                <i class="fa fa-search fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Filtrar pesquisa."></i>
+                Pesquisar
+            </button>
+            <button class="btn kan-btn-danger d-inline-block" ng-class="{'mt-2' : ocultaStatus}" ng-click="limparFiltros()">
+                <i class="fa fa-eraser fa-1-x kan-icon-success text-light p-0" data-toggle="tooltip" data-placement="bottom" title="Limpar pesquisa."></i>
+                Limpar filtros
+            </button>
+        </div>
+    </fieldset>
 </fieldset>

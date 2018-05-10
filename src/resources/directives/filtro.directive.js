@@ -46,6 +46,10 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
                 }, 100);
             };
 
+            scope.destacarTitulo = function(){
+                var element = document.getElementById('tituloFiltros').style.background = "#d9dde08a";
+            };
+
             scope.filtrarDados();
 
         }
