@@ -38,6 +38,18 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			}
 
 		})
+		.state("dashboard", {
+			parent: "kanleitos",
+			url: "/dashboard",
+			views: {
+				"contentApp@kanleitos": {
+					templateUrl: "templates/relatorios/dashboad.html",
+					controller: "DashboardController",
+					controllerAs: "vm"
+				}
+			}
+
+		})
 		.state("cadastroPaciente", {
 			parent: "kanleitos",
 			url: "/cadastroPaciente",

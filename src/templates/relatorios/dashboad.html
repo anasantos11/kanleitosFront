@@ -1,0 +1,33 @@
+<ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <span>Página Inicial</span>
+        </li>
+        <li class="breadcrumb-item active">
+            <span>Dashboard</span>
+        </li>
+        <li class="text-right">
+            <button class="btn kan-btn-success kan-btn-sm">
+                <i class="fa fa-refresh" tooltips tooltip-side="left" tooltip-template="Pressione para atualizar os dados."
+                    ng-class="{'rotate' : !vm.canShow}"></i>
+            </button>
+        </li>
+    </ol>
+
+<div class="row m-0">
+    <div class="col-6 pl-0">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Quantidade de Leitos por Status</h5>
+                <p class="card-text">Quantidade de leitos em cada status que o sistema possui.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 pr-0">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Taxa de ocupação por ala e enfermaria</h5>
+                <p class="card-text">Quantidade de leitos em cada ala e enfermaria com status ocupados, livres e indisponíveis</p>
+            </div>
+        </div>
+    </div>
+</div>
