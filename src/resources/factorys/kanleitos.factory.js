@@ -579,9 +579,9 @@ app.factory('svcObservacaoInternacao', function ($http) {
     return observacaoInternacao;
 });
 
-app.factory('svcRelatorio', function ($http) {
+app.factory('svcDashboard', function ($http) {
     return {
-        taxaOcupacaoAlas: function(){
+        taxaOcupacaoAlasEnf: function(){
             $http.get(
                 URL_REQ + "taxaOcupacao/alas",
                 kanHeaders
