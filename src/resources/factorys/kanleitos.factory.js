@@ -578,3 +578,20 @@ app.factory('svcObservacaoInternacao', function ($http) {
 
     return observacaoInternacao;
 });
+
+app.factory('svcRelatorio', function ($http) {
+    return {
+        taxaOcupacaoAlas: function(){
+            $http.get(
+                URL_REQ + "taxaOcupacao/alas",
+                kanHeaders
+            )
+        },
+        taxaOcupacaoGenero: function(){
+            $http.get(
+                URL_REQ + "taxaOcupacao/genero",
+                kanHeaders
+            )
+        }
+    }
+});
