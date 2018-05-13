@@ -1,8 +1,6 @@
 app.controller('DashboardController',
     function ($filter, alasFactory, svcDashboard) {
         var vm = this;
-        vm.canShow = true;
-
         vm.colors = ['#0D91BC', '#09607C', '#12C3FC', '#042F3D', '#10AFE2'];
         alasFactory.getAlas(true)
             .then(function (res) {

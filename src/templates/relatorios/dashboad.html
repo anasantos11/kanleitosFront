@@ -6,8 +6,9 @@
         <span>Dashboard</span>
     </li>
     <li class="text-right">
-        <button class="btn kan-btn-success kan-btn-sm">
-            <i class="fa fa-refresh" tooltips tooltip-side="left" tooltip-template="Pressione para atualizar os dados." ng-class="{'rotate' : !vm.canShow}"></i>
+        <button class="btn kan-btn-success kan-btn-sm" ng-click="vm.atualizarGraficos()">
+            <i if-loading class="fa fa-refresh" tooltips tooltip-side="left" tooltip-template="Pressione para atualizar os dados."></i>
+            Atualizar
         </button>
     </li>
 </ol>

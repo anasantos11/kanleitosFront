@@ -12,9 +12,9 @@ function ifLoading($http) {
 
             function toggleElement(loading) {
                 if (loading) {
-                    elem.show();
+                    elem.addClass('rotate');
                 } else {
-                    elem.hide();
+                    elem.removeClass('rotate');
                 }
             }
 
