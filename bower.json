@@ -24,6 +24,7 @@
     "angular-moment": "^1.2.0",
     "sweetalert2": "^7.18.0",
     "angular-chart.js": "^1.1.1",
-    "chart.js": "^2.7.2"
+    "chart.js": "^2.7.2",
+    "chartjs-plugin-datalabels": "^0.3.0"
   }
 }

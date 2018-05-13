@@ -12,24 +12,24 @@
     </li>
 </ol>
 
-<div class="row m-0">
-    <div class="col-6 pl-0">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Quantidade de Leitos por Status</h5>
-                <p class="card-text">Quantidade de leitos em cada status que o sistema possui.</p>
+<div class="row bg-white m-0">
+    <div class="card border-0">
+        <div class="card-body">
+            <div class="col-12 kan-group">
+                <h5 class=" kan-title">Dashboard</h5>
+                <label>Ala
+                </label>
+                <select ng-model="vm.alaSelecionada" class="form-control form-control-sm col-12 col-sm-12 col-md-5 col-lg-5 col-xl-4" ng-change="vm.atualizarGraficos()"
+                    ng-options="ala.nomeAla for ala in vm.alas track by ala.idAla"></select>
             </div>
-        </div>
-    </div>
-    <div class="col-6 pr-0">
-        <div class="card">
-            <div class="card-body">
-                <h6 class="card-title">Quantidade de leitos por disponibilidade em cada enfermaria de uma determinada ala</h6>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
-                    <label>Ala
-                    </label>
-                    <select ng-model="vm.alaSelecionada" class="form-control form-control-sm" ng-change="vm.carregarTaxaOcupacaoAlasEnf(vm.alaSelecionada)" ng-options="ala.nomeAla for ala in vm.alas track by ala.idAla"></select>
-                </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
+                <h6 class="card-title">Leitos por status</h6>
+                <canvas id="pieTotalVend" class="chart chart-bar" chart-data="vm.taxaStatusLeito.data" chart-labels="vm.taxaStatusLeito.labels"
+                    chart-colors="vm.colors" chart-options="vm.taxaStatusLeito.options">
+                </canvas>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
+                <h6 class="card-title">Disponibilidade dos leitos por enfermaria</h6>
                 <canvas id="bar" class="chart chart-bar chartjs-render-monitor" chart-colors="vm.ocupacaoAlas.colors" chart-data="vm.ocupacaoAlas.data"
                     chart-labels="vm.ocupacaoAlas.labels" chart-series="vm.ocupacaoAlas.series" chart-options="vm.ocupacaoAlas.options"
                     chart-dataset-override="vm.ocupacaoAlas.datasetOverride" </canvas>

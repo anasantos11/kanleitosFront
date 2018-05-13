@@ -581,6 +581,15 @@ app.factory('svcObservacaoInternacao', function ($http) {
 
 app.factory('svcDashboard', function ($http) {
     return {
+        taxaStatusLeito: function (idAla) {
+            return $http.get(
+                URL_REQ + "taxaOcupacao/statusLeitos",
+                {
+                    kanHeaders,
+                    params: { idAla: idAla }
+                }
+            )
+        },
         taxaOcupacaoAlasEnf: function (idAla) {
             return $http.get(
                 URL_REQ + "taxaOcupacao/alas",
