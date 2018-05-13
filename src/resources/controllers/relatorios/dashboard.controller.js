@@ -1,7 +1,7 @@
 app.controller('DashboardController',
     function ($filter, alasFactory, svcDashboard) {
         var vm = this;
-        vm.colors = ['#0D91BC', '#09607C', '#12C3FC', '#042F3D', '#10AFE2'];
+        vm.colors = ['#11B0F6', '#28a745', '#ffc107', '#FC5E90', '#dc3545', '052EFB','445090'];
         alasFactory.getAlas(true)
             .then(function (res) {
                 vm.alas = res.data.data
@@ -12,6 +12,9 @@ app.controller('DashboardController',
 
         vm.graficoTaxa = function (objeto, dados) {
             objeto.options = {
+                legend: {
+                    display: true,
+                },
                 plugins: {
                     datalabels: {
                         color: 'black',
