@@ -1,17 +1,16 @@
 <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <span>Página Inicial</span>
-        </li>
-        <li class="breadcrumb-item active">
-            <span>Dashboard</span>
-        </li>
-        <li class="text-right">
-            <button class="btn kan-btn-success kan-btn-sm">
-                <i class="fa fa-refresh" tooltips tooltip-side="left" tooltip-template="Pressione para atualizar os dados."
-                    ng-class="{'rotate' : !vm.canShow}"></i>
-            </button>
-        </li>
-    </ol>
+    <li class="breadcrumb-item">
+        <span>Página Inicial</span>
+    </li>
+    <li class="breadcrumb-item active">
+        <span>Dashboard</span>
+    </li>
+    <li class="text-right">
+        <button class="btn kan-btn-success kan-btn-sm">
+            <i class="fa fa-refresh" tooltips tooltip-side="left" tooltip-template="Pressione para atualizar os dados." ng-class="{'rotate' : !vm.canShow}"></i>
+        </button>
+    </li>
+</ol>
 
 <div class="row m-0">
     <div class="col-6 pl-0">
@@ -25,8 +24,15 @@
     <div class="col-6 pr-0">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Taxa de ocupação por ala e enfermaria</h5>
-                <p class="card-text">Quantidade de leitos em cada ala e enfermaria com status ocupados, livres e indisponíveis</p>
+                <h6 class="card-title">Quantidade de leitos por disponibilidade em cada enfermaria de uma determinada ala</h6>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
+                    <label>Ala
+                    </label>
+                    <select ng-model="vm.alaSelecionada" class="form-control form-control-sm" ng-change="vm.carregarTaxaOcupacaoAlasEnf(vm.alaSelecionada)" ng-options="ala.nomeAla for ala in vm.alas track by ala.idAla"></select>
+                </div>
+                <canvas id="bar" class="chart chart-bar chartjs-render-monitor" chart-colors="vm.ocupacaoAlas.colors" chart-data="vm.ocupacaoAlas.data"
+                    chart-labels="vm.ocupacaoAlas.labels" chart-series="vm.ocupacaoAlas.series" chart-options="vm.ocupacaoAlas.options"
+                    chart-dataset-override="vm.ocupacaoAlas.datasetOverride" </canvas>
             </div>
         </div>
     </div>

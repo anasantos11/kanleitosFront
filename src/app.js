@@ -18,7 +18,8 @@ var app = angular.module("kanleitos", [
 	'ngAnimate',
 	"ngDialog",
 	"720kb.tooltips",
-	"angularMoment"]);
+	"angularMoment",
+	'chart.js']);
 
 
 app.config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
