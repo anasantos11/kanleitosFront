@@ -13,11 +13,11 @@
     </li>
 </ol>
 
-<div class="row bg-white m-0">
+<div class="row bg-white m-0 mb-3">
     <div class="card border-0">
         <div class="card-body">
             <div class="col-12 kan-group">
-                <h5 class=" kan-title">Dashboard</h5>
+                <h5 class=" kan-title">Relatórios por ala</h5>
                 <label>Ala
                 </label>
                 <select ng-model="vm.alaSelecionada" class="form-control form-control-sm col-12 col-sm-12 col-md-5 col-lg-5 col-xl-4" ng-change="vm.atualizarGraficos()"
@@ -27,14 +27,14 @@
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
                     <h6 class="card-title">Leitos por status</h6>
                     <p ng-show="vm.taxaStatusLeito.exibeMensagem">{{vm.mensagemSemDados}}</p>
-                    <canvas id="pieTotalVend" class="chart chart-pie" chart-data="vm.taxaStatusLeito.data" chart-labels="vm.taxaStatusLeito.labels"
-                        chart-colors="vm.colors" chart-options="vm.taxaStatusLeito.options">
+                    <canvas class="chart chart-pie" chart-data="vm.taxaStatusLeito.data" chart-labels="vm.taxaStatusLeito.labels" chart-colors="vm.colors"
+                        chart-options="vm.taxaStatusLeito.options">
                     </canvas>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
                     <h6 class="card-title">Disponibilidade dos leitos por enfermaria</h6>
                     <p ng-show="vm.ocupacaoAlas.exibeMensagem">{{vm.mensagemSemDados}}</p>
-                    <canvas id="bar" class="chart chart-bar chartjs-render-monitor" chart-colors="vm.ocupacaoAlas.colors" chart-data="vm.ocupacaoAlas.data"
+                    <canvas class="chart chart-bar chartjs-render-monitor" chart-colors="vm.ocupacaoAlas.colors" chart-data="vm.ocupacaoAlas.data"
                         chart-labels="vm.ocupacaoAlas.labels" chart-series="vm.ocupacaoAlas.series" chart-options="vm.ocupacaoAlas.options"
                         chart-dataset-override="vm.ocupacaoAlas.datasetOverride" </canvas>
                 </div>
@@ -44,6 +44,23 @@
                 <p ng-show="vm.taxaTipoPendenciaInternacao.exibeMensagem">{{vm.mensagemSemDados}}</p>
                 <canvas class="chart chart-pie" chart-data="vm.taxaTipoPendenciaInternacao.data" chart-labels="vm.taxaTipoPendenciaInternacao.labels"
                     chart-colors="vm.colors" chart-options="vm.taxaTipoPendenciaInternacao.options">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row bg-white m-0 mb-3">
+    <div class="card border-0">
+        <div class="card-body">
+            <div class="col-12 kan-group">
+                <h5 class=" kan-title">Relatórios gerais</h5>
+            </div>
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 kan-group">
+                <h6 class="card-title">Pacientes internados por gênero</h6>
+                <p ng-show="vm.ocupacaoGenero.exibeMensagem">{{vm.mensagemSemDados}}</p>
+                <canvas class="chart chart-pie" chart-data="vm.ocupacaoGenero.data" chart-labels="vm.ocupacaoGenero.labels" chart-colors="vm.colors"
+                    chart-options="vm.ocupacaoGenero.options">
                 </canvas>
             </div>
         </div>

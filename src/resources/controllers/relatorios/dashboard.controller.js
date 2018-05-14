@@ -92,6 +92,17 @@ app.controller('DashboardController',
         vm.carregarTaxaOcupacaoGenero = function () {
             svcDashboard.taxaOcupacaoGenero()
                 .then(function (res) {
+                    vm.ocupacaoGenero = {
+                        exibeMensagem: false,
+                        data: [],
+                        labels: []
+                    };
+                    if (res.data.data.length > 0) {
+                        vm.graficoTaxa(vm.ocupacaoGenero, res.data.data);
+                    } else {
+                        vm.ocupacaoGenero.exibeMensagem = true;
+                    }
+
                 })
         };
 
@@ -143,6 +154,7 @@ app.controller('DashboardController',
             vm.carregarTaxaOcupacaoAlasEnf(vm.alaSelecionada);
             vm.carregarTaxaStatusLeito(vm.alaSelecionada);
             vm.carregarTaxaTipoPendenciaInternacao(vm.alaSelecionada);
+            vm.carregarTaxaOcupacaoGenero();
         }
 
     });
