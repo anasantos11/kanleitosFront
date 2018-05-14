@@ -599,6 +599,15 @@ app.factory('svcDashboard', function ($http) {
                 }
             )
         },
+        taxaTipoPendenciaInternacao: function (idAla) {
+            return $http.get(
+                URL_REQ + "taxaOcupacao/tipoPendenciaInternacao",
+                {
+                    kanHeaders,
+                    params: { idAla: idAla }
+                }
+            )
+        },
         taxaOcupacaoGenero: function () {
             return $http.get(
                 URL_REQ + "taxaOcupacao/genero",

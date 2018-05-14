@@ -1,7 +1,8 @@
 app.controller('DashboardController',
     function ($filter, alasFactory, svcDashboard) {
         var vm = this;
-        vm.colors = ['#11B0F6', '#28a745', '#ffc107', '#FC5E90', '#dc3545', '052EFB','445090'];
+        vm.mensagemSemDados = "Sem dados para serem exibidos no gráfico.";
+        vm.colors = ['#11B0F6', '#28a745', '#ffc107', '#FC5E90', '#dc3545', '052EFB', '445090'];
         alasFactory.getAlas(true)
             .then(function (res) {
                 vm.alas = res.data.data
@@ -40,11 +41,16 @@ app.controller('DashboardController',
             svcDashboard.taxaStatusLeito(ala.idAla)
                 .then(function (res) {
                     vm.taxaStatusLeito = {
+                        exibeMensagem: false,
                         data: [],
                         labels: []
                     };
-                    if (res.data.data.length > 0)
+                    if (res.data.data.length > 0) {
                         vm.graficoTaxa(vm.taxaStatusLeito, res.data.data);
+                    } else {
+                        vm.taxaStatusLeito.exibeMensagem = true;
+                    }
+
                 })
         };
 
@@ -52,12 +58,34 @@ app.controller('DashboardController',
             svcDashboard.taxaOcupacaoAlasEnf(ala.idAla)
                 .then(function (res) {
                     vm.ocupacaoAlas = {
+                        exibeMensagem: false,
                         data: [],
                         labels: [],
                         series: [],
                     };
-                    if (res.data.data.length > 0)
-                        vm.graficoOcupacaoAlas(res.data.data)
+                    if (res.data.data.length > 0) {
+                        vm.graficoOcupacaoAlas(res.data.data);
+                    } else {
+                        vm.ocupacaoAlas.exibeMensagem = true;
+                    }
+
+                })
+        };
+
+        vm.carregarTaxaTipoPendenciaInternacao = function (ala) {
+            svcDashboard.taxaTipoPendenciaInternacao(ala.idAla)
+                .then(function (res) {
+                    vm.taxaTipoPendenciaInternacao = {
+                        exibeMensagem: false,
+                        data: [],
+                        labels: []
+                    };
+                    if (res.data.data.length > 0) {
+                        vm.graficoTaxa(vm.taxaTipoPendenciaInternacao, res.data.data);
+                    } else {
+                        vm.taxaTipoPendenciaInternacao.exibeMensagem = true;
+                    }
+
                 })
         };
 
@@ -114,6 +142,7 @@ app.controller('DashboardController',
         vm.atualizarGraficos = function () {
             vm.carregarTaxaOcupacaoAlasEnf(vm.alaSelecionada);
             vm.carregarTaxaStatusLeito(vm.alaSelecionada);
+            vm.carregarTaxaTipoPendenciaInternacao(vm.alaSelecionada);
         }
 
     });
