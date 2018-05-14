@@ -613,6 +613,12 @@ app.factory('svcDashboard', function ($http) {
                 URL_REQ + "taxaOcupacao/genero",
                 kanHeaders
             )
+        },
+        taxaOcupacaoIdade: function () {
+            return $http.get(
+                URL_REQ + "taxaOcupacao/idade",
+                kanHeaders
+            )
         }
     }
 });

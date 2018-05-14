@@ -106,6 +106,23 @@ app.controller('DashboardController',
                 })
         };
 
+        vm.carregarTaxaOcupacaoIdade = function () {
+            svcDashboard.taxaOcupacaoIdade()
+                .then(function (res) {
+                    vm.ocupacaoIdade = {
+                        exibeMensagem: false,
+                        data: [],
+                        labels: []
+                    };
+                    if (res.data.data.length > 0) {
+                        vm.graficoTaxa(vm.ocupacaoIdade, res.data.data);
+                    } else {
+                        vm.ocupacaoIdade.exibeMensagem = true;
+                    }
+
+                })
+        };
+
         vm.graficoOcupacaoAlas = function (dados) {
             dados = $filter('orderBy')(dados, 'nomeEnf', false);
             var ocupados = [];
@@ -155,6 +172,7 @@ app.controller('DashboardController',
             vm.carregarTaxaStatusLeito(vm.alaSelecionada);
             vm.carregarTaxaTipoPendenciaInternacao(vm.alaSelecionada);
             vm.carregarTaxaOcupacaoGenero();
+            vm.carregarTaxaOcupacaoIdade();
         }
 
     });

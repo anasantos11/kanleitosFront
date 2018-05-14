@@ -56,12 +56,18 @@
             <div class="col-12 kan-group">
                 <h5 class=" kan-title">Relatórios gerais</h5>
             </div>
-            <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 kan-group">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
                 <h6 class="card-title">Pacientes internados por gênero</h6>
                 <p ng-show="vm.ocupacaoGenero.exibeMensagem">{{vm.mensagemSemDados}}</p>
                 <canvas class="chart chart-pie" chart-data="vm.ocupacaoGenero.data" chart-labels="vm.ocupacaoGenero.labels" chart-colors="vm.colors"
                     chart-options="vm.ocupacaoGenero.options">
                 </canvas>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 kan-group">
+                <h6 class="card-title">Pacientes internados por gênero</h6>
+                <p ng-show="vm.ocupacaoGenero.exibeMensagem">{{vm.mensagemSemDados}}</p>
+                <canvas  class="chart chart-horizontal-bar" chart-data="vm.ocupacaoIdade.data" chart-labels="vm.ocupacaoIdade.labels" chart-colors="vm.colors"
+                    chart-options="vm.ocupacaoIdade.options"> </canvas>
             </div>
         </div>
     </div>
