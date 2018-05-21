@@ -622,3 +622,24 @@ app.factory('svcDashboard', function ($http) {
         }
     }
 });
+
+app.factory('svcTransferenciaLeito', function ($http) {
+    return {
+        cadastrarTransferenciaLeito: function (transferencia) {
+            return $http.post(
+                URL_REQ + "transferenciaLeito",
+                transferencia,
+                kanHeaders,
+            )
+        },
+        getTransferenciaRegistro : function (idRegistroInternacao) {
+            return $http.get(
+                URL_REQ + "transferenciaLeito",
+                {
+                    kanHeaders,
+                    params: { idRegistroInternacao: idRegistroInternacao }
+                }
+            )
+        }
+    }
+});

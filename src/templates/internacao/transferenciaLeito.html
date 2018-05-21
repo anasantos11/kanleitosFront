@@ -1,0 +1,77 @@
+<div ng-controller="TransferenciaLeito">
+    <div class="kan-row-modal">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <h5 class="kan-title">Trasferência de Leito</h5>
+                <h6 class="m-0">Realizar nova transferência de leito</h6>
+                <hr class="mt-1 mb-2">
+                <div class="col-12 col-sm-12  col-md-3 col-lg-3 col-xl-3 kan-group">
+                    <label>Ala
+                        <b class="text-danger">*</b>
+                    </label>
+                    <select ng-model="transferencia.ala" class="form-control form-control-sm" ng-options="ala.nomeAla for ala in alas track by ala.idAla"
+                        ng-change="carregarEnfermarias()">
+                        <option value="">Selecione a Ala</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+                    <label>Enfermaria
+                        <b class="text-danger">*</b>
+                    </label>
+                    <select ng-model="transferencia.enfermaria" class="form-control form-control-sm" ng-options="enfermaria.nomeEnfermaria for enfermaria in enfermarias track by enfermaria.idEnfermaria"
+                        ng-change="carregarLeitos();verificarIsolamentos()">
+                        <option value="">Selecione a Enfermaria</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 kan-group">
+                    <label>Leito
+                        <b class="text-danger">*</b>
+                    </label>
+                    <select ng-model="transferencia.proximoLeito" class="form-control form-control-sm" ng-options="leito.nomeLeito for leito in leitos track by leito.idLeito">
+                        <option value="">Selecione o Leito</option>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 kan-group">
+                    <label>Data
+                        <b class="text-danger">*</b>
+                    </label>
+                    <input class="form-control form-control-sm" type="datetime-local" ng-model="transferencia.data">
+                </div>
+                <div class="col-12 col-sm-12 col-md-1 col-lg-1 col-xl-1 kan-group">
+                    <label></label>
+                    <button class="btn kan-btn-success" ng-click="cadastrarTransferencia()">Transferir</button>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group" id="mensagemIsolamentos">
+                </div>
+            </div>
+            <h6 class="m-0">Transferências já realizadas</h6>
+            <hr class="mt-1 mb-2">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Leito Anterior</th>
+                            <th class="text-center">Próximo Leito</th>
+                            <th class="text-center">Data da Transferência</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="transf in listaTransferencias">
+                            <td class="text-center">
+                                <span> {{transf.leitoAnterior.enfermaria.ala.nomeAla}} / {{transf.leitoAnterior.enfermaria.nomeEnfermaria}}
+                                    / {{transf.leitoAnterior.nomeLeito}} </span>
+                            </td>
+                            <td class="text-center">
+                                <span> {{transf.proximoLeito.enfermaria.ala.nomeAla}} / {{transf.proximoLeito.enfermaria.nomeEnfermaria}}
+                                    / {{transf.proximoLeito.nomeLeito}} </span>
+                            </td>
+                            <td class="text-center">
+                                {{transf.data | date : 'dd/MM/yy HH:mm'}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+</div>

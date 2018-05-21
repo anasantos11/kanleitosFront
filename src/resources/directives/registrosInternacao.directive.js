@@ -22,6 +22,13 @@ app.directive('listaRegistrosInternacao', function (Notify) {
             scope.openModalObservacoesInternacao = function (registro) {
                 return Notify.openModal("templates/internacao/observacaoInternacao.html", { idRegistroInternacao: registro.idRegistroInternacao }, "95%")
             };
+
+            scope.openModalTransferenciasLeito = function (registro) {
+                return Notify.openModal("templates/internacao/transferenciaLeito.html", { registro: registro }, "95%")
+                .then(function(res){
+                    
+                })
+            };
         }
     };
 });
