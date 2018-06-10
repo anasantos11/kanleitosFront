@@ -20,8 +20,10 @@
 				<h5 class=" kan-title">Relatórios por ala</h5>
 				<label>Ala
 				</label>
-				<select ng-model="vm.alaSelecionada" class="form-control form-control-sm col-12 col-sm-12 col-md-5 col-lg-5 col-xl-4" ng-change="vm.atualizarGraficos()"
-				 ng-options="ala.nomeAla for ala in vm.alas track by ala.idAla"></select>
+				<select ng-model="vm.alaSelecionada" class="form-control form-control-sm" ng-options="ala.nomeAla for ala in vm.alas track by ala.idAla"
+				 ng-change="vm.atualizarGraficos()">
+					<option value="">Todas</option>
+				</select>
 			</div>
 			<div class="col-12 kan-group">
 				<div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 kan-group">
