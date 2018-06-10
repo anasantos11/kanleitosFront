@@ -83,4 +83,5 @@ app.controller('PedidosInternacaoController', ["$rootScope", "$scope", "pedidoIn
             $scope.carregarPedidos();
         });
 
+        $scope.carregarPedidos();
     }]);
