@@ -32,7 +32,7 @@ app.controller('DashboardController',
 			}
 		};
 
-		alasFactory.getAlas(true)
+		alasFactory.getAlas(false)
 			.then(function (res) {
 				vm.alas = res.data.data
 				vm.alaSelecionada = vm.alas[0];
