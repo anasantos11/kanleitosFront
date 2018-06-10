@@ -72,18 +72,21 @@ app.directive('listaRegistrosInternacao', function (registroInternacaoFactory, $
 
 			scope.openModalTransferenciasLeito = function (registro) {
 				return Notify.openModal("templates/internacao/transferenciaLeito.html", { registro: registro }, "95%")
+					.closePromise.then(function (res) {
+						scope.carregarRegistros();
+					})
 			};
 
 			scope.closeModal = function (registro) {
 				scope.$parent.closeThisDialog(registro);
 			};
 
-			
-			if (!scope.naoCarregarAoIniciar){
+
+			if (!scope.naoCarregarAoIniciar) {
 				scope.novoFiltro();
-				scope.carregarRegistros();				
+				scope.carregarRegistros();
 			}
-				
+
 		}
 	};
 });

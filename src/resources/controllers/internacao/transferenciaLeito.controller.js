@@ -7,7 +7,7 @@ app.controller('TransferenciaLeito', function ($scope, $http, svcTransferenciaLe
         };
 
         if (!isNullOrEmpty($scope.ngDialogData.registro)) {
-            $scope.transferencia.registroInternacao = $scope.ngDialogData.registro;
+           $scope.transferencia.registroInternacao = $scope.ngDialogData.registro;
             $scope.carregarTransferenciaLeito($scope.transferencia.registroInternacao.idRegistroInternacao);
         };
     };
@@ -74,7 +74,6 @@ app.controller('TransferenciaLeito', function ($scope, $http, svcTransferenciaLe
         if ($scope.validarTransferenciaLeito()) {
             svcTransferenciaLeito.cadastrarTransferenciaLeito($scope.transferencia)
                 .then(function (res) {
-                    $scope.carregarTransferenciaLeito($scope.transferencia.registroInternacao.idRegistroInternacao);
                     $scope.inicializar();
                     alertaSucesso("Transferência de leito realizada com sucesso.");
                 })
