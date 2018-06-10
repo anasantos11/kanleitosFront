@@ -10,8 +10,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 					controller: 'MainController'
 				},
 				'contentApp@kanleitos': {
-					templateUrl: 'templates/relatorios/kanbanDashboard.html',
-					controller: 'MainController'
+					templateUrl: 'templates/relatorios/dashboard.html',
+					controller: 'DashboardController',
+					controllerAs: "vm"
 				},
 				'menuKan@kanleitos': {
 					templateUrl: 'templates/menu.html',
@@ -34,18 +35,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			views: {
 				"contentApp@kanleitos": {
 					templateUrl: "templates/erro.html",
-				}
-			}
-
-		})
-		.state("dashboard", {
-			parent: "kanleitos",
-			url: "/dashboard",
-			views: {
-				"contentApp@kanleitos": {
-					templateUrl: "templates/relatorios/dashboad.html",
-					controller: "DashboardController",
-					controllerAs: "vm"
 				}
 			}
 

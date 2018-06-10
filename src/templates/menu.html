@@ -30,6 +30,12 @@
 <nav class="sidebar navbar-expand-lg navbar-white bg-white" id="mainNav">
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="sideNavResponsive">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                <a class="nav-link" ui-sref="kanleitos">
+                    <img src="img/chart.png" alt="">
+                    <span class="nav-link-text">Dashboard</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#internacao-subitens" aria-expanded="false" aria-controls="internacao-subitens"
                     data-toggle="tooltip" data-placement="right" title="Internação">
@@ -75,21 +81,12 @@
                     </ul>
                 </div>
             </li>
-
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                <a class="nav-link" ui-sref="dashboard">
-                    <img src="img/chart.png" alt="">
-                    <span class="nav-link-text">Dashboard</span>
-                </a>
-            </li>
-
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reltório de Leitos">
                 <a class="nav-link" ui-sref="leitos">
                     <img src="img/leito.png" alt="">
                     <span class="nav-link-text">Status dos Leitos</span>
                 </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" data-target="#geral-subitens" aria-expanded="false" aria-controls="geral-subitens"
                     data-toggle="tooltip" data-placement="right" title="Cadastro Gerais">
