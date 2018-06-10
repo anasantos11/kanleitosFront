@@ -11,7 +11,12 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
 
             alasFactory.getAlas(false)
                 .then(function (res) {
-                    scope.Alas = res.data.data
+                    scope.alas = res.data.data;
+                    if (!isNullOrEmpty(scope.model.idAla)) {
+                        scope.model.ala = scope.alas.filter(function (obj) {
+                            return (obj.idAla == scope.model.idAla)
+                        })[0];
+                    }
                 });
 
             svcIsolamento.getIsolamentos()
@@ -20,6 +25,7 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
                 });
 
             scope.filtrarDados = function () {
+                scope.model.idAla = isNullOrEmpty(scope.model.ala) ? "" : scope.model.ala.idAla;
                 $rootScope.$broadcast(scope.evento);
             };
 
@@ -38,19 +44,17 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
                     classificacao: "",
                     status: "Em Andamento"
                 };
-                if(scope.isPedido){
-                    scope.model.status="Pendente";
+                if (scope.isPedido) {
+                    scope.model.status = "Pendente";
                 }
-                setTimeout(function(res) {
+                setTimeout(function (res) {
                     scope.filtrarDados();
                 }, 100);
             };
 
-            scope.destacarTitulo = function(){
+            scope.destacarTitulo = function () {
                 var element = document.getElementById('tituloFiltros').style.background = "#d9dde08a";
             };
-
-            scope.filtrarDados();
 
         }
     };

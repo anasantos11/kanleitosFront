@@ -129,6 +129,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 			parent: "kanleitos",
 			params: {
 				pacientes: [],
+				dadosFiltros: {}
 			},
 			url: "/classificacaoPacientes",
 			views: {
@@ -136,6 +137,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 					templateUrl: "templates/relatorios/kanbanListaRegistroInternacao.html",
 					controller: function ($scope, $stateParams) {
 						$scope.pacientes = $stateParams.pacientes;
+						$scope.dadosFiltros = $stateParams.dadosFiltros;
 					}
 				}
 			}

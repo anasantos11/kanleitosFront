@@ -1,5 +1,5 @@
 app.controller('DashboardController',
-	function ($filter, alasFactory, svcDashboard, registroInternacaoFactory) {
+	function ($filter, alasFactory, svcDashboard, registroInternacaoFactory, $state) {
 		var vm = this;
 		vm.mensagemSemDados = "Sem dados para serem exibidos no gráfico.";
 		vm.colors = ['#11B0F6', '#28a745', '#ffc107', '#FC5E90', '#dc3545', '052EFB', '445090'];
@@ -15,22 +15,21 @@ app.controller('DashboardController',
 			amarelo: {
 				qtdPacientes: 0,
 				pacientes: []
+			},
+			dadosFiltros: {
+				idAla: "",
+				idEnfermaria: "",
+				idLeito: "",
+				medicoResponsavel: "",
+				residenteResponsavel: "",
+				idIsolamento: "",
+				nomePaciente: "",
+				numProntuario: null,
+				dataAdmissao: null,
+				previsaoAlta: null,
+				classificacao: "",
+				status: "Em Andamento"
 			}
-		};
-
-		vm.dadosFiltros = {
-			idAla: "",
-			idEnfermaria: "",
-			idLeito: "",
-			medicoResponsavel: "",
-			residenteResponsavel: "",
-			idIsolamento: "",
-			nomePaciente: "",
-			numProntuario: null,
-			dataAdmissao: null,
-			previsaoAlta: null,
-			classificacao: "",
-			status: "Em Andamento"
 		};
 
 		alasFactory.getAlas(true)
@@ -70,8 +69,8 @@ app.controller('DashboardController',
 
 		vm.carregarKanban = function () {
 			vm.kanban.canShowPacientes = false;
-			vm.dadosFiltros.idAla = vm.alaSelecionada.idAla;
-			registroInternacaoFactory.getRegistrosInternacoes(vm.dadosFiltros)
+			vm.kanban.dadosFiltros.idAla = vm.alaSelecionada.idAla;
+			registroInternacaoFactory.getRegistrosInternacoes(vm.kanban.dadosFiltros)
 				.then(function (res) {
 					vm.registros = res.data.data;
 					vm.atualizaPacientesInternados();
@@ -83,7 +82,7 @@ app.controller('DashboardController',
 		};
 
 		vm.openDetalhesKanban = function (pacientes) {
-            $state.go("classificacaoPacientes", { pacientes: pacientes });
+            $state.go("classificacaoPacientes", { "pacientes": pacientes, "dadosFiltros": vm.kanban.dadosFiltros});
         };
 
 		vm.graficoTaxa = function (objeto, dados) {

@@ -7,7 +7,8 @@ app.directive('listaRegistrosInternacao', function (registroInternacaoFactory, $
 			showAcoes: "=",
 			dadosFiltros: "=",
 			evento: "=",
-			ocultaStatus: "=ocultaStatus"
+			ocultaStatus: "=ocultaStatus",
+			naoCarregarAoIniciar: "=?naoCarregarAoIniciar"
 		},
 		link: function (scope, element, attrs) {
 
@@ -77,8 +78,12 @@ app.directive('listaRegistrosInternacao', function (registroInternacaoFactory, $
 				scope.$parent.closeThisDialog(registro);
 			};
 
-			scope.novoFiltro();
-			scope.carregarRegistros();
+			
+			if (!scope.naoCarregarAoIniciar){
+				scope.novoFiltro();
+				scope.carregarRegistros();				
+			}
+				
 		}
 	};
 });
