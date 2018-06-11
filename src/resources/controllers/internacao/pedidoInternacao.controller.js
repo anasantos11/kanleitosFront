@@ -12,7 +12,6 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                     genero: null,
                 },
                 aih: "",
-                dataPedido: new Date(),
                 status: "Pendente",
                 medicoResponsavel: "",
                 residenteResponsavel: "",
@@ -128,8 +127,6 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
             if ($scope.validarDadosPedidoInternacao()) {
                 $scope.pedidoInternacao.paciente.dataNascimento = moment($scope.pedidoInternacao.paciente.dataNascimento).format();
                 $scope.pedidoInternacao.dataAdmissao = moment($scope.pedidoInternacao.dataAdmissao).format();
-                $scope.pedidoInternacao.dataPedido = moment($scope.pedidoInternacao.dataPedido).format();
-
                 $scope.pedidoInternacao.ala = $scope.Alas.filter(function (obj) {
                     return (obj.idAla == $scope.pedidoInternacao.idAla)
                 })[0];
