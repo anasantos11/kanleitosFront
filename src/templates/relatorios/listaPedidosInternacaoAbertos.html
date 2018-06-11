@@ -53,8 +53,8 @@
                                                 'table-warning' : pedido.classificacao == 'amarela',
                                                 'table-danger'  : pedido.classificacao == 'vermelha' }">
                             <td title="{{pedido.ala.nomeAla}}">{{pedido.ala.nomeAla}}</td>
-                            <td title="{{pedido.medicoResponsavel}}">{{pedido.medicoResponsavel}}</td>
-                            <td title="{{pedido.residenteResponsavel}}">{{pedido.residenteResponsavel}}</td>
+                            <td title="{{pedido.medicoResponsavel.nome}}">{{pedido.medicoResponsavel.nome}}</td>
+                            <td title="{{pedido.residenteResponsavel.nome}}">{{pedido.residenteResponsavel.nome}}</td>
                             <td class="text-center" title="{{pedido.paciente.numProntuario}}">{{pedido.paciente.numProntuario | limitTo: 10}}</td>
                             <td title="{{pedido.paciente.nomePaciente}}">{{pedido.paciente.nomePaciente}}</td>
                             <td title="{{pedido.paciente.nomeMae}}">{{pedido.paciente.nomeMae}}</td>

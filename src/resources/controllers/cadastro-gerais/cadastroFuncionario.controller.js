@@ -53,7 +53,6 @@ app.controller('CadastroFuncionarioController', ["$scope", "$http", "svcFunciona
         if (!isNullOrEmpty($scope.ngDialogData.funcionario)) {
             $scope.title = "Editar Funcionário:" + $scope.ngDialogData.funcionario.nome;
             $scope.funcionario = $scope.ngDialogData.funcionario;
-            $scope.funcionario.crm = parseFloat($scope.ngDialogData.funcionario.crm);
         }
     }
 ]);

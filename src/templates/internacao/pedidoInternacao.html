@@ -87,14 +87,14 @@
                 </label>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group" ng-hide="!pedidoInternacao.precisaIsolamento">
-                    <label>Isolamento
-                        <b class="text-danger">*</b>
-                    </label>
-                    <select ng-model="pedidoInternacao.idIsolamento" class="form-control form-control-sm">
-                        <option value="">Selecione o Isolamento</option>
-                        <option ng-repeat="isolamento in Isolamentos" value="{{isolamento.idIsolamento}}">{{isolamento.nome}}</option>
-                    </select>
-                </div>
+                <label>Isolamento
+                    <b class="text-danger">*</b>
+                </label>
+                <select ng-model="pedidoInternacao.idIsolamento" class="form-control form-control-sm">
+                    <option value="">Selecione o Isolamento</option>
+                    <option ng-repeat="isolamento in Isolamentos" value="{{isolamento.idIsolamento}}">{{isolamento.nome}}</option>
+                </select>
+            </div>
             <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-4 kan-group">
                 <label for="aih">AIH
                     <b class="text-danger">*</b>
@@ -129,13 +129,17 @@
                 <label>Médico Responsável
                     <b class="text-danger">*</b>
                 </label>
-                <input type="text" class="form-control form-control-sm" placeholder="Informe o nome do(a) médico(a) responsável" ng-model="pedidoInternacao.medicoResponsavel">
+                <select ng-model="pedidoInternacao.medicoResponsavel" class="form-control form-control-sm" ng-options="medico.nome for medico in medicos track by medico.idFuncionario">
+                    <option value="">Selecione o médico responsável</option>
+                </select>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
                 <label>Residente Responsável
                     <b class="text-danger">*</b>
                 </label>
-                <input type="text" class="form-control form-control-sm" placeholder="Informe o nome do(a) residente responsável" ng-model="pedidoInternacao.residenteResponsavel">
+                <select ng-model="pedidoInternacao.residenteResponsavel" class="form-control form-control-sm" ng-options="residente.nome for residente in outrosFuncionarios track by residente.idFuncionario">
+                    <option value="">Selecione o residente responsável</option>
+                </select>
             </div>
         </fieldset>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 button-kan-row">

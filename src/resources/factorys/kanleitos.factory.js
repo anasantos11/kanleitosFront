@@ -490,6 +490,20 @@ app.factory('svcFuncionario', function ($http) {
         });
     }
 
+    funcionario.getMedicos = function () {
+        return $http.get(
+            URL_REQ + "medicos",
+            kanHeaders,
+        )
+    };
+
+    funcionario.getfuncionariosNaoMedicos = function () {
+        return $http.get(
+            URL_REQ + "funcionariosNaoMedicos",
+            kanHeaders,
+        )
+    };
+
     return funcionario;
 });
 
@@ -632,7 +646,7 @@ app.factory('svcTransferenciaLeito', function ($http) {
                 kanHeaders,
             )
         },
-        getTransferenciaRegistro : function (idRegistroInternacao) {
+        getTransferenciaRegistro: function (idRegistroInternacao) {
             return $http.get(
                 URL_REQ + "transferenciaLeito",
                 {

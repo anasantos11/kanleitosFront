@@ -1,5 +1,5 @@
-app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "$filter", "pedidoInternacaoFactory", "diagnosticosFactory", "pacienteFactory", "alasFactory", "Notify", "svcIsolamento",
-    function ($scope, $rootScope, $http, $filter, pedidoInternacaoFactory, diagnosticosFactory, pacienteFactory, alasFactory, Notify, svcIsolamento) {
+app.controller('pedidoInternacaoController',
+    function ($scope, $rootScope, $http, $filter, pedidoInternacaoFactory, diagnosticosFactory, pacienteFactory, alasFactory, Notify, svcIsolamento, svcFuncionario) {
 
         $scope.novoPedidoInternacao = function () {
             $scope.pedidoInternacao = {
@@ -13,8 +13,8 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                 },
                 aih: "",
                 status: "Pendente",
-                medicoResponsavel: "",
-                residenteResponsavel: "",
+                medicoResponsavel: null,
+                residenteResponsavel: null,
                 dataAdmissao: new Date(new Date(new Date().setSeconds(0)).setMilliseconds(0))
             }
         };
@@ -60,6 +60,8 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
             $scope.CarregarDiagnosticos();
             $scope.CarregarAlas();
             $scope.carregarIsolamentos();
+            $scope.carregarMedicos();
+            $scope.carregarFuncionariosNaoMedicos();
         }
 
         $scope.CarregarDiagnosticos = function () {
@@ -119,6 +121,24 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
 
                     });
             }, 1000);
+        };
+
+        $scope.carregarMedicos = function () {
+            svcFuncionario.getMedicos().then(function (res) {
+                $scope.medicos = res.data.data;
+            })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        };
+
+        $scope.carregarFuncionariosNaoMedicos = function () {
+            svcFuncionario.getfuncionariosNaoMedicos().then(function (res) {
+                $scope.outrosFuncionarios = res.data.data;
+            })
+                .catch(function (err) {
+                    console.log(err);
+                });
         }
 
         $scope.Inicializar();
@@ -202,4 +222,4 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
             }
         }
     }
-]);
+);

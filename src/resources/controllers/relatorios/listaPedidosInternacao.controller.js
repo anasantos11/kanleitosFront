@@ -6,12 +6,15 @@ app.controller('PedidosInternacaoController', ["$rootScope", "$scope", "pedidoIn
         $scope.novoFiltro = function () {
             $scope.dadosFiltros = {
                 idAla: "",
-                medicoResponsavel: "",
-                residenteResponsavel: "",
+                idEnfermaria: "",
+                idLeito: "",
+                idMedico: "",
+                idResidente: "",
                 idIsolamento: "",
                 nomePaciente: "",
                 numProntuario: null,
                 dataAdmissao: null,
+                previsaoAlta: null,
                 classificacao: "",
                 status: "Pendente"
             };
@@ -47,12 +50,12 @@ app.controller('PedidosInternacaoController', ["$rootScope", "$scope", "pedidoIn
 
         };
 
-        $scope.calcularClassificacao = function(pedido){
-            if(pedido.tempo.dias < 1 && pedido.tempo.horas < 12){
+        $scope.calcularClassificacao = function (pedido) {
+            if (pedido.tempo.dias < 1 && pedido.tempo.horas < 12) {
                 pedido.classificacao = "verde";
-            }else if(pedido.tempo.dias < 1 && pedido.tempo.horas >= 12){
+            } else if (pedido.tempo.dias < 1 && pedido.tempo.horas >= 12) {
                 pedido.classificacao = "amarela";
-            }else if(pedido.tempo.dias >= 1){
+            } else if (pedido.tempo.dias >= 1) {
                 pedido.classificacao = "vermelha";
             }
         };
@@ -60,14 +63,14 @@ app.controller('PedidosInternacaoController', ["$rootScope", "$scope", "pedidoIn
         $scope.atualizarHorasAguardando = function () {
             var dataAtual = new Date();
             for (var i = 0; i < $scope.listaPedidos.length; i++) {
-                if($scope.listaPedidos[i].statusPedido == 'PENDENTE'){
+                if ($scope.listaPedidos[i].statusPedido == 'PENDENTE') {
                     $scope.listaPedidos[i].tempo = $scope.calcularHorasAguardando(dataAtual, new Date($scope.listaPedidos[i].dataAdmissao));
                     $scope.calcularClassificacao($scope.listaPedidos[i]);
-                }                
+                }
             };
 
-            if(!isNullOrEmpty($scope.dadosFiltros.classificacao)){
-                $scope.listaPedidos = $filter('filter')( $scope.listaPedidos, $scope.dadosFiltros.classificacao);
+            if (!isNullOrEmpty($scope.dadosFiltros.classificacao)) {
+                $scope.listaPedidos = $filter('filter')($scope.listaPedidos, $scope.dadosFiltros.classificacao);
             };
         };
 

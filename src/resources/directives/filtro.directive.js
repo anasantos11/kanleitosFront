@@ -1,4 +1,4 @@
-app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
+app.directive('filtros', function (svcIsolamento, alasFactory, svcFuncionario, enfermariaFactory, leitoFactory, $rootScope) {
     return {
         templateUrl: "templates/directives/filtros.html",
         scope: {
@@ -19,6 +19,29 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
                     }
                 });
 
+            svcFuncionario.getMedicos()
+                .then(function (res) {
+                    scope.medicos = res.data.data;
+                })
+
+            svcFuncionario.getfuncionariosNaoMedicos().then(function (res) {
+                scope.outrosFuncionarios = res.data.data;
+            })
+
+            scope.carregarEnfermarias = function () {
+                enfermariaFactory.getEnfermariasByAlas(scope.model.ala.idAla, true)
+                    .then(function (res) {
+                    scope.enfermarias = res.data.data;
+                    });
+            };
+
+            scope.carregarLeitosEnfermaria = function () {
+                leitoFactory.getLeitoEnfermaria(scope.model.idEnfermaria, true)
+                    .then(function (response) {
+                        scope.leitos = response.data.data;
+                    });
+            };
+
             svcIsolamento.getIsolamentos()
                 .then(function (res) {
                     scope.Isolamentos = res.data.data;
@@ -26,6 +49,8 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
 
             scope.filtrarDados = function () {
                 scope.model.idAla = isNullOrEmpty(scope.model.ala) ? "" : scope.model.ala.idAla;
+                scope.model.idMedico = isNullOrEmpty(scope.model.medicoResponsavel) ? "" : scope.model.medicoResponsavel.idFuncionario;
+                scope.model.idResidente = isNullOrEmpty(scope.model.residenteResponsavel) ? "" : scope.model.residenteResponsavel.idFuncionario;
                 $rootScope.$broadcast(scope.evento);
             };
 
@@ -34,8 +59,8 @@ app.directive('filtros', function (svcIsolamento, alasFactory, $rootScope) {
                     idAla: "",
                     idEnfermaria: "",
                     idLeito: "",
-                    medicoResponsavel: "",
-                    residenteResponsavel: "",
+                    idMedico: "",
+                    idResidente: "",
                     idIsolamento: "",
                     nomePaciente: "",
                     numProntuario: null,

@@ -15,11 +15,12 @@ app.directive('listaRegistrosInternacao', function (registroInternacaoFactory, $
 			scope.evento = "filtrarRegistros";
 			scope.novoFiltro = function () {
 				scope.dadosFiltros = {
+
 					idAla: "",
 					idEnfermaria: "",
 					idLeito: "",
-					medicoResponsavel: "",
-					residenteResponsavel: "",
+					idMedico: "",
+					idResidente: "",
 					idIsolamento: "",
 					nomePaciente: "",
 					numProntuario: null,
