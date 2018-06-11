@@ -16,7 +16,7 @@ app.controller('pedidoInternacaoController', ["$scope", "$rootScope", "$http", "
                 status: "Pendente",
                 medicoResponsavel: "",
                 residenteResponsavel: "",
-                dataAdmissao: new Date()
+                dataAdmissao: new Date(new Date(new Date().setSeconds(0)).setMilliseconds(0))
             }
         };
 
