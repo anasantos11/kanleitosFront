@@ -82,13 +82,13 @@ app.controller('DashboardController',
 		};
 
 		vm.openDetalhesKanban = function (pacientes) {
-            $state.go("classificacaoPacientes", { "pacientes": pacientes, "dadosFiltros": vm.kanban.dadosFiltros});
-        };
+			$state.go("classificacaoPacientes", { "pacientes": pacientes, "dadosFiltros": vm.kanban.dadosFiltros });
+		};
 
-		vm.graficoTaxa = function (objeto, dados) {
+		vm.graficoTaxa = function (objeto, dados, legenda, linear) {
 			objeto.options = {
 				legend: {
-					display: true,
+					display: legenda != undefined ? legenda : !legenda,
 				},
 				plugins: {
 					datalabels: {
@@ -103,6 +103,19 @@ app.controller('DashboardController',
 					}
 				}
 			};
+
+			if (linear) {
+				objeto.options.scales = {
+					xAxes: [{
+						type: 'linear',
+						ticks: {
+							min: 0,
+							stepSize: 1,
+							suggestedMax: 5
+						},
+					}]
+				};
+			}
 			for (var i = 0; i < dados.length; i++) {
 				objeto.labels.push(dados[i].grupo);
 				objeto.data.push(dados[i].quantidade);
@@ -189,7 +202,7 @@ app.controller('DashboardController',
 						labels: []
 					};
 					if (res.data.data.length > 0) {
-						vm.graficoTaxa(vm.ocupacaoIdade, res.data.data);
+						vm.graficoTaxa(vm.ocupacaoIdade, res.data.data, false, true);
 					} else {
 						vm.ocupacaoIdade.exibeMensagem = true;
 					}
