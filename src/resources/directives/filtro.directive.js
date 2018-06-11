@@ -48,7 +48,6 @@ app.directive('filtros', function (svcIsolamento, alasFactory, svcFuncionario, e
                 });
 
             scope.filtrarDados = function () {
-                debugger;
                 scope.model.idAla = isNullOrEmpty(scope.model.ala) ? "" : scope.model.ala.idAla;
                 scope.model.idMedico = isNullOrEmpty(scope.model.medicoResponsavel) ? "" : scope.model.medicoResponsavel.idFuncionario;
                 scope.model.idResidente = isNullOrEmpty(scope.model.residenteResponsavel) ? "" : scope.model.residenteResponsavel.idFuncionario;

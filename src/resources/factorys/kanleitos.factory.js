@@ -94,6 +94,14 @@ app.factory('leitoFactory', function ($http) {
             kanHeaders
         });
     };
+
+    leitos.updateLeito = function(leito){
+        return $http.put(
+            URL_REQ + "leito",
+            leito,
+            kanHeaders
+        )
+    }
     leitos.getLeitoEnfermaria = function (idEnfermaria, status) {
         return $http({
             url: URL_REQ + "leitosEnfermarias",

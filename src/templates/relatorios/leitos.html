@@ -1,57 +1,63 @@
-<div ng-controller="leitosController">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <span>Relatórios</span>
-        </li>
-        <li class="breadcrumb-item active">
-            <span> Leitos </span>
-        </li>
-    </ol>
+<div ng-controller="leitosController" ng-init="Inicializar()">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<span>Relatórios</span>
+		</li>
+		<li class="breadcrumb-item active">
+			<span> Leitos </span>
+		</li>
+	</ol>
 
-    <div class="kan-row">
-        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
-                <h5 class="kan-title">Status dos leitos
-                    <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Aqui você visualizará os dados dos leitos do hospital e também o status atual. 
+	<div class="kan-row">
+		<fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+			<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+				<h5 class="kan-title">Status dos leitos
+					<i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Aqui você visualizará os dados dos leitos do hospital e também o status atual. 
                         No campo abaixo você consegue filtrar alguma informação na lista."></i>
-                </h5>
-                <input id="search" class="col-md-6 form-control form-control-sm" type="text" ng-model="search" placeholder="Digite para pesquisar">
-            </div>
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover table-sm">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Ala</th>
-                            <th class="text-center">Enfermaria</th>
-                            <th class="text-center">Leito</th>
-                            <th class="text-center">Tipo Leito</th>
-                            <th class="text-center">Gênero Leito</th>
-                            <th class="text-center">Status Leito</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="estrutura in Leitos | filter : search">
-                            <td class="text-center">{{estrutura.enfermaria.ala.nomeAla}}</td>
-                            <td class="text-center">{{estrutura.enfermaria.nomeEnfermaria}}</td>
-                            <td class="text-center">{{estrutura.nomeLeito}}</td>
-                            <td class="text-center">{{estrutura.tipoLeito}}</td>
-                            <td class="text-center">{{estrutura.generoLeito}}</td>
-                            <td class="text-center">{{estrutura.statusLeito}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 button-kan-row">
-                <button class="btn kan-btn-success kan-btn-sm" ng-click="changePage(actualPage - 1)">
-                    <i class="fa fa-caret-left"></i>
-                </button>
-                <button class="btn kan-btn-success kan-btn-sm" ng-repeat="page in pages" ng-click="changePage(page)">{{page}}</button>
-                <button class="btn kan-btn-success kan-btn-sm" ng-click="changePage(actualPage + 1)">
-                    <i class="fa fa-caret-right"></i>
-                </button>
-            </div>
-        </fieldset>
-    </div>
+				</h5>
+				<input id="search" class="col-md-6 form-control form-control-sm" type="text" ng-model="search" placeholder="Digite para pesquisar">
+			</div>
+			<div class="table-responsive">
+				<table class="table table-bordered table-hover table-sm">
+					<thead>
+						<tr>
+							<th class="text-center">Ala</th>
+							<th class="text-center">Enfermaria</th>
+							<th class="text-center">Leito</th>
+							<th class="text-center">Tipo Leito</th>
+							<th class="text-center">Gênero Leito</th>
+							<th class="text-center">Status Leito</th>
+							<th class="text-center">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="leito in Leitos | filter : search">
+							<td class="text-center">{{leito.enfermaria.ala.nomeAla}}</td>
+							<td class="text-center">{{leito.enfermaria.nomeEnfermaria}}</td>
+							<td class="text-center">{{leito.nomeLeito}}</td>
+							<td class="text-center">{{leito.tipoLeito}} </td>
+							<td class="text-center">{{leito.generoLeito}}</td>
+							<td class="text-center">{{leito.statusLeito}}</td>
+							<td class="text-center">
+								<button class="btn-icon" ng-click="editarLeito(leito)">
+									<i class="fa fa-pencil fa-lg text-primary p-1" aria-hidden="true" title="Editar dados do leito."></i>
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 button-kan-row">
+				<button class="btn kan-btn-success kan-btn-sm" ng-click="changePage(actualPage - 1)">
+					<i class="fa fa-caret-left"></i>
+				</button>
+				<button class="btn kan-btn-success kan-btn-sm" ng-repeat="page in pages" ng-click="changePage(page)">{{page}}</button>
+				<button class="btn kan-btn-success kan-btn-sm" ng-click="changePage(actualPage + 1)">
+					<i class="fa fa-caret-right"></i>
+				</button>
+			</div>
+		</fieldset>
+	</div>
 
 
 </div>

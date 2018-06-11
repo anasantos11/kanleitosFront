@@ -1,0 +1,45 @@
+<div ng-controller="leitoController">
+    <div class="kan-row-modal">
+        <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+            <h5 class="kan-title">{{title}}
+                <i class="fa fa-info fa-1-x kan-icon-info" data-toggle="tooltip" data-placement="bottom" title="Tela para edição dos dados do leito."></i>
+            </h5>
+            <div class="col-12 col-sm-12 col-md-6  kan-group">
+                <label>Nome do leito
+                    <b class="text-danger">*</b>
+                </label>
+                <input type="text" ng-model="leito.nomeLeito" class="form-control form-control-sm">
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 kan-group">
+                <label>Tipo de Leito
+                    <b class="text-danger">*</b>
+                </label>
+                <input type="text" ng-model="leito.tipoLeito" class="form-control form-control-sm">
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 kan-group">
+                <label>Gênero do leito
+                    <b class="text-danger">*</b>
+                </label>
+                <select ng-model="leito.generoLeito" class="form-control form-control-sm">
+                    <option value="Feminino">Feminino</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Indefinido">Indefinido</option>
+                </select>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 kan-group">
+                <label>Status do leito
+                </label>
+                <select ng-model="leito.statusLeito" class="form-control form-control-sm">
+                    <option value="BLOQUEADO_REFORMA">Bloqueado Reforma</option>
+                    <option value="BLOQUEADO_RH">Bloqueado RH</option>
+                    <option value="AGUARDANDO_LIMPEZA">Aguardando Limpeza</option>
+                    <option value="INATIVO">Inativo</option>
+                </select>
+            </div>
+        </fieldset>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 button-kan-row">
+            <button type="button" class="btn kan-btn-danger" ng-click="closeThisDialog(false)">Cancelar</button>
+            <button type="button" class="btn kan-btn-success" ng-click="updateLeito()">Atualizar Leito</button>
+        </div>
+    </div>
+</div>
