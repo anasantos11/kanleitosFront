@@ -6,7 +6,6 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                 pedidoInternacao: {},
                 idEnfermaria: null,
                 idLeito: null,
-                dataInternacao: new Date(),
                 tempoPermanencia: 0,
                 previsaoAlta: new Date(),
             };
@@ -136,7 +135,6 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
 
         $scope.salvarRegistroInternacao = function () {
             if ($scope.validarRegistroInternacao()) {
-                $scope.registroInternacao.dataInternacao = moment($scope.registroInternacao.dataInternacao).format();
                 $scope.registroInternacao.previsaoAlta = moment($scope.registroInternacao.previsaoAlta).format();
 
                 $scope.registroInternacao.enfermaria = $scope.Enfermarias.filter(function (obj) {
@@ -159,7 +157,6 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                             $scope.novoRegistroInternacao();
 
                         } else {
-                            $scope.registroInternacao.dataInternacao = new Date($scope.registroInternacao.dataInternacao);
                             $scope.registroInternacao.previsaoAlta = new Date($scope.registroInternacao.previsaoAlta);
                             swal('Erro!',
                                 'Paciente já está internado!',
@@ -170,7 +167,6 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
 
                     })
                     .catch((response) => {
-                        $scope.registroInternacao.dataInternacao = new Date($scope.registroInternacao.dataInternacao);
                         $scope.registroInternacao.previsaoAlta = new Date($scope.registroInternacao.previsaoAlta);
                         if (response.data != undefined) {
                             swal(
@@ -238,14 +234,6 @@ app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "r
                 swal(
                     'Erro!',
                     'Escolha um leito!',
-                    'error'
-                )
-                return;
-            }
-            if ($scope.registroInternacao.dataInternacao == "") {
-                swal(
-                    'Erro!',
-                    'Digite a data de internação do paciente!',
                     'error'
                 )
                 return;
