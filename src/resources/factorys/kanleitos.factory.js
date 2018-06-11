@@ -98,7 +98,7 @@ app.factory('leitoFactory', function ($http) {
         return $http({
             url: URL_REQ + "leitosEnfermarias",
             method: 'GET',
-            params: { idEnfermaria: idEnfermaria, ativo: status },
+            params: { idEnfermaria: idEnfermaria, apenasDesocupados: status },
             kanHeaders
         });
     };

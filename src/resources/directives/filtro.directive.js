@@ -29,14 +29,14 @@ app.directive('filtros', function (svcIsolamento, alasFactory, svcFuncionario, e
             })
 
             scope.carregarEnfermarias = function () {
-                enfermariaFactory.getEnfermariasByAlas(scope.model.ala.idAla, true)
+                enfermariaFactory.getEnfermariasByAlas(scope.model.ala.idAla, false)
                     .then(function (res) {
                     scope.enfermarias = res.data.data;
                     });
             };
 
             scope.carregarLeitosEnfermaria = function () {
-                leitoFactory.getLeitoEnfermaria(scope.model.idEnfermaria, true)
+                leitoFactory.getLeitoEnfermaria(scope.model.idEnfermaria, false)
                     .then(function (response) {
                         scope.leitos = response.data.data;
                     });
@@ -48,6 +48,7 @@ app.directive('filtros', function (svcIsolamento, alasFactory, svcFuncionario, e
                 });
 
             scope.filtrarDados = function () {
+                debugger;
                 scope.model.idAla = isNullOrEmpty(scope.model.ala) ? "" : scope.model.ala.idAla;
                 scope.model.idMedico = isNullOrEmpty(scope.model.medicoResponsavel) ? "" : scope.model.medicoResponsavel.idFuncionario;
                 scope.model.idResidente = isNullOrEmpty(scope.model.residenteResponsavel) ? "" : scope.model.residenteResponsavel.idFuncionario;
