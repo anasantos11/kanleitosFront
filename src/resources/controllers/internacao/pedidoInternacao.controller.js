@@ -1,5 +1,5 @@
 app.controller('pedidoInternacaoController',
-    function ($scope, $rootScope, $http, $filter, pedidoInternacaoFactory, diagnosticosFactory, pacienteFactory, alasFactory, Notify, svcIsolamento, svcFuncionario) {
+    function ($scope, $rootScope, $http, $filter, pedidoInternacaoFactory, pacienteFactory, alasFactory, Notify, svcIsolamento, svcFuncionario) {
 
         $scope.novoPedidoInternacao = function () {
             $scope.pedidoInternacao = {
@@ -57,33 +57,12 @@ app.controller('pedidoInternacaoController',
         }
 
         $scope.Inicializar = function () {
-            $scope.CarregarDiagnosticos();
             $scope.CarregarAlas();
             $scope.carregarIsolamentos();
             $scope.carregarMedicos();
             $scope.carregarFuncionariosNaoMedicos();
         }
 
-        $scope.CarregarDiagnosticos = function () {
-            diagnosticosFactory.getDiagnosticos()
-                .then(function (response) {
-                    $scope.Diagnosticos = response.data.data;
-                }, function (response) {
-                    if (response.data != undefined) {
-                        swal(
-                            'Erro!',
-                            response.data.messages,
-                            'error'
-                        )
-                    } else {
-                        swal(
-                            'Erro!',
-                            'Ocorreu algum erro no servidor',
-                            'error'
-                        )
-                    }
-                });
-        };
         $scope.CarregarAlas = function () {
             alasFactory.getAlas(true)
                 .then(function (response) {
@@ -151,10 +130,6 @@ app.controller('pedidoInternacaoController',
                     return (obj.idAla == $scope.pedidoInternacao.idAla)
                 })[0];
 
-                $scope.pedidoInternacao.diagnostico = $scope.Diagnosticos.filter(function (obj) {
-                    return (obj.idDiagnostico == $scope.pedidoInternacao.idDiagnostico)
-                })[0];
-
                 if ($scope.pedidoInternacao.precisaIsolamento) {
                     $scope.pedidoInternacao.isolamento = $scope.Isolamentos.filter(function (obj) {
                         return (obj.idIsolamento == $scope.pedidoInternacao.idIsolamento)
@@ -184,10 +159,7 @@ app.controller('pedidoInternacaoController',
                 alertaPreenchimentoCampo("ala");
                 return;
             }
-            if (isNullOrEmpty($scope.pedidoInternacao.idDiagnostico)) {
-                alertaPreenchimentoCampo("diagnóstico");
-                return;
-            }
+
             if (isNullOrEmpty($scope.pedidoInternacao.dataAdmissao)) {
                 alertaPreenchimentoCampo("data de admissão");
                 return;

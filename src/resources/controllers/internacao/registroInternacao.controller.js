@@ -1,5 +1,5 @@
-app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "registroInternacaoFactory", "pedidoInternacaoFactory", "diagnosticosFactory", "alasFactory", "enfermariaFactory", "leitoFactory", "svcIsolamento", "Notify",
-    function ($scope, $http, $filter, registroInternacaoFactory, pedidoInternacaoFactory, diagnosticosFactory, alasFactory, enfermariaFactory, leitoFactory, svcIsolamento, Notify) {
+app.controller('registroInternacaoController', ["$scope", "$http", "$filter", "registroInternacaoFactory", "pedidoInternacaoFactory", "alasFactory", "enfermariaFactory", "leitoFactory", "svcIsolamento", "Notify",
+    function ($scope, $http, $filter, registroInternacaoFactory, pedidoInternacaoFactory, alasFactory, enfermariaFactory, leitoFactory, svcIsolamento, Notify) {
 
         $scope.novoRegistroInternacao = function () {
             $scope.registroInternacao = {
