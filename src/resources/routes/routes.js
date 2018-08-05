@@ -166,24 +166,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
 
 		})
-		.state("tiposExames", {
+		.state("tiposIsolamentos", {
 			parent: "kanleitos",
-			url: "/tiposExames",
+			url: "/tiposIsolamentos",
 			views: {
 				"contentApp@kanleitos": {
-					templateUrl: "templates/cadastros-gerais/tiposExames.html"
+					templateUrl: "templates/cadastros-gerais/tiposIsolamentos.html"
 				}
 			}
 		})
-		// .state("tiposIsolamentos", {
-		// 	parent: "kanleitos",
-		// 	url: "/tiposIsolamentos",
-		// 	views: {
-		// 		"contentApp@kanleitos": {
-		// 			templateUrl: "templates/cadastros-gerais/tiposIsolamentos.html"
-		// 		}
-		// 	}
-		// })
 		.state("tiposPendencias", {
 			parent: "kanleitos",
 			url: "/tiposPendencias",
