@@ -25,15 +25,12 @@ app.controller('pedidoInternacaoController',
         $scope.openModalCadastro = () => {
             return Notify.openModal("templates/internacao/cadastroPaciente.html", null, "50%")
                 .closePromise.then((pacienteCadastrado) => {
+                    debugger;
                     if (!pacienteCadastrado.value || pacienteCadastrado.value === '$document' || pacienteCadastrado.value === '$closeButton') {
                         return
                     } else {
-                        $scope.pedidoInternacao.paciente.numProntuario = pacienteCadastrado.value.numProntuario
-                        $scope.pedidoInternacao.paciente.nomePaciente = pacienteCadastrado.value.nomePaciente
-                        $scope.pedidoInternacao.paciente.nomeMae = pacienteCadastrado.value.nomeMae
-                        $scope.pedidoInternacao.paciente.dataNascimento = new Date(pacienteCadastrado.value.dataNascimento)
-                        $scope.pedidoInternacao.paciente.idade = pacienteCadastrado.value.idade
-                        $scope.pedidoInternacao.paciente.genero = pacienteCadastrado.value.genero
+                        $scope.pedidoInternacao.paciente.numProntuario = pacienteCadastrado.value;
+                        $scope.pedidoInternacao.paciente.dataNascimento = new Date(pacienteCadastrado.value.dataNascimento);
                     }
                 })
         }
