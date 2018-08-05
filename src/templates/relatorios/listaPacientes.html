@@ -1,9 +1,12 @@
 <div ng-controller="ModalPesquisaController" ng-init="carregarPacientes()">
     <div class="kan-row-modal">
         <fieldset class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
-            <h5 class="kan-title">Lista de Pacientes
-                <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Escolha um paciente para pedir a internação"></i>
-            </h5>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 kan-group">
+                <h5 class="kan-title">Lista de Pacientes
+                    <i class="fa fa-info fa-1-x kan-icon-success" data-toggle="tooltip" data-placement="bottom" title="Escolha um paciente para pedir a internação"></i>
+                </h5>
+                <input id="search" class="col-md-6 form-control form-control-sm" type="text" ng-model="search" placeholder="Digite para pesquisar">
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover table-sm">
                     <thead>
@@ -18,7 +21,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="paciente in ListaPacientes">
+                        <tr ng-repeat="paciente in ListaPacientes | filter : search | orderBy: 'numProntuario'">
                             <td class="text-center">{{paciente.numProntuario}}</td>
                             <td class="text-center">{{paciente.nomePaciente}}</td>
                             <td class="text-center">{{paciente.nomeMae}}</td>
